@@ -3,7 +3,7 @@
 To run the app locally:
 
 1. cd into SindaCMS/client 
-2. run npm start (will watch your files and update the bundle in wwwroot folder)
+2. run npm start (will watch your files & push bundle in wwwroot folder. Works with .net6 hot reload)
 3. double click on SindaCMS.sln in the root folder
 4. run the application through visual studio
 
