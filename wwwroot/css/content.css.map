@@ -1,0 +1,1 @@
+{"version":3,"file":"./css/content.css","mappings":";;;AACI;EACI;AAAR,C","sources":["webpack://client/./css/content.scss"],"sourcesContent":[".section{\r\n    &--hidden{\r\n        display:none;\r\n    }\r\n}\r\n"],"names":[],"sourceRoot":""}

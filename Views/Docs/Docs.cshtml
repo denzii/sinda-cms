@@ -1,0 +1,16 @@
+﻿@model PageProps
+@{
+    ViewData["Title"] = "Docs";
+    int i = 0;
+}
+
+@foreach (var sectionName in @Model.SectionNames)
+{
+    @if(i == 0){
+        <div class="section" data-key=@sectionName>Hello From Docs  @sectionName Page</div>
+    }
+    else {
+        <div class="section section--hidden" data-key=@sectionName>Hello from Docs  @sectionName Page</div>
+    }
+    i++;
+}

@@ -1,0 +1,132 @@
+@use "abstracts" as a;
+
+html {
+    position: relative;
+    height: 100vh;
+    scroll-behavior: smooth;
+}
+
+/* styles pertaing to accessibility and cross browser design */
+/* no BEM for these */
+
+/* clear browser defaults for empty space around the content */
+body {
+    margin: 0;
+    height: inherit;
+}
+
+/* clear browser defaults for empty space around the section separator */
+hr {
+    all: unset;
+    margin: 0;
+    max-width: 100%;
+}
+
+/* clear browser defaults, set height to be inherited from parent by default */
+nav {
+    margin: 0;
+    height: inherit;
+
+    a {
+        text-decoration: none;
+    }
+}
+
+menu {
+    all: unset;
+    height: inherit;
+}
+
+ul, ol {
+    margin:0;
+    list-style:none;
+    button {
+        all:unset;
+    }
+    a {
+        all:unset;
+        text-decoration:none;
+    }
+}
+
+/* Disable default Definition List styles applied by the browsers so each inner element could be styled properly later on */
+dl, dl h3, dt, dd {
+    @include a.boxModelResetRules();
+}
+
+/* for including descriptive tags and having them not interfere with visual design. this gives readability to the markup as well as the code generating it
+   improving maintainability */
+.hidden {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    display: none;
+}
+
+/*  according to accessibility best practices, all elements which may hold focus need to have an outline border of at least 2px when focused
+    the colour can change given that it has enough contrast with its background. */
+*:focus {
+    outline: solid 2px;
+}
+
+/* for having the same font size in all browsers, its better to set font-size to 100% globally and then use em units to define font size per element 
+   rather than pixels. This also allows resizing the font in the browser specific menus for people who may need to configure bigger font sizes without
+   zooming in the page, adding a plus to accessibility */
+* {
+    font-size: 100%;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+h2 {
+    font-size: 1.875em;
+}
+
+h3 {
+    font-size: 1.55em;
+}
+
+h4 {
+    font-size: 1.05em;
+}
+
+p {
+    font-size: 1.05em;
+}
+
+/* all these tags should have the same font and same style of text globally unless a rule is specified again later on*/
+h1, h2, h3, h4,
+p, a, fieldset {
+    /*font-family: a.$global-fonts;*/
+    /*color: a.$global-font-colour;*/
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* pimp my scrollbar on chrome */
+body::-webkit-scrollbar {
+    width: a.scrollbar(webkit-thin);
+}
+
+body::-webkit-scrollbar-track {
+    background: a.scrollbar(background-colour);
+}
+
+body::-webkit-scrollbar-thumb {
+    background: a.scrollbar(colour);
+}
+
+
+/* pimp my scrollbar on firefox */
+* {
+    scrollbar-color: a.scrollbar(colour) a.scrollbar(background-colour);
+    scrollbar-width: a.scrollbar(moz-thin);
+}
+
+
+// clear browser defaults for indentation for the data definition tag
+dd {
+    all: unset;
+}

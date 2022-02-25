@@ -1,0 +1,10 @@
+﻿@use "variables" as v;
+
+@function scrollbar($propName) {
+    @return map-get(v.$scrollbar, $propName);
+}
+
+/*@function neumorphDegree($propName) {
+    @return map-get(v.$neumorphDegree, $propName);
+}
+*/

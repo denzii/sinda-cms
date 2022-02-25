@@ -1,0 +1,59 @@
+﻿@model PageProps
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
+    
+    <title>@ViewData["Title"]  - Sindagal</title>
+    <link rel="stylesheet" href="/css/layoutStyle.css" />
+    <link rel="stylesheet" href="/css/siteStyle.css" />
+    <link rel="stylesheet" href="/css/contentStyle.css" />
+</head>
+<body>
+    <header class="body__header body__header--index-page">
+        <div class="header__nav-container">
+            <nav>
+                <div class="nav__descriptor" role="presentation">
+                    <a class="descriptor__logo" asp-area="" asp-controller="Home" asp-action="Index">@Model.Base.BrandName</a>
+                    <span class="descriptor__current-page">@Model.Name</span>
+                </div>
+                <ul class="nav__menu"> 
+                    @if(Model.Name != null && Model.SectionNames != null){
+                        int i = 0;
+                        @foreach (string sectionName in Model.SectionNames){
+                            <li class="menu__element">
+                                @if(i == 0){
+                                    <button class="element__anchor element__anchor--active" type="button" id=@Model.Name-nav-item data-key=@sectionName>@sectionName</button> 
+                                }
+                                else {
+                                    <button class="element__anchor element__anchor--inactive" type="button" id=@Model.Name-nav-item data-key=@sectionName>@sectionName</button>
+                                }
+                        </li> 
+                        i++;
+                        }
+                    }
+                    else{
+                        @foreach (string pageName in Model.Base.PageNames){
+                        <li class="menu__element">
+                            <a class="element__anchor element__anchor--inactive" asp-area="" asp-action="Index" asp-controller=@pageName>@pageName</a>
+                        </li>
+                        } 
+                    }
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="body__main" role="main">
+        @RenderBody()
+    </main>
+    <footer class="body__footer">
+            &copy; 2022 - @Model.Base.BrandDescription
+    </footer>
+
+    <script src="~/js/layout.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

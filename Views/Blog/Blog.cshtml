@@ -1,0 +1,18 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Blog";
+    int i = 0;
+}
+
+@foreach (var sectionName in @Model.SectionNames)
+{
+    @if(i == 0){
+        <div class="section" data-key=@sectionName>Hello From Blog  @sectionName Page</div>
+    }
+    else {
+        <div class="section section--hidden" data-key=@sectionName>Hello from Blog  @sectionName Page</div>
+    }
+    i++;
+}
