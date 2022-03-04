@@ -7,13 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="client\css\site.scss" />
-    <Content Include="client\js\site.tsx" />
+    <Folder Include="wwwroot\img\" />
   </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Jering.Javascript.NodeJS" Version="6.3.0" />
-    <PackageReference Include="Microsoft.jQuery.Unobtrusive.Ajax" Version="3.2.6" />
-  </ItemGroup>
-
+	
 </Project>

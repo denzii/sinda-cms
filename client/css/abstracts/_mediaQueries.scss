@@ -1,33 +1,78 @@
 ﻿@use "variables" as v;
 
-/*@mixin desktopMediaQuery {
-    @media only screen and (max-width: #{v.$desktopBreakpoint}) {
+@mixin desktopWidthMediaQuery {
+    @media only screen and (max-width: #{v.$desktopWidthBreakpoint}) {
+        @content
+    }
+}
+@mixin desktopLargeWidthMediaQuery {
+    @media only screen and (max-width: #{v.$desktopLargeWidthBreakpoint}) {
         @content
     }
 }
 
 ;
 
-@mixin tabletMediaQuery {
-    @media only screen and (max-width: #{v.$tabletBreakpoint}) {
+@mixin tabletWidthMediaQuery {
+    @media only screen and (max-width: #{v.$tabletWidthBreakpoint}) {
         @content
     }
 }
 
 ;
 
-@mixin mobileMediaQuery {
-    @media only screen and (max-width: #{v.$mobileBreakpoint}) {
+@mixin mobileWidthMediaQuery {
+    @media only screen and (max-width: #{v.$mobileWidthBreakpoint}) {
         @content
     }
 }
 
 ;
 
-@mixin lowEndMediaQuery {
-    @media only screen and (max-width: #{v.$lowEndBreakpoint}) {
+@mixin lowEndWidthMediaQuery {
+    @media only screen and (max-width: #{v.$lowEndWidthBreakpoint}) {
         @content
     }
 }
 
-;*/
+@mixin tabletSmallHeightMediaQuery {
+    @media only screen and (min-height: #{v.$tabletSmallHeightBreakpoint}) {
+        @content
+    }
+}
+@mixin tabletMediumHeightMediaQuery {
+    @media only screen and (min-height: #{v.$tabletMediumHeightBreakpoint}) {
+        @content
+    }
+}
+@mixin tabletLargeHeightMediaQuery {
+    @media only screen and (min-height: #{v.$tabletLargeHeightBreakpoint}) {
+        @content
+    }
+}
+;
+
+@mixin desktopHeightMediaQuery {
+    @media only screen and (min-height: #{v.$desktopHeightBreakpoint}) {
+        @content
+    }
+}
+
+@mixin desktopLargeHeightMediaQuery {
+    @media only screen and (min-height: #{v.$desktopLargeHeightBreakpoint}) {
+        @content
+    }
+}
+
+
+@mixin mobileHeightMediaQuery {
+    @media only screen and (min-height: #{v.$mobileHeightBreakpoint}) {
+        @content
+    }
+}
+
+@mixin tabletSmallWidthMediaQuery {
+    @media only screen and (max-width: #{v.$tabletSmallHeightBreakpoint}) {
+        @content
+    }
+}

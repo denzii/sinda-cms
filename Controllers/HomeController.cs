@@ -1,9 +1,8 @@
 ﻿using System.Diagnostics;
-using Jering.Javascript.NodeJS;
 using Microsoft.AspNetCore.Mvc;
-using SBv2.Models;
+using SindaCMS.Models;
 
-namespace SBv2.Controllers;
+namespace SindaCMS.Controllers;
 
 public class HomeController : Controller
 {

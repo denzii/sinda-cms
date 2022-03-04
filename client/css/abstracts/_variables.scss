@@ -1,15 +1,20 @@
 ﻿$scrollbar: ( moz-thin: thin, webkit-thin: 0.5rem, background-colour: #1e1e24, colour: #9a978a );
 
-/*$neumorphDegree: ( bottom-right-lightsource: 315deg, upper-left-lightsource: 145deg );
+$desktopLargeWidthBreakpoint: 2000px;
+$tabletWidthBreakpoint: 800px;
+$tabletSmallWidthBreakpoint: 412px;
 
-$global-fonts: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-$global-font-colour: #555;
-*/
+$desktopWidthBreakpoint: 1475px;
+$mobileWidthBreakpoint: 800px;
+$lowEndWidthBreakpoint: 650px;
+/*
+$tabletSmallHeightBreakpoint: 1080px;
+$tabletMediumHeightBreakpoint: 915px;
+$tabletLargeHeightBreakpoint: 1280px;*/
 
-$desktopBreakpoint: 1480px;
-$tabletBreakpoint: 1280px;
-$mobileBreakpoint: 800px;
-$lowEndBreakpoint: 485px;
+$desktopHeightBreakpoint: 1200px;
+$desktopLargeHeightBreakpoint: 1200px;
+$mobileHeightBreakpoint: 760px;
 
 $headerHeight: 80%;
 $footerHeight: 6.5%;

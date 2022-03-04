@@ -1,82 +1,181 @@
 ﻿@use "abstracts" as a;
 
-.body__header {
-    background-color: rgb(21, 21, 21);
-    min-height: a.$headerHeight;
-    &--index-page{
-        min-height: 80%;
-        /*max-width: 100vw;*/
-        /*background-image: url("../img/hero.jpg");*/
-        /*background-size: cover;*/
+//container for everything except the footer
+.body-container {
+    // set this to screen height minus footer height so footer always stick to bottom
+    // if content height becomes bigger than this, this will still work as only a minimum is set
+    min-height: 93.5vh;
+
+    .body-container__main {
+        padding: 25px;
+        padding-top: 0px;
     }
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-begin;
 
-    .header__nav-container{
-        display:flex;
-        max-width:100vw;
-        color:#fff;
+    .body-container__header {
+        background-color: rgb(21, 21, 21);
+        height-height: a.$headerHeight;
+        min-height: 10vh;
+        background-size: cover;
+        background-image: url("../img/hero.jpg");
+        background-attachment: fixed;
+        background-blend-mode: color-dodge;
 
-        flex-direction:row;
-        justify-content:center;
-        nav {
-            display:flex;
-            justify-content:space-around;
+        &--index-page {
+            background-size: cover;
+            min-height: 80vh;
 
-            .nav__descriptor{
-                font-weight: 900;
-                font-family: sans-serif;                 
-                font-size: 38px;
-                width:25%;
+            @include a.desktopWidthMediaQuery {
+                background-image: url("../img/hero-mid.jpg");
+            }
 
-                .descriptor__logo {
-                    line-height:5px;
-                    color: rgb(21, 21, 21);
-                    -webkit-text-stroke: 0.9px white;
-                    &:hover{
-                        border-bottom: 3px solid rgb(224, 35, 78);
-                   }
-                }
+            @include a.mobileWidthMediaQuery {
+                background-image: url("../img/hero-low.jpg");
+                min-height: 60vh;
+            }
+        }
 
-                .descriptor__current-page {
-                    font-size: 45px;
-                    color:rgb(224, 35, 78);
-                    font-family: 'Brush Script MT', cursive;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-begin;
+
+        .header__brand-display {
+            display: flex;
+            color: white;
+            width: 100vw;
+            justify-content: space-around;
+            margin-left: -35px;
+            margin-top: 165px;
+
+            &--hidden {
+                display: none;
+            }
+
+            @include a.mobileWidthMediaQuery {
+                font-size: 14px;
+                flex-direction: row;
+                justify-content: center;
+                margin-left: 0;
+                margin-top: 50px;
+                text-align: center;
+            }
+
+
+            .brand-display__column {
+                width: 350px;
+
+                @include a.mobileWidthMediaQuery {
+                    padding-top: 50px;
                 }
             }
 
-            .nav__menu{
-                min-width: 20%;
-                display:flex;
-                flex-direction:row;
-                justify-content:space-between;
+            .brand-display__header {
+            }
 
-                * {
-                    display:flex;
-                    flex-direction:column;
-                    justify-content:center;
-                    padding-left:10px;
-                    padding-right:10px;
+            .brand-display__context {
+            }
+        }
+
+        .header__nav-container {
+            display: flex;
+            max-width: 100vw;
+            color: #fff;
+            flex-direction: row;
+            justify-content: center;
+
+            nav {
+                min-width: 100vw;
+                height: 75px;
+                display: flex;
+                justify-content: space-around;
+                padding: 0vh;
+                padding-top: 1vh;
+                padding-bottom: 1vh;
+
+                @include a.mobileWidthMediaQuery {
+                    height: 180px;
+                    flex-direction: column;
+                    min-width: unset;
                 }
 
-                .menu__element{
-                    font-family: Helvetica Neue,sans-serif;
-                    font-weight: 600;
-                    font-size: 16.5px;
-                    text-transform:uppercase;
+                .nav__descriptor {
+                    line-height: 25px;
+                    // centre left side nav items container column with padding bottom so  that this classes's elements are in sync with the right side nav class contents
+                    //in terms of alignment
+                    font-weight: 900;
+                    font-family: sans-serif;
+                    font-size: 58px;
+                    max-width: fit-content;
+                    padding-left: 15px;
+                    display: flex;
+                    justify-content: center;
+                    padding-top: 15px;
+                    height: fit-content;
 
-                    .element__anchor{
-                        &--active{
-                            color: rgb(224, 35, 78);
-                            &:hover{
-                                border-bottom: 0;
-                            }
+                    .descriptor__logo {
+                        color: rgb(21, 21, 21);
+                        -webkit-text-stroke: 0.9px white;
+                        padding-bottom: 10px;
+
+                        &:hover {
+                            -webkit-text-stroke: 0.9px rgb(224, 35, 78);
+                            border-bottom: 3px solid rgb(224, 35, 78);
                         }
-                        &--inactive{
-                            color:#fff;
-                            &:hover{
-                                border-bottom: 3px solid rgb(224, 35, 78);
+                    }
+
+                    .descriptor__current-page {
+                        padding-top: 15px;
+                        height: 40px;
+                        margin-top: -10px;
+                        font-size: 65px;
+                        color: rgb(224, 35, 78);
+                        font-family: 'Brush Script MT', cursive;
+                    }
+                }
+
+                .nav__menu {
+                    padding-bottom: 15px;
+                    min-width: fit-content;
+                    display: flex;
+                    padding-left: 5px;
+                    padding-top: 25px; // so the lhs elems are vertically aliged with the rhs
+                    flex-direction: row;
+                    justify-content: space-between;
+
+                    @include a.lowEndWidthMediaQuery {
+                        flex-wrap:wrap;
+                        justify-content: space-around;
+                    }
+
+                    * {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        padding-left: 10px;
+                        padding-right: 10px;
+                    }
+
+                    .menu__element {
+                        font-family: Helvetica Neue,sans-serif;
+                        font-weight: 600;
+                        font-size: 22.5px;
+                        text-transform: uppercase;
+
+                        .element__anchor {
+                            &--active {
+                                color: rgb(224, 35, 78);
+
+                                &:hover {
+                                    border-bottom: 0;
+                                }
+                            }
+
+                            &--inactive {
+                                color: #fff;
+
+                                &:hover {
+                                    color: rgb(224, 35, 78);
+                                    border-bottom: 3px solid rgb(224, 35, 78);
+                                }
                             }
                         }
                     }
@@ -84,24 +183,30 @@
             }
         }
     }
-    
 
+    .body-container__main {
+        height: fit-content;
+    }
 }
 
-.body__main {
-    height: calc(107% - (#{a.$headerHeight} + #{a.$footerHeight}));
-}
 
 .body__footer {
     min-height: a.$footerHeight;
-    
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    text-align:center;
-
-    font-size: 18px;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
     background-color: rgb(21, 21, 21);
     color: rgb(143, 155, 155);
+
+    .footer__copy {
+        font-size: 19px;
+    }
+
+    .footer__disclaimer {
+        margin-bottom: 0;
+        font-size: 15px;
+    }
 }
 

@@ -1,0 +1,279 @@
+﻿@model Page
+@{
+    List<Section> sections = new List<Section> {
+        new Section {
+            Id="introduction",
+            Header="Introduction",
+            Details= new List<Detail>{
+               new Detail{
+                    Type=ContentType.Paragraph,
+                    Contents= new List<object>{ new { Type= ContentType.Text, Value= "Sindagal Command Line Interface is a simple Node.js application which makes use of the popular JavaScript framework React. The goal is to make developer lives more convenient by wrapping around operating system level scripts and allowing their easy consumption." } }
+               },
+               new Detail{
+                   Type=ContentType.Warning,
+                   Contents= new List<object>{ new { Type= ContentType.Text, Value= "For the time being, usages from within WSL & Unix based systems had been disabled." } }
+               },
+               new Detail{
+                   Type=ContentType.Paragraph,
+                   Contents= new List<object>{ new { Type= ContentType.Text, Value= "On this page, you'll learn what the Sinda Command Line Interface brings to the table and how it can be consumed by setting it up from scratch and consuming some of the built in automation scripts on a Windows machine." } }
+               }
+            }
+        },
+        new Section{
+          Id="setup",
+          Header="Getting Started",
+          Details= new List<Detail>{
+            new Detail{
+                Type=ContentType.Paragraph,
+                Contents= new List<object>{
+                    new {Type = ContentType.Text, Value= "The project requires Node.js LTS and npm to be installed as a pre-requisite so if you do not already have them, now is a good time to set them up." },
+                    new {Type = ContentType.Link, Value="This tutorial", Href="https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows"},
+                    new {Type = ContentType.Text, Value= "by Microsoft demonstrates how they could be set on a Windows machine using the Node Version Manager tool (NVM)."}
+                } 
+            },
+            new Detail{
+                Type=ContentType.Paragraph,
+                Contents= new List<object>{
+                    new {Type = ContentType.Text, Value="Once NVM & Node.js are configured, we could proceed to cloning the repository and running the app from the cloned source code. Its necessary to fork and/or clone the repository since the app itself requires access to the localhost machine so it can run powershell/bash scripts."}
+                }
+            },
+            new Detail{
+                Type=ContentType.Code,
+                Contents= new List<object>{
+                    new {Language="shell", Value="git clone https://github.com/denzii/sinda-cli.git"}
+                }
+            },
+            new Detail{
+                Type=ContentType.Code,
+                Contents= new List<object>{
+                    new {Language="shell", Value="cd sinda-cli"}
+                }
+            },
+            new Detail{
+                Type=ContentType.Code,
+                Contents= new List<object>{
+                    new {Language="shell", Value="npm start"}
+                }
+            },
+            new Detail{
+                Type=ContentType.Warning,
+                Contents= new List<object>{ new { Value= "The app requires administrator rights to run Powershell / Bash scripts on localhost, if its run from a non-elevated terminal session, it will result in an error and not run." } }
+            },
+            new Detail{
+                Type=ContentType.Paragraph,
+                Contents= new List<object>{
+                    new {Type = ContentType.Text, Value="The following image demonstrates the landing page for a successfully started CLI."}
+                }
+            },
+            new Detail{
+                Type=ContentType.Picture,
+                Contents= new List<object>{
+                    new { Type = ContentType.PictureSource, Srcset="./img/cli-landing-page-850w.png", Media="(max-width: 950px)"},
+                    new { Type = ContentType.PictureSource, Srcset="./img/cli-landing-page.png"},
+                    new { Type = ContentType.PictureFallback, Src="./img/cli-landing-page.png", Alt="CLI Landing Page"}
+                }
+            },
+
+         }
+       },
+       new Section {
+            Id="usage",
+            Header="Usage",
+            Details= new List<Detail>{
+               new Detail{
+                    Type=ContentType.Paragraph,
+                    Contents= new List<object>{
+                        new { Type= ContentType.Text, Value= "Consuming scripts from the app is pretty straight forward and takes only a few key-presses to achieve. As seen on the landing page image, the terminal prompt functions similarly to a single page app and the visible part of the terminal is hijacked by a" },
+                        new { Type = ContentType.Link, Value="React Ink", Href="https://github.com/vadimdemedes/ink"},
+                        new { Type= ContentType.Text, Value= "Component" },
+                    }
+
+               },
+               new Detail{
+                   Type=ContentType.Paragraph,
+                   Contents= new List<object>{ new { Type= ContentType.Text, Value= "The component itself detects the screen height and width and resizes accordingly. Having said that, a maximized terminal window is recommended for the best experience and the resizing  feature is only meant for the application startup. If the terminal window gets resized while the app is running, there are no guarantees for correct rendering of the component." } }
+               },
+               new Detail{
+                   Type=ContentType.Paragraph,
+                   Contents= new List<object>{ new { Type= ContentType.Text, Value= "Once a key is pressed on the landing page, the survey component is rendered and the user is presented with all the available automation scripts... Navigation of the form is achieved through the <i>Up / Down / Enter & Esc </i> keys. This component is demonstrated in the following image." } }
+               },
+               new Detail{
+                Type=ContentType.Picture,
+                Contents= new List<object>{
+                    new { Type = ContentType.PictureSource, Srcset="./img/cli-survey-page-850w.png", Media="(max-width: 950px)"},
+                    new { Type = ContentType.PictureSource, Srcset="./img/cli-survey-page.png"},
+                    new { Type = ContentType.PictureFallback, Src="./img/cli-survey-page.png", Alt="CLI Survey Page"}
+                }
+              },
+              new Detail{
+                   Type=ContentType.Paragraph,
+                   Contents= new List<object>{ new { Type= ContentType.Text, Value= "For the sake of this tutorial, we are only going to be selecting the first three options. Once the selections are made, it is required to navigate to the last page of the survey and confirm the selections.  The \"proceed\" button will ask for a re-confirmation and esc key could be used to go back to the form."},  }
+              },
+              new Detail{
+                Type=ContentType.Picture,
+                Contents= new List<object>{
+                    new { Type = ContentType.PictureSource, Srcset="./img/cli-survey-page-confirmation-850w.png", Media="(max-width: 950px)"},
+                    new { Type = ContentType.PictureSource, Srcset="./img/cli-survey-page-confirmation.png"},
+                    new { Type = ContentType.PictureFallback, Src="./img/cli-survey-page-confirmation.png", Alt="CLI Survey Page Confirmation"}
+                }
+              },
+              new Detail{
+                   Type=ContentType.Paragraph,
+                   Contents= new List<object>{ new { Type= ContentType.Text, Value= "Prior to making any changes to the machine, all the selected features and their corresponding scripts are listed and a confirmation is requested once more for extra safety."} }
+              },
+              new Detail{
+                Type=ContentType.Picture,
+                Contents= new List<object>{
+                    new { Type = ContentType.PictureSource, Srcset="./img/cli-survey-page-confirmation-2-850w.png", Media="(max-width: 950px)"},
+                    new { Type = ContentType.PictureSource, Srcset="./img/cli-survey-page-confirmation-2.png"},
+                    new { Type = ContentType.PictureFallback, Src="./img/cli-survey-page-confirmation-2.png", Alt="CLI Survey Page Finalization"}
+                }
+              },
+              new Detail{
+                Type=ContentType.Warning,
+                Contents= new List<object>{ new { Value= "For the time being, the scripts are executed syncronously and the results within the box are updated all at once." } }
+              },
+              new Detail{
+                   Type=ContentType.Paragraph,
+                   Contents= new List<object>{ new { Type= ContentType.Text, Value= "The Standard Outputs as well as Errors for the executed commands are pushed above the component box in real-time. A finished session is demonstrated in the below image."} }
+              },
+              new Detail{
+                Type=ContentType.Picture,
+                Contents= new List<object>{
+                    new { Type = ContentType.PictureSource, Srcset="./img/cli-survey-page-results-850w.png", Media="(max-width: 950px)"},
+                    new { Type = ContentType.PictureSource, Srcset="./img/cli-survey-page-results.png"},
+                    new { Type = ContentType.PictureFallback, Src="./img/cli-survey-page-results.png", Alt="CLI Survey Page Results"}
+                }
+              },
+              new Detail{
+                   Type=ContentType.Paragraph,
+                   Contents= new List<object>{ new { Type= ContentType.Text, Value= "Thats all folks! See how easy it was to consume some powershell scripts? To see the full list of the existing scripts, please navigate to the scripts tab on this page."} }
+              },
+         }
+       }
+    };
+}
+
+
+
+
+@* Below works but is not dynamically generated, this commit is an attempt to make it dynamic using the data formed above *@
+@*
+
+<div class="section__content" id="introduction">
+    <div class="content__container" role="presentation">
+        <h2 class="content__header">Introduction</h2>
+        <p class="content__paragraph">
+            Sindagal Command Line Interface is a simple Node.js application which makes use of the popular JavaScript framework React.
+            The goal is to make developer lives more convenient by
+            wrapping around operating system level scripts and allowing their easy consumption.
+        </p>
+        <p class="content__warning">
+            <span class="material-icons">&#xe002;</span> For the time being, usages from within WSL & Unix based systems had been disabled.
+        </p>
+        <p class="content__paragraph">
+            On this page, you'll learn what the Sinda Command Line Interface brings to the table and how it can be consumed by setting it up
+            from scratch and consuming some of the built in automation scripts on a Windows machine.
+        </p>
+    </div>
+</div>
+<div class="section__content" id="setup">
+    <div class="content__container" role="presentation">
+        <h3 class="content__header" id="setup">Getting Started</h3>
+        <p class="content__paragraph">
+            The project requires Node.js LTS and npm to be installed as a pre-requisite so if you do not already have them, 
+            now is a good time to set them up.
+            <a target="_blank" href="https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows">This tutorial</a> 
+            by Microsoft demonstrates how
+            they could be set on a Windows machine using the Node Version Manager tool (NVM).
+        </p>
+        <p class="content__paragraph">
+            Once NVM & Node.js are configured, we could proceed to cloning the repository and running the app from the cloned source code.
+            Its necessary to fork and/or clone the repository since the app itself requires access to the localhost machine 
+            so it can run powershell/bash scripts.
+        </p>
+
+        <pre><code class="language-shell">$ git clone https://github.com/denzii/sinda-cli.git</code></pre>
+        <pre><code class="language-shell">$ cd sinda-cli</code></pre>
+        <pre><code class="language-shell">$ npm start</code></pre>
+
+        <p class="content__warning">
+            <span class="material-icons">&#xe002;</span>  The app requires administrator rights to run Powershell / Bash
+            scripts on localhost, if its run from a non-elevated terminal session, it will result in an error and not run.
+        </p>
+
+        <p class="content__paragraph">
+            The following image demonstrates the landing page for a successfully started CLI.
+        </p>
+        <picture>
+            <source srcset="./img/cli-landing-page-850w.png" media="(max-width: 950px)">
+            <source srcset="./img/cli-landing-page.png">
+            <img class="content__image" src="./img/cli-landing-page.png" alt="CLI Landing Page"> 
+        </picture> 
+    </div>
+</div>
+<div class="section__content" id="usage">
+    <div class="content__container" role="presentation">
+        <h3 class="content__header"> Usage</h3>
+        <p class="content__paragraph">
+            Consuming scripts from the app is pretty straight forward and takes only a few key-presses to achieve. As seen on the 
+            landing page image, the terminal prompt
+            functions similarly to a single page app and the visible part of the terminal is hijacked by a
+            <a href="https://github.com/vadimdemedes/ink" target="_blank">React Ink</a> Component.
+                       
+        </p>
+        <p class="content__header">
+                The component itself detects the screen height and width and resizes accordingly. Having said that, a maximized terminal
+                window is recommended for the best experience and the resizing  feature is only meant
+                for the application startup. If the terminal window gets resized while the app is running, there are no guarantees for 
+                correct rendering of the component.
+        </p>
+        <p class="content__paragraph">
+                Once a key is pressed on the landing page, the survey component is rendered and the user is presented with all 
+                the available automation scripts...
+                Navigation of the form is achieved through the <i>Up / Down / Enter & Esc </i> keys. This component is demonstrated
+                in the following image.
+        </p>
+        <picture>
+            <source srcset="./img/cli-survey-page-850w.png" media="(max-width: 950px)">
+            <source srcset="./img/cli-survey-page.png">
+            <img class="content__image" src="./img/cli-survey-page.png" alt="CLI Survey Page"> 
+        </picture> 
+        <p class="content__paragraph">
+                For the sake of this tutorial, we are only going to be selecting the first three options.
+                Once the selections are made, it is required to navigate to the last page of the survey and confirm the selections. 
+                The "proceed" button will ask for a re-confirmation and esc key could be used to go back to the form.
+        </p>
+        <picture>
+            <source srcset="./img/cli-survey-page-confirmation-850w.png" media="(max-width: 950px)">
+            <source srcset="./img/cli-survey-page-confirmation.png">
+            <img class="content__image" src="./img/cli-survey-page-confirmation.png" alt="CLI Survey Page Confirmation"> 
+        </picture> 
+        <p class="content__paragraph">
+                Prior to making any changes to the machine, all the selected features and their corresponding scripts are listed and a confirmation
+                is requested once more for extra safety.
+        </p>
+        <picture>
+            <source srcset="./img/cli-survey-page-confirmation-2-850w.png" media="(max-width: 950px)">
+            <source srcset="./img/cli-survey-page-confirmation-2.png">
+            <img class="content__image" src="./img/cli-survey-page-confirmation-2.png" alt="CLI Survey Page Finalization"> 
+        </picture> 
+        <p class="content__warning">
+            <span class="material-icons">&#xe002;</span> For the time being, the scripts are executed syncronously and the results within the box are
+            updated all at once.
+        </p>
+        <p class="content__paragraph">
+                The Standard Outputs as well as Errors for the executed commands are pushed above the component box in real-time. A finished session is
+                demonstrated in the below image.
+        </p>
+        <picture>
+            <source srcset="./img/cli-survey-page-results-850w.png" media="(max-width: 950px)">
+            <source srcset="./img/cli-survey-page-results.png">
+            <img class="content__image" src="./img/cli-survey-page-results.png" alt="CLI Survey Page Results"> 
+        </picture>
+        <p class="content__paragraph">
+                Thats all folks! See how easy it was to consume some powershell scripts? To see the full list of the existing scripts, please navigate to the 
+                scripts tab on this page.
+        </p>
+    </div>
+</div>*@

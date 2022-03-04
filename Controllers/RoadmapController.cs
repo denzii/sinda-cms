@@ -1,9 +1,8 @@
 ﻿using System.Diagnostics;
-using Jering.Javascript.NodeJS;
 using Microsoft.AspNetCore.Mvc;
-using SBv2.Models;
+using SindaCMS.Models;
 
-namespace SBv2.Controllers;
+namespace SindaCMS.Controllers;
 
 public class RoadmapController : Controller
 {
@@ -17,7 +16,13 @@ public class RoadmapController : Controller
 
     public IActionResult Index()
     {
-        return View("Roadmap", new PageProps(_props) { Base = _props, Name = "Roadmap", SectionNames = new List<string> { "Philosophy", "Vision" } });
+        return View("../Shared/_Content", new PageProps(_props) {
+            Name = "Roadmap",
+            Sections = new List<Page> {
+                new Page{Name = "Philosophy", Status = SectionStatus.Incomplete},
+                new Page{Name = "Vision", Status = SectionStatus.Incomplete}
+            }
+        });
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

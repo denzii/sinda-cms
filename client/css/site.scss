@@ -4,6 +4,8 @@ html {
     position: relative;
     height: 100vh;
     scroll-behavior: smooth;
+    max-width: 100vw;
+    overflow-x: hidden;
 }
 
 /* styles pertaing to accessibility and cross browser design */
@@ -50,7 +52,7 @@ ul, ol {
 }
 
 /* Disable default Definition List styles applied by the browsers so each inner element could be styled properly later on */
-dl, dl h3, dt, dd {
+dl, dl h1,h2,h3,h2,h1, dt, dd {
     @include a.boxModelResetRules();
 }
 

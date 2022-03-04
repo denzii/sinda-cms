@@ -1,0 +1,18 @@
+﻿@model PageProps
+@{
+    ViewData["Title"] = @Model.Name;
+    int i = 0;
+}
+
+@foreach (Page pageSection in @Model.Sections){
+        <div class="@(i == 0 ? "main__section" : "main__section main__section--hidden")" data-key=@pageSection.Name>
+            @if(pageSection.Status == SectionStatus.Incomplete)
+            {
+                await Html.RenderPartialAsync("../Shared/_Incomplete.cshtml", @pageSection);
+            } else{
+                await Html.RenderPartialAsync($"../{@Model.Name}/_{@pageSection.Name}.cshtml", @pageSection);
+            } 
+        </div>
+    i++;
+}
+

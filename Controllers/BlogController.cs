@@ -1,9 +1,8 @@
 ﻿using System.Diagnostics;
-using Jering.Javascript.NodeJS;
 using Microsoft.AspNetCore.Mvc;
-using SBv2.Models;
+using SindaCMS.Models;
 
-namespace SBv2.Controllers;
+namespace SindaCMS.Controllers;
 
 public class BlogController : Controller
 {
@@ -17,7 +16,13 @@ public class BlogController : Controller
 
     public IActionResult Index()
     {
-        return View("Blog", new PageProps(_props) { Base = _props, Name = "Blog", SectionNames = new List<string> { "Articles", "News" } });
+        return View("../Shared/_Content", new PageProps(_props) {
+            Name = "Blog",
+            Sections = new List<Page> {
+                new Page{Name="Articles", Status=SectionStatus.Incomplete},
+                new Page{Name="News", Status=SectionStatus.Incomplete},
+            }
+        });
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

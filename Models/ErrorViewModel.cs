@@ -1,4 +1,4 @@
-namespace SBv2.Models;
+namespace SindaCMS.Models;
 
 public class ErrorViewModel
 {

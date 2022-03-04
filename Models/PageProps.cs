@@ -1,4 +1,4 @@
-﻿namespace SBv2.Models
+﻿namespace SindaCMS.Models
 {
     public class PageProps
     {
@@ -9,6 +9,6 @@
         public BaseProps Base { get; set; }
         public string? Name { get; set; } 
 
-        public List<string>? SectionNames { get; set; }
+        public List<Page>? Sections  { get; set; }
     }
 }

@@ -10,8 +10,10 @@ module.exports = {
 
         layout: "./js/layout.tsx",
         layoutStyle: "./css/layout.scss",
-
+        
         contentStyle: "./css/content.scss",
+
+        images: "./img/images.tsx"
     },
     output: {
         filename: 'js/[name].js',
@@ -65,15 +67,11 @@ module.exports = {
                 ]
             },
             {
-                test: /\.jpg$/, use: [
-                    {
-                        loader: 'url-loader',
-                        options: {
-                            limit: 10000,
-                            mimetype: 'image/jpg',
-                        },
-                    },
-                ]
+                test: /\.(svg|jpe?g|gif|png)$/i,
+                loader: 'file-loader',
+                options: {
+                    name: 'img/[name].[ext]',
+                },
             },
         ]
     }

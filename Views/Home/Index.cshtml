@@ -1,7 +1,32 @@
 ﻿@{
     ViewData["Title"] = "Home";
 }
-
-<div id="root"></div>
-     
-<script src="./js/site.js"></script>
+<div class="main__section">
+        <div class="section__cards" role="presentation">
+            <div class="cards__card">
+                <h3 class="card__heading">Automated</h3>
+                <img src="./img/CoffeeDoddle.svg" alt="Reading Doodle"/>
+                <p class="card__body">
+                    Save precious time by wrapping setup scripts for easy consumption
+                </p>
+            </div>
+            <div class="cards__card">
+                <h3 class="card__heading">Intuitive</h3>
+                <img src = "./img/MeditatingDoodle.svg" alt="Meditation Doodle"/>
+                <p class="card__body">
+                    Easily choose from the existing scripts or extend it to your needs to feel home
+                </p>
+            </div>
+            <div class="cards__card">
+                <h3 class="card__heading">Friendly</h3>
+                <img src = "./img/PettingDoodle.svg" alt="Companion Doodle"/>
+                <p class="card__body">
+                    Effectively abstract DevOps and give your developers room to breathe with a developer facing toolset
+                </p>
+            </div> 
+        </div>
+       <div class="section__cta"> 
+           <button class="cta__button" onclick="location.href='@Url.Action("Index", "Docs")'">Get started today!</button>
+       </div>
+</div>
+    
