@@ -23,9 +23,9 @@
                         <span class="descriptor__current-page">@Model.Name</span>
                     </div>
                     <ul class="nav__menu"> 
-                        @if(Model.Name != null && Model.Sections != null){
+                        @if(Model.Name != null && Model.Tabs != null){
                             int i = 0;
-                            @foreach (Page pageSection in Model.Sections){
+                            @foreach (PageTab pageSection in Model.Tabs){
                                 <li class="menu__element">
                                     @if(i == 0){
                                         <button class="element__anchor element__anchor--active" type="button" id=@Model.Name-nav-item data-key=@pageSection.Name>@pageSection.Name</button> 

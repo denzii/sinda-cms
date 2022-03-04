@@ -1,0 +1,32 @@
+﻿@model Detail
+@using System.Web
+
+@{
+     var picture = new TagBuilder("picture");
+
+    @foreach (var content in Model.Contents){
+        if (content is PictureSourceContent sourceContent){
+            var source = new TagBuilder("source");
+            source.MergeAttribute("srcset", sourceContent.Srcset);
+
+            if (null != sourceContent.Media){  
+                source.MergeAttribute("media", sourceContent.Media);
+            }
+            picture.InnerHtml.AppendHtml(source);
+        } else if (content is ImageContent imageContent) {
+
+            var img = new TagBuilder("img");
+            img.MergeAttribute("class", "content__image");
+            img.MergeAttribute("src", imageContent.Src);
+            img.MergeAttribute("alt", imageContent.Alt);
+            picture.InnerHtml.AppendHtml(img);
+        }
+    }
+
+    picture.TagRenderMode = TagRenderMode.Normal;
+    var stringWriter = new System.IO.StringWriter();
+    picture.WriteTo(stringWriter, System.Text.Encodings.Web.HtmlEncoder.Default);
+    var htmlString = stringWriter.ToString();
+                        
+    @Html.Raw(HttpUtility.HtmlDecode(htmlString));
+}

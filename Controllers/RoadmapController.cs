@@ -18,9 +18,9 @@ public class RoadmapController : Controller
     {
         return View("../Shared/_Content", new PageProps(_props) {
             Name = "Roadmap",
-            Sections = new List<Page> {
-                new Page{Name = "Philosophy", Status = SectionStatus.Incomplete},
-                new Page{Name = "Vision", Status = SectionStatus.Incomplete}
+            Tabs = new List<PageTab> {
+                new PageTab{Name = "Philosophy", Status = SectionStatus.Incomplete},
+                new PageTab{Name = "Vision", Status = SectionStatus.Incomplete}
             }
         });
     }

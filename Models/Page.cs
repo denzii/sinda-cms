@@ -1,10 +1,10 @@
 ﻿namespace SindaCMS.Models
 {
-    public class Page
+    public class PageTab
     {
         public string Name { get; set; }
         public SectionStatus Status { get; set; }
 
-        public List<Detail> Contents { get; set; }
+        public List<Section> Sections { get; set; }
     }
 }

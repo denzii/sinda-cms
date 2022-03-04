@@ -1,0 +1,29 @@
+﻿@model Detail
+@using System.Web
+
+@{
+    var p = new TagBuilder("p");
+    p.MergeAttribute("class", "content__paragraph");
+
+    @foreach(var content in Model.Contents){
+        if(content is LinkContent link){
+            var a = new TagBuilder("a");
+            a.MergeAttribute("target", "_blank");
+            a.MergeAttribute("href", link.Href);
+            a.InnerHtml.Append($"{link.Value}");
+
+            p.InnerHtml.Append(" ");
+            p.InnerHtml.AppendHtml(a);
+            p.InnerHtml.Append(" ");
+        } else {
+            p.InnerHtml.Append(content.Value);
+        }
+    }
+
+    p.TagRenderMode = TagRenderMode.Normal;
+    var stringWriter = new System.IO.StringWriter();
+    p.WriteTo(stringWriter, System.Text.Encodings.Web.HtmlEncoder.Default);
+    var htmlString = stringWriter.ToString();
+                        
+    @Html.Raw(HttpUtility.HtmlDecode(htmlString));
+}

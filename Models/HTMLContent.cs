@@ -1,10 +1,8 @@
 ﻿namespace SindaCMS.Models
 {
-    public class Detail
+    public class HTMLContent
     {
         public ContentType Type { get; set; }
-
-        public List<HTMLContent> Contents { get; set; }
-
+        public string Value { get; set; }
     }
 }

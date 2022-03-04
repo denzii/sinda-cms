@@ -1,0 +1,6 @@
+﻿@model Detail
+
+@if (Model.Contents[0] is CodeContent code)
+{
+    <pre><code class=@($"language-{code.Language}")>@code.Value</code></pre>
+}

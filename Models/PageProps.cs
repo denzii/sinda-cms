@@ -9,6 +9,6 @@
         public BaseProps Base { get; set; }
         public string? Name { get; set; } 
 
-        public List<Page>? Sections  { get; set; }
+        public List<PageTab>? Tabs  { get; set; }
     }
 }

@@ -18,9 +18,9 @@ public class BlogController : Controller
     {
         return View("../Shared/_Content", new PageProps(_props) {
             Name = "Blog",
-            Sections = new List<Page> {
-                new Page{Name="Articles", Status=SectionStatus.Incomplete},
-                new Page{Name="News", Status=SectionStatus.Incomplete},
+            Tabs = new List<PageTab> {
+                new PageTab{Name="Articles", Status=SectionStatus.Incomplete},
+                new PageTab{Name="News", Status=SectionStatus.Incomplete},
             }
         });
     }
