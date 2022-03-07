@@ -8,12 +8,12 @@ module.exports = {
         site: './js/site.tsx',
         siteStyle: "./css/site.scss",
 
-        layout: "./js/layout.tsx",
+        layout: "./js/layout.ts",
         layoutStyle: "./css/layout.scss",
         
         contentStyle: "./css/content.scss",
 
-        images: "./img/images.tsx"
+        images: "./img/images.ts"
     },
     output: {
         filename: 'js/[name].js',
@@ -24,7 +24,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(js|jsx|tsx)$/,
+                test: /\.(js|jsx|tsx|ts)$/,
                 exclude: /node_modules/,
                 use: ["babel-loader"]
             },

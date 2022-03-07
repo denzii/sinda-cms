@@ -17,6 +17,12 @@
         .content__warning {
             color: rgb(186, 143, 2);
             font-weight: 600;
+            a{
+                color:unset;
+                &:hover, &:active{
+                    color:rgb(224, 35, 78);
+                }
+            }
         }
 
         .content__container {

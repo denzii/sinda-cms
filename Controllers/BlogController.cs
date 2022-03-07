@@ -16,7 +16,7 @@ public class BlogController : Controller
 
     public IActionResult Index()
     {
-        return View("../Shared/_Content", new PageProps(_props) {
+        return View("../PageTabs", new PageProps(_props) {
             Name = "Blog",
             Tabs = new List<PageTab> {
                 new PageTab{Name="Articles", Status=SectionStatus.Incomplete},

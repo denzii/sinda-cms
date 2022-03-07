@@ -2,24 +2,25 @@
 @using System.Web
 
 @{
-     var picture = new TagBuilder("picture");
+    var picture = new TagBuilder("picture");
 
     @foreach (var content in Model.Contents){
         if (content is PictureSourceContent sourceContent){
-            var source = new TagBuilder("source");
-            source.MergeAttribute("srcset", sourceContent.Srcset);
+            //var source = new TagBuilder("source");
+            //source.MergeAttribute("srcset", sourceContent.Srcset);
 
-            if (null != sourceContent.Media){  
-                source.MergeAttribute("media", sourceContent.Media);
-            }
-            picture.InnerHtml.AppendHtml(source);
-        } else if (content is ImageContent imageContent) {
+            //if (null != sourceContent.Media){  
+            //    source.MergeAttribute("media", sourceContent.Media);
+            //}
+            //picture.InnerHtml.AppendHtml(source);
+            picture.InnerHtml.Append($"<source srcset=\"{sourceContent.Srcset}\" media=\"{sourceContent.Media}\"></source>");
+        } else if (content is ImageContent imageContent){
 
-            var img = new TagBuilder("img");
-            img.MergeAttribute("class", "content__image");
-            img.MergeAttribute("src", imageContent.Src);
-            img.MergeAttribute("alt", imageContent.Alt);
-            picture.InnerHtml.AppendHtml(img);
+            //var img = new TagBuilder("img");
+            //img.MergeAttribute("class", "content__image");
+            //img.MergeAttribute("src", imageContent.Src);
+            //img.MergeAttribute("alt", imageContent.Alt);
+            picture.InnerHtml.AppendHtml($"<img class=\"content__image\" src=\"{imageContent.Src}\" alt=\"{imageContent.Alt}\"></img>");
         }
     }
 

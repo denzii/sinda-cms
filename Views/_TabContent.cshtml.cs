@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace SindaCMS.Views.Docs
 {
-    public class BoilerplateModel : PageModel
+    public class _TabContentModel : PageModel
     {
         public void OnGet()
         {

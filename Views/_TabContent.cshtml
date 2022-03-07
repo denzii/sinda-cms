@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNetCore.Html
+@using System.Web
+@using SindaCMS.Helpers
+
+@model PageTab
+
+@foreach (Section pageSection in Model.Sections) {
+    <div class="section__content" id=@pageSection.Id>
+        <div class="content__container" role="presentation">
+           @if(pageSection.HasMainContent){
+                <h2 class="content__header">@pageSection.Header</h2>
+           } else {
+                <h3 class="content__header">@pageSection.Header</h3>
+           }
+           
+            @{await Html.RenderContentAsync(pageSection.Details);}
+        </div>
+    </div>
+}

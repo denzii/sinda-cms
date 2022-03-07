@@ -7,14 +7,15 @@
 
     @foreach(var content in Model.Contents){
         if(content is LinkContent link){
-            var a = new TagBuilder("a");
-            a.MergeAttribute("target", "_blank");
-            a.MergeAttribute("href", link.Href);
-            a.InnerHtml.Append($"{link.Value}");
+            //var a = new TagBuilder("a");
+            //a.MergeAttribute("target", "_blank");
+            //a.MergeAttribute("href", link.Href);
+            //a.InnerHtml.Append($"{link.Value}");
 
-            p.InnerHtml.Append(" ");
-            p.InnerHtml.AppendHtml(a);
-            p.InnerHtml.Append(" ");
+            //p.InnerHtml.Append(" ");
+            //p.InnerHtml.AppendHtml(a);
+            //p.InnerHtml.Append(" ");
+            p.InnerHtml.Append($" <a target=\"_blank\" href=\"{link.Href}\">{link.Value}</a> ");
         } else {
             p.InnerHtml.Append(content.Value);
         }

@@ -15,3 +15,14 @@ require("./cli-survey-page-confirmation-2.png");
 require("./cli-survey-page-confirmation-2-850w.png");
 require("./cli-survey-page-results.png");
 require("./cli-survey-page-results-850w.png");
+
+require("./winterm.png");
+require("./winterm-850w.png");
+
+require("./zsh-git-branch.png");
+require("./zsh-tab-switch.png");
+require("./zsh-alias-finder.png");
+require("./zsh-autocorrect.png");
+require("./zsh-rc.png");
+require("./zsh-thefuck.png");
+require("./zsh-command-not-found.png");

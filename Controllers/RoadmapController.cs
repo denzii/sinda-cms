@@ -16,7 +16,7 @@ public class RoadmapController : Controller
 
     public IActionResult Index()
     {
-        return View("../Shared/_Content", new PageProps(_props) {
+        return View("../PageTabs", new PageProps(_props) {
             Name = "Roadmap",
             Tabs = new List<PageTab> {
                 new PageTab{Name = "Philosophy", Status = SectionStatus.Incomplete},
