@@ -1,7 +1,7 @@
 ﻿namespace SindaCMS.Models
 {
     public enum SectionStatus{
-        Complete=0,
-        Incomplete=1,
+        Public=0,
+        Hidden=1,
     }
 }

@@ -1,10 +1,20 @@
-﻿namespace SindaCMS.Models
-{
-    public class PageTab
-    {
-        public string Name { get; set; }
-        public SectionStatus Status { get; set; }
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-        public List<Section> Sections { get; set; }
+namespace SindaCMS.Models
+{
+    public class Page
+    {
+        public Page()
+        {
+        }
+
+        public List<Tab>? Tabs  { get; set; }
+
+        [Key]
+        [ForeignKey("PageDetail")]
+        public string PageDetailName { get; set; }
+        public PageDetail PageDetail { get; set; }
+
     }
 }

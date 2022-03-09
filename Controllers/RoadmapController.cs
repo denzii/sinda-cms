@@ -7,20 +7,27 @@ namespace SindaCMS.Controllers;
 public class RoadmapController : Controller
 {
     private readonly ILogger<RoadmapController> _logger;
-    private readonly BaseProps _props;
     public RoadmapController(ILogger<RoadmapController> logger)
     {
         _logger = logger;
-        _props = new BaseProps();
     }
 
     public IActionResult Index()
     {
-        return View("../PageTabs", new PageProps(_props) {
-            Name = "Roadmap",
-            Tabs = new List<PageTab> {
-                new PageTab{Name = "Philosophy", Status = SectionStatus.Incomplete},
-                new PageTab{Name = "Vision", Status = SectionStatus.Incomplete}
+        return View("../PageTabs", new ViewProps {
+            Site = new Site {
+                BrandName = "Sinda",
+                PageNames = new List<PageDetail> {
+                    new PageDetail{ Name="Docs" },
+                    new PageDetail{ Name="Blog" },
+                    new PageDetail{Name= "Roadmap"}
+                },
+                BrandDescription = "Sindagal MIT",
+            },
+            PageName = "Roadmap",
+            Tabs = new List<Tab> {
+                new Tab{Name = "Philosophy", Status = SectionStatus.Hidden},
+                new Tab{Name = "Vision", Status = SectionStatus.Hidden}
             }
         });
     }

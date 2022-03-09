@@ -1,14 +1,14 @@
 ﻿
-@model PageProps
+@model ViewProps
 @{
     Layout = "_Layout";
-    ViewData["Title"] = @Model.Name;
+    ViewData["Title"] = @Model.PageName;
     int i = 0;
 }
 
-@foreach (PageTab tab in @Model.Tabs){
+@foreach (Tab tab in @Model.Tabs){
         <div class="@(i == 0 ? "main__section" : "main__section main__section--hidden")" data-key=@tab.Name>
-            @if(tab.Status == SectionStatus.Incomplete) {
+            @if(tab.Status == SectionStatus.Hidden) {
                 await Html.RenderPartialAsync("../Shared/_Incomplete", tab);
             } else{
                 await Html.RenderPartialAsync("../_TabContent", tab);

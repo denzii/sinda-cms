@@ -17,10 +17,12 @@
         .content__warning {
             color: rgb(186, 143, 2);
             font-weight: 600;
-            a{
-                color:unset;
-                &:hover, &:active{
-                    color:rgb(224, 35, 78);
+
+            a {
+                color: unset;
+
+                &:hover, &:active {
+                    color: rgb(224, 35, 78);
                 }
             }
         }
@@ -38,7 +40,7 @@
             height: auto;
 
             @include a.mobileWidthMediaQuery {
-                margin-left:-25px;
+                margin-left: -25px;
                 width: 115%;
             }
         }
@@ -50,7 +52,18 @@
         .content__paragraph {
         }
 
-        .content__code-ref {
+        .content__code {
+            span {
+                -webkit-user-select: none; /* Safari */
+                -moz-user-select: none; /* Firefox */
+                -ms-user-select: none; /* IE10+/Edge */
+                user-select: none; /* Standard */
+            }
+
+            /* to display $ sign for shell code snippets on the left hand side, prism for some reason uses float:left*/
+            * {
+                float: unset;
+            }
         }
     }
 

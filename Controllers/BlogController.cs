@@ -7,20 +7,27 @@ namespace SindaCMS.Controllers;
 public class BlogController : Controller
 {
     private readonly ILogger<BlogController> _logger;
-    private readonly BaseProps _props;
     public BlogController(ILogger<BlogController> logger)
     {
         _logger = logger;
-        _props = new BaseProps();
     }
 
     public IActionResult Index()
-    {
-        return View("../PageTabs", new PageProps(_props) {
-            Name = "Blog",
-            Tabs = new List<PageTab> {
-                new PageTab{Name="Articles", Status=SectionStatus.Incomplete},
-                new PageTab{Name="News", Status=SectionStatus.Incomplete},
+    { 
+        return View("../PageTabs", new ViewProps {
+            Site = new Site {
+                BrandName = "Sinda",
+                PageNames = new List<PageDetail> {
+                    new PageDetail{ Name="Docs" },
+                    new PageDetail{ Name="Blog" },
+                    new PageDetail{Name= "Roadmap"} 
+                },
+                BrandDescription = "Sindagal MIT",
+            },
+            PageName = "Blog",
+            Tabs = new List<Tab> {
+                new Tab{Name="Articles", Status=SectionStatus.Hidden },
+                new Tab{Name="News", Status=SectionStatus.Hidden },
             }
         });
     }

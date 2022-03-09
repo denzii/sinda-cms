@@ -7,16 +7,25 @@ namespace SindaCMS.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    private readonly BaseProps _props;
     public HomeController(ILogger<HomeController> logger)
     {
         _logger = logger;
-        _props = new BaseProps();
     }
 
-    public IActionResult Index()
-    {
-        return View("../Index", new PageProps(_props));
+    public IActionResult Index() {
+ 
+        return View("../Index", new ViewProps {
+            Site = new Site
+            {
+                BrandName = "Sinda",
+                PageNames = new List<PageDetail> {
+                    new PageDetail{ Name="Docs" },
+                    new PageDetail{ Name="Blog" },
+                    new PageDetail{Name= "Roadmap"}
+                },
+                BrandDescription = "Sindagal MIT",
+            }
+        });
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

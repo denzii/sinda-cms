@@ -1,9 +1,16 @@
 
+using Microsoft.EntityFrameworkCore;
+using SindaCMS.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddDbContext<DataContext>((options) => {
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.EnableSensitiveDataLogging();
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

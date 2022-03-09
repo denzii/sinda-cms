@@ -1,5 +1,5 @@
 ﻿
-@model PageProps
+@model ViewProps
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,28 +20,28 @@
             <div class="header__nav-container">
                 <nav>
                     <div class="nav__descriptor" role="presentation">
-                        <a class="descriptor__logo" asp-area="" asp-controller="Home" asp-action="Index">@Model.Base.BrandName</a>
-                        <span class="descriptor__current-page">@Model.Name</span>
+                        <a class="descriptor__logo" asp-area="" asp-controller="Home" asp-action="Index">@Model.Site.BrandName</a>
+                        <span class="descriptor__current-page">@Model.PageName</span>
                     </div>
                     <ul class="nav__menu"> 
-                        @if(Model.Name != null && Model.Tabs != null){
+                        @if(Model.PageName != null && Model.Tabs != null){
                             int i = 0;
-                            @foreach (PageTab pageSection in Model.Tabs){
+                            @foreach (Tab pageSection in Model.Tabs){
                                 <li class="menu__element">
                                     @if(i == 0){
-                                        <button class="element__anchor element__anchor--active" type="button" id=@Model.Name-nav-item data-key=@pageSection.Name>@pageSection.Name</button> 
+                                        <button class="element__anchor element__anchor--active" type="button" id=@Model.PageName-nav-item data-key=@pageSection.Name>@pageSection.Name</button> 
                                     }
                                     else {
-                                        <button class="element__anchor element__anchor--inactive" type="button" id=@Model.Name-nav-item data-key=@pageSection.Name>@pageSection.Name</button>
+                                        <button class="element__anchor element__anchor--inactive" type="button" id=@Model.PageName-nav-item data-key=@pageSection.Name>@pageSection.Name</button>
                                     }
                             </li> 
                             i++;
                             }
                         }
                         else{
-                            @foreach (string pageName in Model.Base.PageNames){
+                            @foreach (PageDetail pageName in Model.Site.PageNames){
                             <li class="menu__element">
-                                <a class="element__anchor element__anchor--inactive" asp-area="" asp-action="Index" asp-controller=@pageName>@pageName</a>
+                                <a class="element__anchor element__anchor--inactive" asp-area="" asp-action="Index" asp-controller=@pageName.Name>@pageName.Name</a>
                             </li>
                             } 
                         }
@@ -65,7 +65,7 @@
     </div>
     <footer class="body__footer">
             <p class="footer__disclaimer">This software is at the concept phase and it comes without warranties</p>
-            <p class="footer__copy">&copy; 2022 - @Model.Base.BrandDescription</p>
+            <p class="footer__copy">&copy; 2022 - @Model.Site.BrandDescription</p>
     </footer>
 
     <script src="~/js/layout.js"></script>

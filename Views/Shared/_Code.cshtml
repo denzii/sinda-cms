@@ -2,5 +2,10 @@
 
 @if (Model.Contents[0] is CodeContent code)
 {
-    <pre><code class=@($"language-{code.Language}")>@code.Value</code></pre>
+    @if(code.Language == "shell") {
+        <pre class="content__code"><span>$ </span><code class=@($"language-{code.Language}")>@code.Value</code></pre>
+
+    } else {
+        <pre class="content__code"><code class=@($"language-{code.Language}")>@code.Value</code></pre>
+    }
 }

@@ -7,22 +7,30 @@ namespace SindaCMS.Controllers;
 public class DocsController : Controller
 {
     private readonly ILogger<DocsController> _logger;
-    private readonly BaseProps _props;
     public DocsController(ILogger<DocsController> logger)
     {
         _logger = logger;
-        _props = new BaseProps();
     }
 
     public IActionResult Index()
     {
         // move data to DB, run query and get it before rendering view
-        return View("../PageTabs", new PageProps(_props) {
-            Name = "Docs",
-            Tabs = new List<PageTab> {
-                new PageTab{
+        return View("../PageTabs", new ViewProps() {
+            Site = new Site
+            {
+                BrandName = "Sinda",
+                PageNames = new List<PageDetail> {
+                    new PageDetail{ Name="Docs" },
+                    new PageDetail{ Name="Blog" },
+                    new PageDetail{Name= "Roadmap"}
+                },
+                BrandDescription = "Sindagal MIT",
+            },
+            PageName = "Docs",
+            Tabs = new List<Tab> {
+                new Tab{
                     Name="Terminal",
-                    Status=SectionStatus.Complete,
+                    Status=SectionStatus.Public,
                     Sections = new List<Section> {
                         new Section {
                             Id="introduction",
@@ -180,9 +188,9 @@ public class DocsController : Controller
                        }
                     }
                     },
-                new PageTab{
+                new Tab{
                     Name="Scripts",
-                    Status=SectionStatus.Complete,
+                    Status=SectionStatus.Public,
                     Sections = new List<Section> {
                         new Section {
                             Id="Introduction",
@@ -245,7 +253,7 @@ public class DocsController : Controller
                                new Detail{
                                     Type=ContentType.Code,
                                     Contents= new List<HTMLContent>{
-                                       new CodeContent{ Language="shell", Value= "$ Get-PoshThemes" },
+                                       new CodeContent{ Language="shell", Value= "Get-PoshThemes" },
                                     }
                                },
                                new Detail{
@@ -257,7 +265,7 @@ public class DocsController : Controller
                                new Detail{
                                     Type=ContentType.Code,
                                     Contents= new List<HTMLContent>{
-                                       new CodeContent{ Language="shell", Value= "$ Set-PoshPrompt darkblood" },
+                                       new CodeContent{ Language="shell", Value= "Set-PoshPrompt darkblood" },
                                     }
                                },
                                new Detail{
@@ -299,7 +307,7 @@ public class DocsController : Controller
                             new Detail{
                                 Type=ContentType.Code,
                                 Contents= new List<HTMLContent>{
-                                    new CodeContent{ Language="shell", Value= "$ wt -p \"Debian\" `; split-pane -p \"Windows PowerShell\" `;" },
+                                    new CodeContent{ Language="shell", Value= "wt -p \"Debian\" `; split-pane -p \"Windows PowerShell\" `;" },
                                 }
                             },
                             new Detail{
@@ -513,7 +521,7 @@ public class DocsController : Controller
                                     Contents= new List<HTMLContent>{
                                         new HTMLContent{ Value= "Much like Docker, " },
                                         new LinkContent{ Value="Podman", Href="https://podman.io/"},
-                                        new HTMLContent{ Value= " is a software for managing OCI Containers, provided as an alternative for the ones who prefer it instead of Docker." },
+                                        new HTMLContent{ Value= " is a software for managing OCI Containers, this installation is provided as an alternative for the ones who prefer it instead of Docker." },
                                     }
                                },
                          }
@@ -556,7 +564,7 @@ public class DocsController : Controller
                             new Detail{
                                 Type=ContentType.Code,
                                 Contents= new List<HTMLContent>{
-                                    new CodeContent{ Language="shell", Value= "$ Get-EnvState" },
+                                    new CodeContent{ Language="shell", Value= "Get-EnvState" },
                                 }
                             },
                             new Detail{
@@ -568,19 +576,19 @@ public class DocsController : Controller
                             new Detail{
                                 Type=ContentType.Code,
                                 Contents= new List<HTMLContent>{
-                                    new CodeContent{ Language="shell", Value= "$ Enable-WSLLegacy" },
+                                    new CodeContent{ Language="shell", Value= "Enable-WSLLegacy" },
                                 }
                             },
                             new Detail{
                                 Type=ContentType.Paragraph,
                                 Contents= new List<HTMLContent>{
-                                    new HTMLContent{ Value= "To download & import the Sinda Distro:"}
+                                    new HTMLContent{ Value= "To download & import the Sinda pre configured wsl2 instance:"}
                                 }
                             },
                             new Detail{
                                 Type=ContentType.Code,
                                 Contents= new List<HTMLContent>{
-                                    new CodeContent{ Language="shell", Value= "$ Add-SindaDistro" },
+                                    new CodeContent{ Language="shell", Value= "Add-SindaDistro" },
                                 }
                             },
                             new Detail{
@@ -592,7 +600,7 @@ public class DocsController : Controller
                             new Detail{
                                 Type=ContentType.Code,
                                 Contents= new List<HTMLContent>{
-                                    new CodeContent{ Language="shell", Value= "$ Test-Elevation" },
+                                    new CodeContent{ Language="shell", Value= "Test-Elevation" },
                                 }
                             },
                             new Detail{
@@ -604,7 +612,7 @@ public class DocsController : Controller
                             new Detail{
                                 Type=ContentType.Code,
                                 Contents= new List<HTMLContent>{
-                                    new CodeContent{ Language="shell", Value= "$ Enable-WindowsTerminal" },
+                                    new CodeContent{ Language="shell", Value= "Enable-WindowsTerminal" },
                                 }
                             },
                             new Detail{
@@ -616,13 +624,13 @@ public class DocsController : Controller
                             new Detail{
                                 Type=ContentType.Code,
                                 Contents= new List<HTMLContent>{
-                                    new CodeContent{ Language="shell", Value= "$ Disable-WindowsTerminal" },
+                                    new CodeContent{ Language="shell", Value= "Disable-WindowsTerminal" },
                                 }
                             },
                             new Detail{
                                     Type=ContentType.Paragraph,
                                     Contents= new List<HTMLContent>{
-                                        new HTMLContent{ Value= "And many more to come!" },
+                                        new HTMLContent{ Value= "And many more!" },
                                     }
                                },
                          }
@@ -649,7 +657,7 @@ public class DocsController : Controller
                                         new LinkContent{ Value="here.", Href="https://github.com/denzii/sinda-portfolio"},
                                         new HTMLContent{ Value= "This simplistic portfolio itself has basic SEO optimizations, keyboard and developer accessibility; a performant " },
                                         new LinkContent{ Value="Chrome Lighthouse", Href="https://developers.google.com/web/tools/lighthouse"},
-                                        new HTMLContent{ Value= " score as well as good UI/UX principles!" },
+                                        new HTMLContent{ Value= " score as well as good responsive UI/UX principles!" },
                                         new HTMLContent{ Value= " Feel free to change the data & reupload it to your favourite version-control website as you please!" },
                                     }
                                },
@@ -663,9 +671,9 @@ public class DocsController : Controller
                        },
                     }
                 },
-                new PageTab{
+                new Tab{
                     Name="Boilerplate",
-                    Status=SectionStatus.Complete,
+                    Status=SectionStatus.Public,
                     Sections = new List<Section> {
                         new Section {
                             Id="Introduction",
@@ -673,37 +681,267 @@ public class DocsController : Controller
                             HasMainContent= true,
                             Details= new List<Detail>{
                                new Detail{
-                                    Type=ContentType.Paragraph,
+                                    Type=ContentType.Paragraph,   
                                     Contents= new List<HTMLContent>{
-                                        new HTMLContent{ Value= "As described in the Terminal tab, Sindagal comes with some built-in scripts and can also be extended to interface to personal scripts. The scripts are categorized as Terminal, Shell, Virtual, SDK & Boilerplate." },
-                                        new HTMLContent{ Value= " The CLI tool works by executing powershell / bash scripts which exist inside the code repository itself under the src/scripts directory." } }
-                               },
-                               new Detail {
-                                    Type=ContentType.Paragraph,
-                                    Contents=new List<HTMLContent>{
-                                        new HTMLContent{ Value=" On this page, we will be exploring the various details regarding those features and why they might come in handy for you or your organisation."}
-                                    }
-                               },
-                               new Detail{
-                                   Type=ContentType.Warning,
-                                   Contents= new List<HTMLContent>{
-                                       new HTMLContent{ Value= "For the time being, everything is in the Minimum Viable Product stage & things might change in the future. Please report any problems or bugs to me personally through my " },
-                                       new LinkContent{ Value= "Linkedin.", Href="https://www.linkedin.com/in/denizarca/" },
-                                       new HTMLContent{ Value= " Pull requests are welcome at the " },
-                                       new LinkContent{ Value= "CLI repository.", Href="https://github.com/denzii/sinda-cli" },
-                                   }
+                                        new HTMLContent{ Value= "Do you have some boilerplate code which you always have to write from scratch? Are you in a hurry to get up and running with an MVP?" },
+                                        new HTMLContent{ Value= " Sindagal Boilerplates will come to your rescue!" },
+                                        new HTMLContent{ Value= " On this page, we will be exploring how to set up and work with existing code as well as how to extend them to our needs to save time from cumbersome work!" } }
                                },
                             }
                         },
                         new Section {
-                            Id="terminal",
-                            HasMainContent= true,
-                            Header="Terminal Extensions",
+                            Id="portfolio",
+                            Header="1) Sinda Portfolio",
                             Details= new List<Detail>{
                                new Detail{
                                    Type=ContentType.Paragraph,
-                                   Contents= new List<HTMLContent>{ new HTMLContent{ Value= "This category is where the scripts regarding the interactive terminal session reside. These will alter the look & feel of your interactions with your local shell." } }
+                                   Contents= new List<HTMLContent>{
+                                       new HTMLContent{ Value= "Planning to look for that next challange in your career but do not have time to fiddle with UI/UX or write the code for a portfolio website from scratch?" },
+                                       new HTMLContent{ Value= " You can now rest easy with this " },
+                                       new LinkContent{ Value="web portfolio.", Href="https://github.com/denzii/sinda-portfolio"},
+                                       new HTMLContent{ Value= " This template simplistic enough to do the job and will hit the spot with its SEO optimizations, keyboard and developer accessibility; a performant " },
+                                       new LinkContent{ Value="Lighthouse", Href="https://developers.google.com/web/tools/lighthouse"},
+                                       new HTMLContent{ Value= " score as well as good responsive UI/UX principles!" },
+                                       new HTMLContent{ Value= " please find a live example at" },
+                                       new LinkContent{ Value="denizarca.com", Href="https://denizarca.com"} },
                                }
+                            }
+                        },
+                        new Section {
+                            Id="portfolioSetup",
+                            Header="Setting up the repository",
+                            Details= new List<Detail>{
+                               new Detail{
+                                   Type=ContentType.Paragraph,
+                                   Contents= new List<HTMLContent>{
+                                       new HTMLContent{ Value= "This is a NextJS TypeScript project so NodeJS & npm are required as a prerequisite." },
+                                       new HTMLContent{ Value= "If those already exist on the machine or if you are using the pre configured WSL instance, its okay to proceed to cloning the repository." },
+                                       },
+
+                               },
+                               new Detail{
+                                    Type=ContentType.Code,
+                                    Contents= new List<HTMLContent>{
+                                        new CodeContent{ Language="shell", Value= "git clone https://github.com/denzii/sinda-portfolio.git" },
+                                    }
+                                },
+                                new Detail{
+                                    Type=ContentType.Paragraph,
+                                    Contents= new List<HTMLContent>{
+                                       new HTMLContent{ Value= "Install Nextjs globally:" },
+                                    },
+                                },
+                                new Detail{
+                                    Type=ContentType.Code,
+                                    Contents= new List<HTMLContent>{
+                                       new CodeContent{ Language="shell", Value= "npm i -g next" },
+                                    }
+                                },
+                                new Detail{
+                                       Type=ContentType.Paragraph,
+                                       Contents= new List<HTMLContent>{
+                                           new HTMLContent{ Value= "Move into the repository, install dependencies and run the app:" },
+                                       },
+
+                                   },
+                                new Detail{
+                                    Type=ContentType.Code,
+                                    Contents= new List<HTMLContent>{
+                                        new CodeContent{ Language="shell", Value= "cd sinda-portfolio" },
+                                    }
+                                },
+                                new Detail{
+                                    Type=ContentType.Code,
+                                    Contents= new List<HTMLContent>{
+                                        new CodeContent{ Language="shell", Value= "npm install" },
+                                    }
+                                },
+                                new Detail{
+                                    Type=ContentType.Code,
+                                    Contents= new List<HTMLContent>{
+                                        new CodeContent{ Language="shell", Value= "npm run dev" },
+                                    }
+                                },
+
+                                new Detail{
+                                    Type=ContentType.Paragraph,
+                                    Contents= new List<HTMLContent>{
+                                        new HTMLContent{ Value= "If everything went well, it's now okay to visit localhost:3000 in your favourite browser to see the site!" },
+                                    },
+                                },
+                                new Detail{
+                                    Type=ContentType.Picture,
+                                    Contents= new List<HTMLContent>{
+                                        new PictureSourceContent{ Srcset="./img/portfolio-landing-page-850w.png", Media="(max-width: 950px)"},
+                                        new PictureSourceContent{ Srcset="./img/portfolio-landing-page.png"},
+                                        new ImageContent{ Src="./img/portfolio-landing-page.png", Alt="Portfolio Landing Page"}
+                                    }
+                                },
+
+
+                            }
+
+                        },
+                        new Section {
+                            Id="portfolioHero",
+                            Header="Changing the hero section content",
+                            Details= new List<Detail>{
+                                new Detail{
+                                    Type=ContentType.Paragraph,
+                                    Contents= new List<HTMLContent>{
+                                        new HTMLContent{ Value= "Not bad! In order to personalize it, we need to make a few tweaks." },
+                                        new HTMLContent{ Value= " The data is pulled into a single class at " },
+                                        new LinkContent{ Value="data/index.ts", Href="https://github.com/denzii/sinda-portfolio/blob/main/data/index.ts"},
+                                        new HTMLContent{ Value= " class for the most part and this is where we will spend most of our time." },
+                                        new HTMLContent{ Value= " having said that, the page title and the meta tags for SEO as well as canonical must also be changed for a fully personalized portfolio. In a NextJS project, these are stored in " },
+                                        new LinkContent{ Value="pages/_document.tsx", Href="https://github.com/denzii/sinda-portfolio/blob/main/pages/_document.tsx"},
+                                        new HTMLContent{ Value= " as per convention. It is planned to pull these into the data folder in the future as well!" },
+                                    },
+                                },
+                                new Detail{
+                                    Type=ContentType.Paragraph,
+                                    Contents= new List<HTMLContent>{
+                                        new HTMLContent{ Value= "Let's view the code in our favourite code editor and see how to go about the modifications!" },
+                                    },
+                                },
+                                new Detail{
+                                    Type=ContentType.Code,
+                                    Contents= new List<HTMLContent>{
+                                        new CodeContent{ Language="shell", Value= "code ." },
+                                    }
+                                },
+                                new Detail{
+                                    Type=ContentType.Paragraph,
+                                    Contents= new List<HTMLContent>{
+                                        new HTMLContent{ Value= "To start things off, lets change the navigation bar contents by changing the ProjectOwner, PersonalURLs & PersonalBackground Objects as shown." },
+                                    },
+                                },
+                                new Detail{
+                                    Type=ContentType.Picture,
+                                    Contents= new List<HTMLContent>{
+                                        new PictureSourceContent{ Srcset="./img/portfolio-navbar-name-diff-850w.png", Media="(max-width: 950px)"},
+                                        new PictureSourceContent{ Srcset="./img/portfolio-navbar-name-diff.png",},
+                                        new ImageContent{ Src="./img/portfolio-navbar-name-diff.png", Alt="Portfolio Navbar modification"}
+                                    }
+                                },
+                                new Detail{
+                                    Type=ContentType.Paragraph,
+                                    Contents= new List<HTMLContent>{
+                                        new HTMLContent{ Value= " Icons for social media could be changed by supplying a name from the " },
+                                        new LinkContent{ Value="React Font Awesome", Href="https://react-icons.github.io/react-icons/icons?name=fa"},
+                                        new HTMLContent{ Value= " Icons. Additional navigation links such as \"instagram\" could also be added or removed if desired by altering the keys on the" },
+                                        new LinkContent{ Value="interface/personalUrls.ts", Href="https://github.com/denzii/sinda-portfolio/blob/main/interface/personalUrls.ts"},
+                                        new HTMLContent{ Value= " class further. For demonstration purposes, lets remove the email icon while changing the other two icons." },
+                                    },
+                                },
+                                new Detail{
+                                    Type=ContentType.Picture,
+                                    Contents= new List<HTMLContent>{
+                                        new PictureSourceContent{ Srcset="./img/portfolio-socialbar-diff-850w.png", Media="(max-width: 950px)"},
+                                        new PictureSourceContent{ Srcset="./img/portfolio-socialbar-diff.png",},
+                                        new ImageContent{ Src="./img/portfolio-socialbar-diff.png", Alt="Portfolio Socialbar modification"}
+                                    }
+                                },
+                                new Detail{
+                                    Type=ContentType.Paragraph,
+                                    Contents= new List<HTMLContent>{
+                                        new HTMLContent{ Value= " The keys on the object " },
+                                        new LinkContent{ Value="interface/background.ts", Href="https://github.com/denzii/sinda-portfolio/blob/main/interface/background.ts"},
+                                        new HTMLContent{ Value= " are used to generate the sections below the hero section. If we wanted to add or remove or alter a section, all we would need to do is to alter the keys on it!" },
+                                        new HTMLContent{ Value= " for the sake of this tutorial, let's remove the hobbies section and rename some of the others!" },
+                                    },
+                                },
+                                new Detail{
+                                    Type=ContentType.Picture,
+                                    Contents= new List<HTMLContent>{
+                                        new PictureSourceContent{ Srcset="./img/portfolio-navbar-elems-diff-850w.png", Media="(max-width: 950px)"},
+                                        new PictureSourceContent{ Srcset="./img/portfolio-navbar-elems-diff.png",},
+                                        new ImageContent{ Src="./img/portfolio-navbar-elems-diff.png", Alt="Portfolio Navbar elements modification" }
+                                    }
+                                },
+                                new Detail{
+                                    Type=ContentType.Paragraph,
+                                    Contents= new List<HTMLContent>{
+                                        new HTMLContent{ Value= " Now that those are out of the way, its a good time to change the background and the headshot images which are located inside the " },
+                                        new LinkContent{ Value="public", Href="https://github.com/denzii/sinda-portfolio/tree/main/public"},
+                                        new HTMLContent{ Value= " directory, all that is required is to drop in the images in that directory and reference them inside the data class. The app is written flexible enough to allow the usage of different image names as-well!" },
+                                    },
+                                },
+                                new Detail{
+                                    Type=ContentType.Picture,
+                                    Contents= new List<HTMLContent>{
+                                        new PictureSourceContent{ Srcset="./img/portfolio-hero-diff.png",},
+                                        new ImageContent{ Src="./img/portfolio-hero-diff.png", Alt="Portfolio hero images modification" }
+                                    }
+                                },
+
+                            }
+                        },
+                        new Section {
+                            Id="portfolioBody",
+                            Header="Changing the body section contents",
+                            Details= new List<Detail>{
+                                new Detail{
+                                    Type=ContentType.Paragraph,
+                                    Contents= new List<HTMLContent>{
+                                        new HTMLContent{ Value= "We've come a long way and the results are just beautiful! Refresh the browser page to see that the website now looks like this: " },
+                                    },
+                                },
+                                new Detail{
+                                    Type=ContentType.Picture,
+                                    Contents= new List<HTMLContent>{
+                                        new PictureSourceContent{ Srcset="./img/portfolio-altered-hero-diff-850w.png", Media="(max-width: 950px)"},
+                                        new PictureSourceContent{ Srcset="./img/portfolio-altered-hero-diff.png",},
+                                        new ImageContent{ Src="./img/portfolio-altered-hero-diff.png", Alt="Portfolio altered hero section" }
+                                    }
+                                },
+                                new Detail{
+                                    Type=ContentType.Paragraph,
+                                    Contents= new List<HTMLContent>{
+                                        new HTMLContent{ Value= "How about the body sections? Are they even flexible enough for personalization? They sure are! All that needs to be done is to alter the methods which are being called within the \"PersonalBackground\" method inside the data class." },
+                                        new HTMLContent{ Value= " The heading, date range & inner content are supplied within the same place, the inner content could be made bold, italic or emphasized on demand without touching any HTML." },
+
+                                    },
+                                },
+                                new Detail{
+                                    Type=ContentType.Paragraph,
+                                    Contents= new List<HTMLContent>{
+                                        new HTMLContent{ Value= " If it's a semantic markup for your website which you are looking for; you can add emphasis and other things to certain text but also keep it unstyled." },
+                                        new HTMLContent{ Value= " This is a good idea if you would like your website to read well by screen readers so elements could be emphesized without changing the visual feeling..." },
+                                        new HTMLContent{ Value= " The body elements could be given captions aswell by assigning the \"caption\" field a string value." },
+                                    },
+                                },
+                               new Detail{
+                                    Type=ContentType.Paragraph,
+                                    Contents= new List<HTMLContent>{
+                                        new HTMLContent{ Value= "Example body section element code:" },
+                                    },
+                                },
+                               new Detail{
+                                    Type=ContentType.Picture,
+                                    Contents= new List<HTMLContent>{
+                                        new PictureSourceContent{ Srcset="./img/portfolio-body-code.png", Media="(max-width: 950px)"},
+                                        new ImageContent{ Src="./img/portfolio-body-code.png", Alt="Portfolio body code example" }
+                                    }
+                                },
+                                new Detail{
+                                    Type=ContentType.Paragraph,
+                                    Contents= new List<HTMLContent>{
+                                        new HTMLContent{ Value= "Only one thing remains, changing the meta content of the site! And this is as easy as going into the pages/_document.tsx" },
+                                        new LinkContent{ Value="pages/_document.tsx", Href="https://github.com/denzii/sinda-portfolio/tree/main/public"},
+                                        new HTMLContent{ Value= " file and altering the given strings." },
+                                        new HTMLContent{ Value= " add in the full address of your domain as a canonical, change the tab title as you wish and amend the keywords to cater to your target audiences google searches." },
+                                    },
+                                },
+                                new Detail{
+                                    Type=ContentType.Paragraph,
+                                    Contents= new List<HTMLContent>{
+                                        new HTMLContent{ Value= "That is all! Enjoy your Sinda Portfolio and do not forget to give a star or send your pull requests!" },
+                                        new HTMLContent{ Value= " We will not be touching on how to deploy this website since it is using the stock CI/CD which is provided by Vercel for free on personal projects." },
+                                        new HTMLContent{ Value= " To find out more about deployments, visit their tutorials at " },
+                                        new LinkContent{ Value="nextjs.org/deployment", Href="https://nextjs.org/docs/deployment"},
+                                    },
+                                },
                             }
                         },
                     }
