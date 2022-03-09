@@ -7,8 +7,8 @@ namespace SindaCMS.Models
     {
         [Key]
         public string Name { get; set; }
+        public int Index { get; set; }
         public SectionStatus Status { get; set; }
-
         public List<Section> Sections { get; set; }
 
         [ForeignKey("Page")]

@@ -8,8 +8,9 @@ namespace SindaCMS.Data
     {
         public DataContext(DbContextOptions<DataContext> options): base(options) { }
 
-        public DbSet<Page> Pages { get; set; }
         public DbSet<Site> Sites { get; set; }
+
+        public DbSet<Tab> Tabs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

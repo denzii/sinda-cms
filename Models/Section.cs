@@ -6,8 +6,9 @@ namespace SindaCMS.Models
 {
     public class Section
     {
-        [Key, StringLength(200)]
+        [Key, StringLength(900)]
         public string Id { get; set; }
+        public int Index { get; set; }
         public string Header { get; set; }
 
         public bool HasMainContent { get; set; }
@@ -18,8 +19,8 @@ namespace SindaCMS.Models
         public Tab Tab { get; set; }
 
 
-        [ForeignKey("Page")]
-        public string PageName { get; set; }
-        public Page Page { get; set; }
+        //[ForeignKey("Page")]
+        //public string PageName { get; set; }
+        //public Page Page { get; set; }
     }
 }

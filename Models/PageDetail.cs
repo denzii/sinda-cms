@@ -6,7 +6,7 @@ namespace SindaCMS.Models
     {
         [Key]
         public string Name { get; set; }
-
+        public int Index { get; set; }
         
         public string SiteBrandName { get; set; }
         public Site Site { get; set; }

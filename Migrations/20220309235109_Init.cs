@@ -25,6 +25,7 @@ namespace SindaCMS.Migrations
                 columns: table => new
                 {
                     Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Index = table.Column<int>(type: "int", nullable: false),
                     SiteBrandName = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
@@ -38,16 +39,16 @@ namespace SindaCMS.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Pages",
+                name: "Page",
                 columns: table => new
                 {
                     PageDetailName = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Pages", x => x.PageDetailName);
+                    table.PrimaryKey("PK_Page", x => x.PageDetailName);
                     table.ForeignKey(
-                        name: "FK_Pages_PageDetail_PageDetailName",
+                        name: "FK_Page_PageDetail_PageDetailName",
                         column: x => x.PageDetailName,
                         principalTable: "PageDetail",
                         principalColumn: "Name",
@@ -55,20 +56,21 @@ namespace SindaCMS.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tab",
+                name: "Tabs",
                 columns: table => new
                 {
                     Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Index = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     PageName = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tab", x => x.Name);
+                    table.PrimaryKey("PK_Tabs", x => x.Name);
                     table.ForeignKey(
-                        name: "FK_Tab_Pages_PageName",
+                        name: "FK_Tabs_Page_PageName",
                         column: x => x.PageName,
-                        principalTable: "Pages",
+                        principalTable: "Page",
                         principalColumn: "PageDetailName");
                 });
 
@@ -76,25 +78,20 @@ namespace SindaCMS.Migrations
                 name: "Section",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Id = table.Column<string>(type: "nvarchar(900)", maxLength: 900, nullable: false),
                     TabName = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    PageName = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Index = table.Column<int>(type: "int", nullable: false),
                     Header = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     HasMainContent = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Section", x => new { x.Id, x.TabName, x.PageName });
+                    table.PrimaryKey("PK_Section", x => new { x.Id, x.TabName });
                     table.UniqueConstraint("AK_Section_Id", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Section_Pages_PageName",
-                        column: x => x.PageName,
-                        principalTable: "Pages",
-                        principalColumn: "PageDetailName");
-                    table.ForeignKey(
-                        name: "FK_Section_Tab_TabName",
+                        name: "FK_Section_Tabs_TabName",
                         column: x => x.TabName,
-                        principalTable: "Tab",
+                        principalTable: "Tabs",
                         principalColumn: "Name");
                 });
 
@@ -105,8 +102,7 @@ namespace SindaCMS.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Type = table.Column<int>(type: "int", nullable: false),
-                    SectionKey = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SectionId = table.Column<string>(type: "nvarchar(200)", nullable: true)
+                    SectionId = table.Column<string>(type: "nvarchar(900)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -115,7 +111,8 @@ namespace SindaCMS.Migrations
                         name: "FK_Detail_Section_SectionId",
                         column: x => x.SectionId,
                         principalTable: "Section",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -146,143 +143,216 @@ namespace SindaCMS.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Detail",
-                columns: new[] { "Id", "SectionId", "SectionKey", "Type" },
-                values: new object[,]
-                {
-                    { 1, null, "terminal-introduction", 0 },
-                    { 2, null, "terminal-introduction", 0 },
-                    { 3, null, "terminal-introduction", 0 },
-                    { 4, null, "terminal-setup", 0 },
-                    { 5, null, "terminal-setup", 0 },
-                    { 6, null, "terminal-setup", 3 },
-                    { 7, null, "terminal-setup", 3 },
-                    { 8, null, "terminal-setup", 3 },
-                    { 9, null, "terminal-setup", 2 },
-                    { 10, null, "terminal-setup", 0 },
-                    { 11, null, "terminal-setup", 4 },
-                    { 12, null, "terminal-usage", 0 },
-                    { 13, null, "terminal-usage", 0 },
-                    { 14, null, "terminal-usage", 0 },
-                    { 15, null, "terminal-usage", 4 },
-                    { 16, null, "terminal-usage", 0 },
-                    { 17, null, "terminal-usage", 4 },
-                    { 18, null, "terminal-usage", 0 },
-                    { 19, null, "terminal-usage", 4 },
-                    { 20, null, "terminal-usage", 2 },
-                    { 21, null, "terminal-usage", 0 },
-                    { 22, null, "terminal-usage", 4 },
-                    { 23, null, "terminal-usage", 0 },
-                    { 24, null, "scripts-introduction", 0 },
-                    { 25, null, "scripts-introduction", 0 },
-                    { 26, null, "scripts-introduction", 2 },
-                    { 27, null, "scripts-terminal", 0 },
-                    { 28, null, "scripts-ohmyposh", 0 },
-                    { 29, null, "scripts-ohmyposh", 0 },
-                    { 30, null, "scripts-ohmyposh", 3 },
-                    { 31, null, "scripts-ohmyposh", 0 },
-                    { 32, null, "scripts-ohmyposh", 3 },
-                    { 33, null, "scripts-ohmyposh", 0 },
-                    { 34, null, "scripts-ohmyposh", 0 },
-                    { 35, null, "scripts-winterm", 0 },
-                    { 36, null, "scripts-winterm", 0 },
-                    { 37, null, "scripts-winterm", 3 },
-                    { 38, null, "scripts-winterm", 0 },
-                    { 39, null, "scripts-winterm", 4 },
-                    { 40, null, "scripts-poshgit", 0 },
-                    { 41, null, "scripts-poshgit", 0 },
-                    { 42, null, "scripts-shell", 0 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Detail",
-                columns: new[] { "Id", "SectionId", "SectionKey", "Type" },
-                values: new object[,]
-                {
-                    { 43, null, "scripts-wsl", 0 },
-                    { 44, null, "scripts-wsl", 2 },
-                    { 45, null, "scripts-wsl", 0 },
-                    { 46, null, "scripts-wsl", 0 },
-                    { 47, null, "scripts-wsl", 4 },
-                    { 48, null, "scripts-wsl", 0 },
-                    { 49, null, "scripts-wsl", 0 },
-                    { 50, null, "scripts-wsl", 4 },
-                    { 51, null, "scripts-wsl", 0 },
-                    { 52, null, "scripts-wsl", 4 },
-                    { 53, null, "scripts-wsl", 0 },
-                    { 54, null, "scripts-wsl", 4 },
-                    { 55, null, "scripts-wsl", 0 },
-                    { 56, null, "scripts-wsl", 4 },
-                    { 57, null, "scripts-wsl", 0 },
-                    { 58, null, "scripts-wsl", 4 },
-                    { 59, null, "scripts-wsl", 0 },
-                    { 60, null, "scripts-wsl", 4 },
-                    { 61, null, "scripts-virtual", 0 },
-                    { 62, null, "scripts-docker", 0 },
-                    { 63, null, "scripts-podman", 0 },
-                    { 64, null, "scripts-sdk", 0 },
-                    { 65, null, "scripts-sindamodule", 0 },
-                    { 66, null, "scripts-sindamodule", 0 },
-                    { 67, null, "scripts-sindamodule", 0 },
-                    { 68, null, "scripts-sindamodule", 3 },
-                    { 69, null, "scripts-sindamodule", 0 },
-                    { 70, null, "scripts-sindamodule", 3 },
-                    { 71, null, "scripts-sindamodule", 0 },
-                    { 72, null, "scripts-sindamodule", 3 },
-                    { 73, null, "scripts-sindamodule", 0 },
-                    { 74, null, "scripts-sindamodule", 3 },
-                    { 75, null, "scripts-sindamodule", 0 },
-                    { 76, null, "scripts-sindamodule", 3 },
-                    { 77, null, "scripts-sindamodule", 0 },
-                    { 78, null, "scripts-sindamodule", 3 },
-                    { 79, null, "scripts-sindamodule", 0 },
-                    { 80, null, "scripts-boilerplate", 0 },
-                    { 81, null, "scripts-portfolio", 0 },
-                    { 82, null, "scripts-portfolio", 0 },
-                    { 83, null, "boilerplate-introduction", 0 },
-                    { 84, null, "boilerplate-portfolio", 0 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Detail",
-                columns: new[] { "Id", "SectionId", "SectionKey", "Type" },
-                values: new object[,]
-                {
-                    { 85, null, "boilerplate-portfolio-setup", 0 },
-                    { 86, null, "boilerplate-portfolio-setup", 3 },
-                    { 87, null, "boilerplate-portfolio-setup", 0 },
-                    { 88, null, "boilerplate-portfolio-setup", 3 },
-                    { 89, null, "boilerplate-portfolio-setup", 0 },
-                    { 90, null, "boilerplate-portfolio-setup", 3 },
-                    { 91, null, "boilerplate-portfolio-setup", 3 },
-                    { 92, null, "boilerplate-portfolio-setup", 3 },
-                    { 93, null, "boilerplate-portfolio-setup", 0 },
-                    { 94, null, "boilerplate-portfolio-setup", 4 },
-                    { 95, null, "boilerplate-portfolio-hero", 0 },
-                    { 96, null, "boilerplate-portfolio-hero", 0 },
-                    { 97, null, "boilerplate-portfolio-hero", 3 },
-                    { 98, null, "boilerplate-portfolio-hero", 0 },
-                    { 99, null, "boilerplate-portfolio-hero", 4 },
-                    { 100, null, "boilerplate-portfolio-hero", 0 },
-                    { 101, null, "boilerplate-portfolio-hero", 4 },
-                    { 102, null, "boilerplate-portfolio-hero", 0 },
-                    { 103, null, "boilerplate-portfolio-hero", 4 },
-                    { 104, null, "boilerplate-portfolio-hero", 0 },
-                    { 105, null, "boilerplate-portfolio-hero", 4 },
-                    { 106, null, "boilerplate-portfolio-body", 0 },
-                    { 107, null, "boilerplate-portfolio-body", 4 },
-                    { 108, null, "boilerplate-portfolio-body", 0 },
-                    { 109, null, "boilerplate-portfolio-body", 0 },
-                    { 110, null, "boilerplate-portfolio-body", 0 },
-                    { 111, null, "boilerplate-portfolio-body", 4 },
-                    { 112, null, "boilerplate-portfolio-body", 0 },
-                    { 113, null, "boilerplate-portfolio-body", 0 }
-                });
-
-            migrationBuilder.InsertData(
                 table: "Sites",
                 columns: new[] { "BrandName", "BrandDescription" },
                 values: new object[] { "Sinda", "Sindagal MIT" });
+
+            migrationBuilder.InsertData(
+                table: "PageDetail",
+                columns: new[] { "Name", "Index", "SiteBrandName" },
+                values: new object[] { "Blog", 1, "Sinda" });
+
+            migrationBuilder.InsertData(
+                table: "PageDetail",
+                columns: new[] { "Name", "Index", "SiteBrandName" },
+                values: new object[] { "Docs", 0, "Sinda" });
+
+            migrationBuilder.InsertData(
+                table: "PageDetail",
+                columns: new[] { "Name", "Index", "SiteBrandName" },
+                values: new object[] { "Roadmap", 2, "Sinda" });
+
+            migrationBuilder.InsertData(
+                table: "Page",
+                column: "PageDetailName",
+                value: "Blog");
+
+            migrationBuilder.InsertData(
+                table: "Page",
+                column: "PageDetailName",
+                value: "Docs");
+
+            migrationBuilder.InsertData(
+                table: "Page",
+                column: "PageDetailName",
+                value: "Roadmap");
+
+            migrationBuilder.InsertData(
+                table: "Tabs",
+                columns: new[] { "Name", "Index", "PageName", "Status" },
+                values: new object[,]
+                {
+                    { "Articles", 0, "Blog", 1 },
+                    { "Boilerplate", 2, "Docs", 0 },
+                    { "News", 1, "Blog", 1 },
+                    { "Philosophy", 0, "Roadmap", 1 },
+                    { "Scripts", 1, "Docs", 0 },
+                    { "Terminal", 0, "Docs", 0 },
+                    { "Vision", 1, "Roadmap", 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Section",
+                columns: new[] { "Id", "TabName", "HasMainContent", "Header", "Index" },
+                values: new object[,]
+                {
+                    { "boilerplate-introduction", "Boilerplate", true, "Introduction", 0 },
+                    { "boilerplate-portfolio", "Boilerplate", false, "1) Sinda Portfolio", 1 },
+                    { "boilerplate-portfolio-body", "Boilerplate", false, "Changing the body section contents", 4 },
+                    { "boilerplate-portfolio-hero", "Boilerplate", false, "Changing the hero section content", 3 },
+                    { "boilerplate-portfolio-setup", "Boilerplate", false, "Setting up the repository", 2 },
+                    { "scripts-boilerplate", "Scripts", true, "Boilerplates & Codebases", 12 },
+                    { "scripts-docker", "Scripts", false, "1) Docker Desktop with WSL2 Backend", 8 },
+                    { "scripts-introduction", "Scripts", true, "Introduction", 0 },
+                    { "scripts-ohmyposh", "Scripts", false, "1) Oh My Posh & Nerd Fonts", 2 },
+                    { "scripts-podman", "Scripts", false, "2) Podman", 9 },
+                    { "scripts-portfolio", "Scripts", false, "1) Sinda Portfolio", 13 },
+                    { "scripts-poshgit", "Scripts", false, "3) Posh Git", 4 },
+                    { "scripts-sdk", "Scripts", true, "SDK & Internal Tooling", 10 },
+                    { "scripts-shell", "Scripts", true, "Shell Modifications", 5 },
+                    { "scripts-sindamodule", "Scripts", false, "1) Sinda Developer Tools", 11 },
+                    { "scripts-terminal", "Scripts", true, "Terminal Extensions", 1 },
+                    { "scripts-virtual", "Scripts", true, "Virtualization Software", 7 },
+                    { "scripts-winterm", "Scripts", false, "2) Windows Terminal by Microsoft", 3 },
+                    { "scripts-wsl", "Scripts", false, "1) SindaDistro", 6 },
+                    { "terminal-introduction", "Terminal", true, "Introduction", 0 },
+                    { "terminal-setup", "Terminal", false, "Getting Started", 1 },
+                    { "terminal-usage", "Terminal", false, "Usage", 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Detail",
+                columns: new[] { "Id", "SectionId", "Type" },
+                values: new object[,]
+                {
+                    { 1, "terminal-introduction", 0 },
+                    { 2, "terminal-introduction", 0 },
+                    { 3, "terminal-introduction", 0 },
+                    { 4, "terminal-setup", 0 },
+                    { 5, "terminal-setup", 0 },
+                    { 6, "terminal-setup", 3 },
+                    { 7, "terminal-setup", 3 },
+                    { 8, "terminal-setup", 3 },
+                    { 9, "terminal-setup", 2 },
+                    { 10, "terminal-setup", 0 },
+                    { 11, "terminal-setup", 4 },
+                    { 12, "terminal-usage", 0 },
+                    { 13, "terminal-usage", 0 },
+                    { 14, "terminal-usage", 0 },
+                    { 15, "terminal-usage", 4 },
+                    { 16, "terminal-usage", 0 },
+                    { 17, "terminal-usage", 4 },
+                    { 18, "terminal-usage", 0 },
+                    { 19, "terminal-usage", 4 },
+                    { 20, "terminal-usage", 2 },
+                    { 21, "terminal-usage", 0 },
+                    { 22, "terminal-usage", 4 },
+                    { 23, "terminal-usage", 0 },
+                    { 24, "scripts-introduction", 0 },
+                    { 25, "scripts-introduction", 0 },
+                    { 26, "scripts-introduction", 2 },
+                    { 27, "scripts-terminal", 0 },
+                    { 28, "scripts-ohmyposh", 0 },
+                    { 29, "scripts-ohmyposh", 0 },
+                    { 30, "scripts-ohmyposh", 3 },
+                    { 31, "scripts-ohmyposh", 0 },
+                    { 32, "scripts-ohmyposh", 3 },
+                    { 33, "scripts-ohmyposh", 0 },
+                    { 34, "scripts-ohmyposh", 0 },
+                    { 35, "scripts-winterm", 0 },
+                    { 36, "scripts-winterm", 0 },
+                    { 37, "scripts-winterm", 3 },
+                    { 38, "scripts-winterm", 0 },
+                    { 39, "scripts-winterm", 4 },
+                    { 40, "scripts-poshgit", 0 },
+                    { 41, "scripts-poshgit", 0 },
+                    { 42, "scripts-shell", 0 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Detail",
+                columns: new[] { "Id", "SectionId", "Type" },
+                values: new object[,]
+                {
+                    { 43, "scripts-wsl", 0 },
+                    { 44, "scripts-wsl", 2 },
+                    { 45, "scripts-wsl", 0 },
+                    { 46, "scripts-wsl", 0 },
+                    { 47, "scripts-wsl", 4 },
+                    { 48, "scripts-wsl", 0 },
+                    { 49, "scripts-wsl", 0 },
+                    { 50, "scripts-wsl", 4 },
+                    { 51, "scripts-wsl", 0 },
+                    { 52, "scripts-wsl", 4 },
+                    { 53, "scripts-wsl", 0 },
+                    { 54, "scripts-wsl", 4 },
+                    { 55, "scripts-wsl", 0 },
+                    { 56, "scripts-wsl", 4 },
+                    { 57, "scripts-wsl", 0 },
+                    { 58, "scripts-wsl", 4 },
+                    { 59, "scripts-wsl", 0 },
+                    { 60, "scripts-wsl", 4 },
+                    { 61, "scripts-virtual", 0 },
+                    { 62, "scripts-docker", 0 },
+                    { 63, "scripts-podman", 0 },
+                    { 64, "scripts-sdk", 0 },
+                    { 65, "scripts-sindamodule", 0 },
+                    { 66, "scripts-sindamodule", 0 },
+                    { 67, "scripts-sindamodule", 0 },
+                    { 68, "scripts-sindamodule", 3 },
+                    { 69, "scripts-sindamodule", 0 },
+                    { 70, "scripts-sindamodule", 3 },
+                    { 71, "scripts-sindamodule", 0 },
+                    { 72, "scripts-sindamodule", 3 },
+                    { 73, "scripts-sindamodule", 0 },
+                    { 74, "scripts-sindamodule", 3 },
+                    { 75, "scripts-sindamodule", 0 },
+                    { 76, "scripts-sindamodule", 3 },
+                    { 77, "scripts-sindamodule", 0 },
+                    { 78, "scripts-sindamodule", 3 },
+                    { 79, "scripts-sindamodule", 0 },
+                    { 80, "scripts-boilerplate", 0 },
+                    { 81, "scripts-portfolio", 0 },
+                    { 82, "scripts-portfolio", 0 },
+                    { 83, "boilerplate-introduction", 0 },
+                    { 84, "boilerplate-portfolio", 0 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Detail",
+                columns: new[] { "Id", "SectionId", "Type" },
+                values: new object[,]
+                {
+                    { 85, "boilerplate-portfolio-setup", 0 },
+                    { 86, "boilerplate-portfolio-setup", 3 },
+                    { 87, "boilerplate-portfolio-setup", 0 },
+                    { 88, "boilerplate-portfolio-setup", 3 },
+                    { 89, "boilerplate-portfolio-setup", 0 },
+                    { 90, "boilerplate-portfolio-setup", 3 },
+                    { 91, "boilerplate-portfolio-setup", 3 },
+                    { 92, "boilerplate-portfolio-setup", 3 },
+                    { 93, "boilerplate-portfolio-setup", 0 },
+                    { 94, "boilerplate-portfolio-setup", 4 },
+                    { 95, "boilerplate-portfolio-hero", 0 },
+                    { 96, "boilerplate-portfolio-hero", 0 },
+                    { 97, "boilerplate-portfolio-hero", 3 },
+                    { 98, "boilerplate-portfolio-hero", 0 },
+                    { 99, "boilerplate-portfolio-hero", 4 },
+                    { 100, "boilerplate-portfolio-hero", 0 },
+                    { 101, "boilerplate-portfolio-hero", 4 },
+                    { 102, "boilerplate-portfolio-hero", 0 },
+                    { 103, "boilerplate-portfolio-hero", 4 },
+                    { 104, "boilerplate-portfolio-hero", 0 },
+                    { 105, "boilerplate-portfolio-hero", 4 },
+                    { 106, "boilerplate-portfolio-body", 0 },
+                    { 107, "boilerplate-portfolio-body", 4 },
+                    { 108, "boilerplate-portfolio-body", 0 },
+                    { 109, "boilerplate-portfolio-body", 0 },
+                    { 110, "boilerplate-portfolio-body", 0 },
+                    { 111, "boilerplate-portfolio-body", 4 },
+                    { 112, "boilerplate-portfolio-body", 0 },
+                    { 113, "boilerplate-portfolio-body", 0 }
+                });
 
             migrationBuilder.InsertData(
                 table: "HTMLContent",
@@ -579,59 +649,6 @@ namespace SindaCMS.Migrations
                 columns: new[] { "DetailId", "Id", "Type", "Value", "content_type" },
                 values: new object[] { 2, 4, 0, "For the time being, usages from within WSL & Unix based systems had been disabled.", 3 });
 
-            migrationBuilder.InsertData(
-                table: "PageDetail",
-                columns: new[] { "Name", "SiteBrandName" },
-                values: new object[,]
-                {
-                    { "Blog", "Sinda" },
-                    { "Docs", "Sinda" },
-                    { "Roadmap", "Sinda" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Pages",
-                column: "PageDetailName",
-                value: "Blog");
-
-            migrationBuilder.InsertData(
-                table: "Pages",
-                column: "PageDetailName",
-                value: "Docs");
-
-            migrationBuilder.InsertData(
-                table: "Pages",
-                column: "PageDetailName",
-                value: "Roadmap");
-
-            migrationBuilder.InsertData(
-                table: "Tab",
-                columns: new[] { "Name", "PageName", "Status" },
-                values: new object[,]
-                {
-                    { "Articles", "Blog", 1 },
-                    { "Boilerplate", "Docs", 0 },
-                    { "News", "Blog", 1 },
-                    { "Philosophy", "Roadmap", 1 },
-                    { "Scripts", "Docs", 0 },
-                    { "Terminal", "Docs", 0 },
-                    { "Vision", "Roadmap", 1 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Section",
-                columns: new[] { "Id", "PageName", "TabName", "HasMainContent", "Header" },
-                values: new object[,]
-                {
-                    { "boilerplate-portfolio", "Docs", "Boilerplate", false, "1) Sinda Portfolio" },
-                    { "boilerplate-portfolio-body", "Docs", "Boilerplate", false, "Changing the body section contents" },
-                    { "scripts-boilerplate", "Docs", "Scripts", true, "Boilerplates & Codebases" },
-                    { "scripts-introduction", "Docs", "Scripts", true, "Introduction" },
-                    { "scripts-podman", "Docs", "Scripts", false, "2) Podman" },
-                    { "scripts-winterm", "Docs", "Scripts", false, "2) Windows Terminal by Microsoft" },
-                    { "scripts-wsl", "Docs", "Scripts", false, "1) SindaDistro" }
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Detail_SectionId",
                 table: "Detail",
@@ -648,18 +665,13 @@ namespace SindaCMS.Migrations
                 column: "SiteBrandName");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Section_PageName",
-                table: "Section",
-                column: "PageName");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Section_TabName",
                 table: "Section",
                 column: "TabName");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tab_PageName",
-                table: "Tab",
+                name: "IX_Tabs_PageName",
+                table: "Tabs",
                 column: "PageName");
         }
 
@@ -675,10 +687,10 @@ namespace SindaCMS.Migrations
                 name: "Section");
 
             migrationBuilder.DropTable(
-                name: "Tab");
+                name: "Tabs");
 
             migrationBuilder.DropTable(
-                name: "Pages");
+                name: "Page");
 
             migrationBuilder.DropTable(
                 name: "PageDetail");

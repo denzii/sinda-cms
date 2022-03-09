@@ -30,11 +30,8 @@ namespace SindaCMS.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("SectionId")
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("SectionKey")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(900)");
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
@@ -49,679 +46,679 @@ namespace SindaCMS.Migrations
                         new
                         {
                             Id = 1,
-                            SectionKey = "terminal-introduction",
+                            SectionId = "terminal-introduction",
                             Type = 0
                         },
                         new
                         {
                             Id = 2,
-                            SectionKey = "terminal-introduction",
+                            SectionId = "terminal-introduction",
                             Type = 0
                         },
                         new
                         {
                             Id = 3,
-                            SectionKey = "terminal-introduction",
+                            SectionId = "terminal-introduction",
                             Type = 0
                         },
                         new
                         {
                             Id = 4,
-                            SectionKey = "terminal-setup",
+                            SectionId = "terminal-setup",
                             Type = 0
                         },
                         new
                         {
                             Id = 5,
-                            SectionKey = "terminal-setup",
+                            SectionId = "terminal-setup",
                             Type = 0
                         },
                         new
                         {
                             Id = 6,
-                            SectionKey = "terminal-setup",
+                            SectionId = "terminal-setup",
                             Type = 3
                         },
                         new
                         {
                             Id = 7,
-                            SectionKey = "terminal-setup",
+                            SectionId = "terminal-setup",
                             Type = 3
                         },
                         new
                         {
                             Id = 8,
-                            SectionKey = "terminal-setup",
+                            SectionId = "terminal-setup",
                             Type = 3
                         },
                         new
                         {
                             Id = 9,
-                            SectionKey = "terminal-setup",
+                            SectionId = "terminal-setup",
                             Type = 2
                         },
                         new
                         {
                             Id = 10,
-                            SectionKey = "terminal-setup",
+                            SectionId = "terminal-setup",
                             Type = 0
                         },
                         new
                         {
                             Id = 11,
-                            SectionKey = "terminal-setup",
+                            SectionId = "terminal-setup",
                             Type = 4
                         },
                         new
                         {
                             Id = 12,
-                            SectionKey = "terminal-usage",
+                            SectionId = "terminal-usage",
                             Type = 0
                         },
                         new
                         {
                             Id = 13,
-                            SectionKey = "terminal-usage",
+                            SectionId = "terminal-usage",
                             Type = 0
                         },
                         new
                         {
                             Id = 14,
-                            SectionKey = "terminal-usage",
+                            SectionId = "terminal-usage",
                             Type = 0
                         },
                         new
                         {
                             Id = 15,
-                            SectionKey = "terminal-usage",
+                            SectionId = "terminal-usage",
                             Type = 4
                         },
                         new
                         {
                             Id = 16,
-                            SectionKey = "terminal-usage",
+                            SectionId = "terminal-usage",
                             Type = 0
                         },
                         new
                         {
                             Id = 17,
-                            SectionKey = "terminal-usage",
+                            SectionId = "terminal-usage",
                             Type = 4
                         },
                         new
                         {
                             Id = 18,
-                            SectionKey = "terminal-usage",
+                            SectionId = "terminal-usage",
                             Type = 0
                         },
                         new
                         {
                             Id = 19,
-                            SectionKey = "terminal-usage",
+                            SectionId = "terminal-usage",
                             Type = 4
                         },
                         new
                         {
                             Id = 20,
-                            SectionKey = "terminal-usage",
+                            SectionId = "terminal-usage",
                             Type = 2
                         },
                         new
                         {
                             Id = 21,
-                            SectionKey = "terminal-usage",
+                            SectionId = "terminal-usage",
                             Type = 0
                         },
                         new
                         {
                             Id = 22,
-                            SectionKey = "terminal-usage",
+                            SectionId = "terminal-usage",
                             Type = 4
                         },
                         new
                         {
                             Id = 23,
-                            SectionKey = "terminal-usage",
+                            SectionId = "terminal-usage",
                             Type = 0
                         },
                         new
                         {
                             Id = 24,
-                            SectionKey = "scripts-introduction",
+                            SectionId = "scripts-introduction",
                             Type = 0
                         },
                         new
                         {
                             Id = 25,
-                            SectionKey = "scripts-introduction",
+                            SectionId = "scripts-introduction",
                             Type = 0
                         },
                         new
                         {
                             Id = 26,
-                            SectionKey = "scripts-introduction",
+                            SectionId = "scripts-introduction",
                             Type = 2
                         },
                         new
                         {
                             Id = 27,
-                            SectionKey = "scripts-terminal",
+                            SectionId = "scripts-terminal",
                             Type = 0
                         },
                         new
                         {
                             Id = 28,
-                            SectionKey = "scripts-ohmyposh",
+                            SectionId = "scripts-ohmyposh",
                             Type = 0
                         },
                         new
                         {
                             Id = 29,
-                            SectionKey = "scripts-ohmyposh",
+                            SectionId = "scripts-ohmyposh",
                             Type = 0
                         },
                         new
                         {
                             Id = 30,
-                            SectionKey = "scripts-ohmyposh",
+                            SectionId = "scripts-ohmyposh",
                             Type = 3
                         },
                         new
                         {
                             Id = 31,
-                            SectionKey = "scripts-ohmyposh",
+                            SectionId = "scripts-ohmyposh",
                             Type = 0
                         },
                         new
                         {
                             Id = 32,
-                            SectionKey = "scripts-ohmyposh",
+                            SectionId = "scripts-ohmyposh",
                             Type = 3
                         },
                         new
                         {
                             Id = 33,
-                            SectionKey = "scripts-ohmyposh",
+                            SectionId = "scripts-ohmyposh",
                             Type = 0
                         },
                         new
                         {
                             Id = 34,
-                            SectionKey = "scripts-ohmyposh",
+                            SectionId = "scripts-ohmyposh",
                             Type = 0
                         },
                         new
                         {
                             Id = 35,
-                            SectionKey = "scripts-winterm",
+                            SectionId = "scripts-winterm",
                             Type = 0
                         },
                         new
                         {
                             Id = 36,
-                            SectionKey = "scripts-winterm",
+                            SectionId = "scripts-winterm",
                             Type = 0
                         },
                         new
                         {
                             Id = 37,
-                            SectionKey = "scripts-winterm",
+                            SectionId = "scripts-winterm",
                             Type = 3
                         },
                         new
                         {
                             Id = 38,
-                            SectionKey = "scripts-winterm",
+                            SectionId = "scripts-winterm",
                             Type = 0
                         },
                         new
                         {
                             Id = 39,
-                            SectionKey = "scripts-winterm",
+                            SectionId = "scripts-winterm",
                             Type = 4
                         },
                         new
                         {
                             Id = 40,
-                            SectionKey = "scripts-poshgit",
+                            SectionId = "scripts-poshgit",
                             Type = 0
                         },
                         new
                         {
                             Id = 41,
-                            SectionKey = "scripts-poshgit",
+                            SectionId = "scripts-poshgit",
                             Type = 0
                         },
                         new
                         {
                             Id = 42,
-                            SectionKey = "scripts-shell",
+                            SectionId = "scripts-shell",
                             Type = 0
                         },
                         new
                         {
                             Id = 43,
-                            SectionKey = "scripts-wsl",
+                            SectionId = "scripts-wsl",
                             Type = 0
                         },
                         new
                         {
                             Id = 44,
-                            SectionKey = "scripts-wsl",
+                            SectionId = "scripts-wsl",
                             Type = 2
                         },
                         new
                         {
                             Id = 45,
-                            SectionKey = "scripts-wsl",
+                            SectionId = "scripts-wsl",
                             Type = 0
                         },
                         new
                         {
                             Id = 46,
-                            SectionKey = "scripts-wsl",
+                            SectionId = "scripts-wsl",
                             Type = 0
                         },
                         new
                         {
                             Id = 47,
-                            SectionKey = "scripts-wsl",
+                            SectionId = "scripts-wsl",
                             Type = 4
                         },
                         new
                         {
                             Id = 48,
-                            SectionKey = "scripts-wsl",
+                            SectionId = "scripts-wsl",
                             Type = 0
                         },
                         new
                         {
                             Id = 49,
-                            SectionKey = "scripts-wsl",
+                            SectionId = "scripts-wsl",
                             Type = 0
                         },
                         new
                         {
                             Id = 50,
-                            SectionKey = "scripts-wsl",
+                            SectionId = "scripts-wsl",
                             Type = 4
                         },
                         new
                         {
                             Id = 51,
-                            SectionKey = "scripts-wsl",
+                            SectionId = "scripts-wsl",
                             Type = 0
                         },
                         new
                         {
                             Id = 52,
-                            SectionKey = "scripts-wsl",
+                            SectionId = "scripts-wsl",
                             Type = 4
                         },
                         new
                         {
                             Id = 53,
-                            SectionKey = "scripts-wsl",
+                            SectionId = "scripts-wsl",
                             Type = 0
                         },
                         new
                         {
                             Id = 54,
-                            SectionKey = "scripts-wsl",
+                            SectionId = "scripts-wsl",
                             Type = 4
                         },
                         new
                         {
                             Id = 55,
-                            SectionKey = "scripts-wsl",
+                            SectionId = "scripts-wsl",
                             Type = 0
                         },
                         new
                         {
                             Id = 56,
-                            SectionKey = "scripts-wsl",
+                            SectionId = "scripts-wsl",
                             Type = 4
                         },
                         new
                         {
                             Id = 57,
-                            SectionKey = "scripts-wsl",
+                            SectionId = "scripts-wsl",
                             Type = 0
                         },
                         new
                         {
                             Id = 58,
-                            SectionKey = "scripts-wsl",
+                            SectionId = "scripts-wsl",
                             Type = 4
                         },
                         new
                         {
                             Id = 59,
-                            SectionKey = "scripts-wsl",
+                            SectionId = "scripts-wsl",
                             Type = 0
                         },
                         new
                         {
                             Id = 60,
-                            SectionKey = "scripts-wsl",
+                            SectionId = "scripts-wsl",
                             Type = 4
                         },
                         new
                         {
                             Id = 61,
-                            SectionKey = "scripts-virtual",
+                            SectionId = "scripts-virtual",
                             Type = 0
                         },
                         new
                         {
                             Id = 62,
-                            SectionKey = "scripts-docker",
+                            SectionId = "scripts-docker",
                             Type = 0
                         },
                         new
                         {
                             Id = 63,
-                            SectionKey = "scripts-podman",
+                            SectionId = "scripts-podman",
                             Type = 0
                         },
                         new
                         {
                             Id = 64,
-                            SectionKey = "scripts-sdk",
+                            SectionId = "scripts-sdk",
                             Type = 0
                         },
                         new
                         {
                             Id = 65,
-                            SectionKey = "scripts-sindamodule",
+                            SectionId = "scripts-sindamodule",
                             Type = 0
                         },
                         new
                         {
                             Id = 66,
-                            SectionKey = "scripts-sindamodule",
+                            SectionId = "scripts-sindamodule",
                             Type = 0
                         },
                         new
                         {
                             Id = 67,
-                            SectionKey = "scripts-sindamodule",
+                            SectionId = "scripts-sindamodule",
                             Type = 0
                         },
                         new
                         {
                             Id = 68,
-                            SectionKey = "scripts-sindamodule",
+                            SectionId = "scripts-sindamodule",
                             Type = 3
                         },
                         new
                         {
                             Id = 69,
-                            SectionKey = "scripts-sindamodule",
+                            SectionId = "scripts-sindamodule",
                             Type = 0
                         },
                         new
                         {
                             Id = 70,
-                            SectionKey = "scripts-sindamodule",
+                            SectionId = "scripts-sindamodule",
                             Type = 3
                         },
                         new
                         {
                             Id = 71,
-                            SectionKey = "scripts-sindamodule",
+                            SectionId = "scripts-sindamodule",
                             Type = 0
                         },
                         new
                         {
                             Id = 72,
-                            SectionKey = "scripts-sindamodule",
+                            SectionId = "scripts-sindamodule",
                             Type = 3
                         },
                         new
                         {
                             Id = 73,
-                            SectionKey = "scripts-sindamodule",
+                            SectionId = "scripts-sindamodule",
                             Type = 0
                         },
                         new
                         {
                             Id = 74,
-                            SectionKey = "scripts-sindamodule",
+                            SectionId = "scripts-sindamodule",
                             Type = 3
                         },
                         new
                         {
                             Id = 75,
-                            SectionKey = "scripts-sindamodule",
+                            SectionId = "scripts-sindamodule",
                             Type = 0
                         },
                         new
                         {
                             Id = 76,
-                            SectionKey = "scripts-sindamodule",
+                            SectionId = "scripts-sindamodule",
                             Type = 3
                         },
                         new
                         {
                             Id = 77,
-                            SectionKey = "scripts-sindamodule",
+                            SectionId = "scripts-sindamodule",
                             Type = 0
                         },
                         new
                         {
                             Id = 78,
-                            SectionKey = "scripts-sindamodule",
+                            SectionId = "scripts-sindamodule",
                             Type = 3
                         },
                         new
                         {
                             Id = 79,
-                            SectionKey = "scripts-sindamodule",
+                            SectionId = "scripts-sindamodule",
                             Type = 0
                         },
                         new
                         {
                             Id = 80,
-                            SectionKey = "scripts-boilerplate",
+                            SectionId = "scripts-boilerplate",
                             Type = 0
                         },
                         new
                         {
                             Id = 81,
-                            SectionKey = "scripts-portfolio",
+                            SectionId = "scripts-portfolio",
                             Type = 0
                         },
                         new
                         {
                             Id = 82,
-                            SectionKey = "scripts-portfolio",
+                            SectionId = "scripts-portfolio",
                             Type = 0
                         },
                         new
                         {
                             Id = 83,
-                            SectionKey = "boilerplate-introduction",
+                            SectionId = "boilerplate-introduction",
                             Type = 0
                         },
                         new
                         {
                             Id = 84,
-                            SectionKey = "boilerplate-portfolio",
+                            SectionId = "boilerplate-portfolio",
                             Type = 0
                         },
                         new
                         {
                             Id = 85,
-                            SectionKey = "boilerplate-portfolio-setup",
+                            SectionId = "boilerplate-portfolio-setup",
                             Type = 0
                         },
                         new
                         {
                             Id = 86,
-                            SectionKey = "boilerplate-portfolio-setup",
+                            SectionId = "boilerplate-portfolio-setup",
                             Type = 3
                         },
                         new
                         {
                             Id = 87,
-                            SectionKey = "boilerplate-portfolio-setup",
+                            SectionId = "boilerplate-portfolio-setup",
                             Type = 0
                         },
                         new
                         {
                             Id = 88,
-                            SectionKey = "boilerplate-portfolio-setup",
+                            SectionId = "boilerplate-portfolio-setup",
                             Type = 3
                         },
                         new
                         {
                             Id = 89,
-                            SectionKey = "boilerplate-portfolio-setup",
+                            SectionId = "boilerplate-portfolio-setup",
                             Type = 0
                         },
                         new
                         {
                             Id = 90,
-                            SectionKey = "boilerplate-portfolio-setup",
+                            SectionId = "boilerplate-portfolio-setup",
                             Type = 3
                         },
                         new
                         {
                             Id = 91,
-                            SectionKey = "boilerplate-portfolio-setup",
+                            SectionId = "boilerplate-portfolio-setup",
                             Type = 3
                         },
                         new
                         {
                             Id = 92,
-                            SectionKey = "boilerplate-portfolio-setup",
+                            SectionId = "boilerplate-portfolio-setup",
                             Type = 3
                         },
                         new
                         {
                             Id = 93,
-                            SectionKey = "boilerplate-portfolio-setup",
+                            SectionId = "boilerplate-portfolio-setup",
                             Type = 0
                         },
                         new
                         {
                             Id = 94,
-                            SectionKey = "boilerplate-portfolio-setup",
+                            SectionId = "boilerplate-portfolio-setup",
                             Type = 4
                         },
                         new
                         {
                             Id = 95,
-                            SectionKey = "boilerplate-portfolio-hero",
+                            SectionId = "boilerplate-portfolio-hero",
                             Type = 0
                         },
                         new
                         {
                             Id = 96,
-                            SectionKey = "boilerplate-portfolio-hero",
+                            SectionId = "boilerplate-portfolio-hero",
                             Type = 0
                         },
                         new
                         {
                             Id = 97,
-                            SectionKey = "boilerplate-portfolio-hero",
+                            SectionId = "boilerplate-portfolio-hero",
                             Type = 3
                         },
                         new
                         {
                             Id = 98,
-                            SectionKey = "boilerplate-portfolio-hero",
+                            SectionId = "boilerplate-portfolio-hero",
                             Type = 0
                         },
                         new
                         {
                             Id = 99,
-                            SectionKey = "boilerplate-portfolio-hero",
+                            SectionId = "boilerplate-portfolio-hero",
                             Type = 4
                         },
                         new
                         {
                             Id = 100,
-                            SectionKey = "boilerplate-portfolio-hero",
+                            SectionId = "boilerplate-portfolio-hero",
                             Type = 0
                         },
                         new
                         {
                             Id = 101,
-                            SectionKey = "boilerplate-portfolio-hero",
+                            SectionId = "boilerplate-portfolio-hero",
                             Type = 4
                         },
                         new
                         {
                             Id = 102,
-                            SectionKey = "boilerplate-portfolio-hero",
+                            SectionId = "boilerplate-portfolio-hero",
                             Type = 0
                         },
                         new
                         {
                             Id = 103,
-                            SectionKey = "boilerplate-portfolio-hero",
+                            SectionId = "boilerplate-portfolio-hero",
                             Type = 4
                         },
                         new
                         {
                             Id = 104,
-                            SectionKey = "boilerplate-portfolio-hero",
+                            SectionId = "boilerplate-portfolio-hero",
                             Type = 0
                         },
                         new
                         {
                             Id = 105,
-                            SectionKey = "boilerplate-portfolio-hero",
+                            SectionId = "boilerplate-portfolio-hero",
                             Type = 4
                         },
                         new
                         {
                             Id = 106,
-                            SectionKey = "boilerplate-portfolio-body",
+                            SectionId = "boilerplate-portfolio-body",
                             Type = 0
                         },
                         new
                         {
                             Id = 107,
-                            SectionKey = "boilerplate-portfolio-body",
+                            SectionId = "boilerplate-portfolio-body",
                             Type = 4
                         },
                         new
                         {
                             Id = 108,
-                            SectionKey = "boilerplate-portfolio-body",
+                            SectionId = "boilerplate-portfolio-body",
                             Type = 0
                         },
                         new
                         {
                             Id = 109,
-                            SectionKey = "boilerplate-portfolio-body",
+                            SectionId = "boilerplate-portfolio-body",
                             Type = 0
                         },
                         new
                         {
                             Id = 110,
-                            SectionKey = "boilerplate-portfolio-body",
+                            SectionId = "boilerplate-portfolio-body",
                             Type = 0
                         },
                         new
                         {
                             Id = 111,
-                            SectionKey = "boilerplate-portfolio-body",
+                            SectionId = "boilerplate-portfolio-body",
                             Type = 4
                         },
                         new
                         {
                             Id = 112,
-                            SectionKey = "boilerplate-portfolio-body",
+                            SectionId = "boilerplate-portfolio-body",
                             Type = 0
                         },
                         new
                         {
                             Id = 113,
-                            SectionKey = "boilerplate-portfolio-body",
+                            SectionId = "boilerplate-portfolio-body",
                             Type = 0
                         });
                 });
@@ -1622,7 +1619,7 @@ namespace SindaCMS.Migrations
 
                     b.HasKey("PageDetailName");
 
-                    b.ToTable("Pages");
+                    b.ToTable("Page");
 
                     b.HasData(
                         new
@@ -1644,6 +1641,9 @@ namespace SindaCMS.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("Index")
+                        .HasColumnType("int");
+
                     b.Property<string>("SiteBrandName")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -1658,16 +1658,19 @@ namespace SindaCMS.Migrations
                         new
                         {
                             Name = "Docs",
+                            Index = 0,
                             SiteBrandName = "Sinda"
                         },
                         new
                         {
                             Name = "Blog",
+                            Index = 1,
                             SiteBrandName = "Sinda"
                         },
                         new
                         {
                             Name = "Roadmap",
+                            Index = 2,
                             SiteBrandName = "Sinda"
                         });
                 });
@@ -1675,13 +1678,10 @@ namespace SindaCMS.Migrations
             modelBuilder.Entity("SindaCMS.Models.Section", b =>
                 {
                     b.Property<string>("Id")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasMaxLength(900)
+                        .HasColumnType("nvarchar(900)");
 
                     b.Property<string>("TabName")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("PageName")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("HasMainContent")
@@ -1691,9 +1691,10 @@ namespace SindaCMS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id", "TabName", "PageName");
+                    b.Property<int>("Index")
+                        .HasColumnType("int");
 
-                    b.HasIndex("PageName");
+                    b.HasKey("Id", "TabName");
 
                     b.HasIndex("TabName");
 
@@ -1704,177 +1705,177 @@ namespace SindaCMS.Migrations
                         {
                             Id = "terminal-introduction",
                             TabName = "Terminal",
-                            PageName = "Docs",
                             HasMainContent = true,
-                            Header = "Introduction"
+                            Header = "Introduction",
+                            Index = 0
                         },
                         new
                         {
                             Id = "terminal-setup",
                             TabName = "Terminal",
-                            PageName = "Docs",
                             HasMainContent = false,
-                            Header = "Getting Started"
+                            Header = "Getting Started",
+                            Index = 1
                         },
                         new
                         {
                             Id = "terminal-usage",
                             TabName = "Terminal",
-                            PageName = "Docs",
                             HasMainContent = false,
-                            Header = "Usage"
+                            Header = "Usage",
+                            Index = 2
                         },
                         new
                         {
                             Id = "scripts-introduction",
                             TabName = "Scripts",
-                            PageName = "Docs",
                             HasMainContent = true,
-                            Header = "Introduction"
+                            Header = "Introduction",
+                            Index = 0
                         },
                         new
                         {
                             Id = "scripts-terminal",
                             TabName = "Scripts",
-                            PageName = "Docs",
                             HasMainContent = true,
-                            Header = "Terminal Extensions"
+                            Header = "Terminal Extensions",
+                            Index = 1
                         },
                         new
                         {
                             Id = "scripts-ohmyposh",
                             TabName = "Scripts",
-                            PageName = "Docs",
                             HasMainContent = false,
-                            Header = "1) Oh My Posh & Nerd Fonts"
+                            Header = "1) Oh My Posh & Nerd Fonts",
+                            Index = 2
                         },
                         new
                         {
                             Id = "scripts-winterm",
                             TabName = "Scripts",
-                            PageName = "Docs",
                             HasMainContent = false,
-                            Header = "2) Windows Terminal by Microsoft"
+                            Header = "2) Windows Terminal by Microsoft",
+                            Index = 3
                         },
                         new
                         {
                             Id = "scripts-poshgit",
                             TabName = "Scripts",
-                            PageName = "Docs",
                             HasMainContent = false,
-                            Header = "3) Posh Git"
+                            Header = "3) Posh Git",
+                            Index = 4
                         },
                         new
                         {
                             Id = "scripts-shell",
                             TabName = "Scripts",
-                            PageName = "Docs",
                             HasMainContent = true,
-                            Header = "Shell Modifications"
+                            Header = "Shell Modifications",
+                            Index = 5
                         },
                         new
                         {
                             Id = "scripts-wsl",
                             TabName = "Scripts",
-                            PageName = "Docs",
                             HasMainContent = false,
-                            Header = "1) SindaDistro"
+                            Header = "1) SindaDistro",
+                            Index = 6
                         },
                         new
                         {
                             Id = "scripts-virtual",
                             TabName = "Scripts",
-                            PageName = "Docs",
                             HasMainContent = true,
-                            Header = "Virtualization Software"
+                            Header = "Virtualization Software",
+                            Index = 7
                         },
                         new
                         {
                             Id = "scripts-docker",
                             TabName = "Scripts",
-                            PageName = "Docs",
                             HasMainContent = false,
-                            Header = "1) Docker Desktop with WSL2 Backend"
+                            Header = "1) Docker Desktop with WSL2 Backend",
+                            Index = 8
                         },
                         new
                         {
                             Id = "scripts-podman",
                             TabName = "Scripts",
-                            PageName = "Docs",
                             HasMainContent = false,
-                            Header = "2) Podman"
+                            Header = "2) Podman",
+                            Index = 9
                         },
                         new
                         {
                             Id = "scripts-sdk",
                             TabName = "Scripts",
-                            PageName = "Docs",
                             HasMainContent = true,
-                            Header = "SDK & Internal Tooling"
+                            Header = "SDK & Internal Tooling",
+                            Index = 10
                         },
                         new
                         {
                             Id = "scripts-sindamodule",
                             TabName = "Scripts",
-                            PageName = "Docs",
                             HasMainContent = false,
-                            Header = "1) Sinda Developer Tools"
+                            Header = "1) Sinda Developer Tools",
+                            Index = 11
                         },
                         new
                         {
                             Id = "scripts-boilerplate",
                             TabName = "Scripts",
-                            PageName = "Docs",
                             HasMainContent = true,
-                            Header = "Boilerplates & Codebases"
+                            Header = "Boilerplates & Codebases",
+                            Index = 12
                         },
                         new
                         {
                             Id = "scripts-portfolio",
                             TabName = "Scripts",
-                            PageName = "Docs",
                             HasMainContent = false,
-                            Header = "1) Sinda Portfolio"
+                            Header = "1) Sinda Portfolio",
+                            Index = 13
                         },
                         new
                         {
                             Id = "boilerplate-introduction",
                             TabName = "Boilerplate",
-                            PageName = "Docs",
                             HasMainContent = true,
-                            Header = "Introduction"
+                            Header = "Introduction",
+                            Index = 0
                         },
                         new
                         {
                             Id = "boilerplate-portfolio",
                             TabName = "Boilerplate",
-                            PageName = "Docs",
                             HasMainContent = false,
-                            Header = "1) Sinda Portfolio"
+                            Header = "1) Sinda Portfolio",
+                            Index = 1
                         },
                         new
                         {
                             Id = "boilerplate-portfolio-setup",
                             TabName = "Boilerplate",
-                            PageName = "Docs",
                             HasMainContent = false,
-                            Header = "Setting up the repository"
+                            Header = "Setting up the repository",
+                            Index = 2
                         },
                         new
                         {
                             Id = "boilerplate-portfolio-hero",
                             TabName = "Boilerplate",
-                            PageName = "Docs",
                             HasMainContent = false,
-                            Header = "Changing the hero section content"
+                            Header = "Changing the hero section content",
+                            Index = 3
                         },
                         new
                         {
                             Id = "boilerplate-portfolio-body",
                             TabName = "Boilerplate",
-                            PageName = "Docs",
                             HasMainContent = false,
-                            Header = "Changing the body section contents"
+                            Header = "Changing the body section contents",
+                            Index = 4
                         });
                 });
 
@@ -1904,6 +1905,9 @@ namespace SindaCMS.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("Index")
+                        .HasColumnType("int");
+
                     b.Property<string>("PageName")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -1915,48 +1919,55 @@ namespace SindaCMS.Migrations
 
                     b.HasIndex("PageName");
 
-                    b.ToTable("Tab");
+                    b.ToTable("Tabs");
 
                     b.HasData(
                         new
                         {
                             Name = "Terminal",
+                            Index = 0,
                             PageName = "Docs",
                             Status = 0
                         },
                         new
                         {
                             Name = "Scripts",
+                            Index = 1,
                             PageName = "Docs",
                             Status = 0
                         },
                         new
                         {
                             Name = "Boilerplate",
+                            Index = 2,
                             PageName = "Docs",
                             Status = 0
                         },
                         new
                         {
                             Name = "Articles",
+                            Index = 0,
                             PageName = "Blog",
                             Status = 1
                         },
                         new
                         {
                             Name = "News",
+                            Index = 1,
                             PageName = "Blog",
                             Status = 1
                         },
                         new
                         {
                             Name = "Philosophy",
+                            Index = 0,
                             PageName = "Roadmap",
                             Status = 1
                         },
                         new
                         {
                             Name = "Vision",
+                            Index = 1,
                             PageName = "Roadmap",
                             Status = 1
                         });
@@ -2795,7 +2806,9 @@ namespace SindaCMS.Migrations
                     b.HasOne("SindaCMS.Models.Section", "Section")
                         .WithMany("Details")
                         .HasForeignKey("SectionId")
-                        .HasPrincipalKey("Id");
+                        .HasPrincipalKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Section");
                 });
@@ -2835,19 +2848,11 @@ namespace SindaCMS.Migrations
 
             modelBuilder.Entity("SindaCMS.Models.Section", b =>
                 {
-                    b.HasOne("SindaCMS.Models.Page", "Page")
-                        .WithOne()
-                        .HasForeignKey("SindaCMS.Models.Section", "PageName")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("SindaCMS.Models.Tab", "Tab")
                         .WithMany("Sections")
                         .HasForeignKey("TabName")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
-
-                    b.Navigation("Page");
 
                     b.Navigation("Tab");
                 });

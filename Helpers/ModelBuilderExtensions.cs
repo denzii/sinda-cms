@@ -9,9 +9,9 @@ namespace SindaCMS.Helpers
         {
             modelBuilder.Entity<PageDetail>().HasOne(d => d.Site).WithMany(s => s.PageNames).OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<PageDetail>().HasData(
-                new PageDetail { Name = "Docs", SiteBrandName = "Sinda" },
-                new PageDetail { Name = "Blog", SiteBrandName = "Sinda" },
-                new PageDetail { Name = "Roadmap", SiteBrandName = "Sinda" }
+                new PageDetail { Index=0, Name = "Docs", SiteBrandName = "Sinda" },
+                new PageDetail { Index=1, Name = "Blog", SiteBrandName = "Sinda" },
+                new PageDetail { Index=2, Name = "Roadmap", SiteBrandName = "Sinda" }
             );
 
             modelBuilder.Entity<Site>().HasData(
@@ -29,24 +29,22 @@ namespace SindaCMS.Helpers
 
             modelBuilder.Entity<Tab>().HasOne(t => t.Page).WithMany(p => p.Tabs).OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Tab>().HasData(
-                new Tab { PageName="Docs", Name = "Terminal", Status = SectionStatus.Public },
-                new Tab { PageName="Docs", Name = "Scripts", Status = SectionStatus.Public },
-                new Tab { PageName = "Docs", Name = "Boilerplate", Status = SectionStatus.Public },
-                new Tab { PageName = "Blog", Name = "Articles", Status = SectionStatus.Hidden },
-                new Tab { PageName = "Blog", Name = "News", Status = SectionStatus.Hidden },
-                new Tab { PageName = "Roadmap", Name = "Philosophy", Status = SectionStatus.Hidden },
-                new Tab { PageName = "Roadmap", Name = "Vision", Status = SectionStatus.Hidden }
+                new Tab { Index=0, PageName="Docs", Name = "Terminal", Status = SectionStatus.Public },
+                new Tab { Index=1, PageName="Docs", Name = "Scripts", Status = SectionStatus.Public },
+                new Tab { Index=2, PageName = "Docs", Name = "Boilerplate", Status = SectionStatus.Public },
+                new Tab { Index=0, PageName = "Blog", Name = "Articles", Status = SectionStatus.Hidden },
+                new Tab { Index=1, PageName = "Blog", Name = "News", Status = SectionStatus.Hidden },
+                new Tab { Index=0, PageName = "Roadmap", Name = "Philosophy", Status = SectionStatus.Hidden },
+                new Tab { Index=1, PageName = "Roadmap", Name = "Vision", Status = SectionStatus.Hidden }
             );
 
-            modelBuilder.Entity<Section>().HasIndex(s => s.PageName).IsUnique(false);
-            modelBuilder.Entity<Section>().HasOne(s => s.Page).WithOne().OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Section>().HasOne(s => s.Tab).WithMany(t => t.Sections).OnDelete(DeleteBehavior.NoAction);
-            modelBuilder.Entity<Section>().HasKey(s => new { s.Id, s.TabName, s.PageName });
+            modelBuilder.Entity<Section>().HasKey(s => new { s.Id, s.TabName });
             modelBuilder.Entity<Section>().HasData(
                 new Section
                 {
                     TabName = "Terminal",
-                    PageName = "Docs",
+                    Index = 0,
                     Id = "terminal-introduction",
                     Header = "Introduction",
                     HasMainContent = true,
@@ -54,7 +52,7 @@ namespace SindaCMS.Helpers
                 new Section
                 {
                     TabName = "Terminal",
-                    PageName = "Docs",
+                    Index = 1,
                     Id = "terminal-setup",
                     Header = "Getting Started",
                     HasMainContent = false,
@@ -62,7 +60,7 @@ namespace SindaCMS.Helpers
                 new Section
                 {
                     TabName = "Terminal",
-                    PageName = "Docs",
+                    Index = 2,
                     Id = "terminal-usage",
                     Header = "Usage",
                     HasMainContent = false,
@@ -71,7 +69,7 @@ namespace SindaCMS.Helpers
                 new Section
                 {
                     TabName = "Scripts",
-                    PageName = "Docs",
+                    Index = 0,
                     Id = "scripts-introduction",
                     Header = "Introduction",
                     HasMainContent = true,
@@ -79,7 +77,7 @@ namespace SindaCMS.Helpers
                 new Section
                 {
                     TabName = "Scripts",
-                    PageName = "Docs",
+                    Index = 1,
                     Id = "scripts-terminal",
                     HasMainContent = true,
                     Header = "Terminal Extensions",
@@ -88,14 +86,14 @@ namespace SindaCMS.Helpers
                 new Section
                 {
                     TabName = "Scripts",
-                    PageName = "Docs",
+                    Index = 2,
                     Id = "scripts-ohmyposh",
                     Header = "1) Oh My Posh & Nerd Fonts",
                 },
                 new Section
                 {
                     TabName = "Scripts",
-                    PageName = "Docs",
+                    Index = 3,
                     Id = "scripts-winterm",
                     Header = "2) Windows Terminal by Microsoft",
 
@@ -103,14 +101,14 @@ namespace SindaCMS.Helpers
                 new Section
                 {
                     TabName = "Scripts",
-                    PageName = "Docs",
+                    Index = 4,
                     Id = "scripts-poshgit",
                     Header = "3) Posh Git",
                 },
                 new Section
                 {
                     TabName = "Scripts",
-                    PageName = "Docs",
+                    Index = 5,
                     Id = "scripts-shell",
                     Header = "Shell Modifications",
                     HasMainContent = true,
@@ -118,7 +116,7 @@ namespace SindaCMS.Helpers
                 new Section
                 {
                     TabName = "Scripts",
-                    PageName = "Docs",
+                    Index = 6,
                     Id = "scripts-wsl",
                     Header = "1) SindaDistro",
                    
@@ -126,7 +124,7 @@ namespace SindaCMS.Helpers
                 new Section
                 {
                     TabName = "Scripts",
-                    PageName = "Docs",
+                    Index = 7,
                     Id = "scripts-virtual",
                     Header = "Virtualization Software",
                     HasMainContent = true,
@@ -134,21 +132,21 @@ namespace SindaCMS.Helpers
                 new Section
                 {
                     TabName = "Scripts",
-                    PageName = "Docs",
+                    Index = 8,
                     Id = "scripts-docker",
                     Header = "1) Docker Desktop with WSL2 Backend",
                 },
                 new Section
                 {
                     TabName = "Scripts",
-                    PageName = "Docs",
+                    Index = 9,
                     Id = "scripts-podman",
                     Header = "2) Podman",
                 },
                 new Section
                 {
                     TabName = "Scripts",
-                    PageName = "Docs",
+                    Index = 10,
                     Id = "scripts-sdk",
                     Header = "SDK & Internal Tooling",
                     HasMainContent = true,
@@ -156,14 +154,14 @@ namespace SindaCMS.Helpers
                 new Section
                 {
                     TabName = "Scripts",
-                    PageName = "Docs",
+                    Index = 11,
                     Id = "scripts-sindamodule",
                     Header = "1) Sinda Developer Tools",
                 },
                 new Section
                 {
                     TabName = "Scripts",
-                    PageName = "Docs",
+                    Index = 12,
                     Id = "scripts-boilerplate",
                     Header = "Boilerplates & Codebases",
                     HasMainContent = true,
@@ -171,14 +169,14 @@ namespace SindaCMS.Helpers
                 new Section
                 {
                     TabName = "Scripts",
-                    PageName = "Docs",
+                    Index = 13,
                     Id = "scripts-portfolio",
                     Header = "1) Sinda Portfolio",
                 },
                 new Section
                 {
                     TabName = "Boilerplate",
-                    PageName = "Docs",
+                    Index = 0,
                     Id = "boilerplate-introduction",
                     Header = "Introduction",
                     HasMainContent = true,
@@ -186,21 +184,21 @@ namespace SindaCMS.Helpers
                 new Section
                 {
                     TabName = "Boilerplate",
-                    PageName = "Docs",
+                    Index = 1,
                     Id = "boilerplate-portfolio",
                     Header = "1) Sinda Portfolio",
                 },
                 new Section
                 {
                     TabName = "Boilerplate",
-                    PageName = "Docs",
+                    Index = 2,
                     Id = "boilerplate-portfolio-setup",
                     Header = "Setting up the repository",
                 },
                 new Section
                 {
                     TabName = "Boilerplate",
-                    PageName = "Docs",
+                    Index = 3,
                     Id = "boilerplate-portfolio-hero",
                     Header = "Changing the hero section content",
                     
@@ -208,7 +206,7 @@ namespace SindaCMS.Helpers
                 new Section
                 {
                     TabName = "Boilerplate",
-                    PageName = "Docs",
+                    Index = 4,
                     Id = "boilerplate-portfolio-body",
                     Header = "Changing the body section contents",
                 
@@ -470,694 +468,694 @@ namespace SindaCMS.Helpers
                 new Detail
                 {
                     Id = 1,
-                    SectionKey = "terminal-introduction",
+                    SectionId = "terminal-introduction",
                 },
                 new Detail
                 {
                     Id = 2,
-                    SectionKey = "terminal-introduction"
+                    SectionId = "terminal-introduction"
                 },
                 new Detail
                 {
                     Id = 3,
-                    SectionKey = "terminal-introduction"
+                    SectionId = "terminal-introduction"
                 },
                 new Detail
                 {
                     Id = 4,
-                    SectionKey = "terminal-setup",
+                    SectionId = "terminal-setup",
                     Type = ContentType.Paragraph,
 
                 },
                 new Detail
                 {
                     Id = 5,
-                    SectionKey = "terminal-setup",
+                    SectionId = "terminal-setup",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 6,
-                    SectionKey = "terminal-setup",
+                    SectionId = "terminal-setup",
                     Type = ContentType.Code,
                 },
                 new Detail
                 {
                     Id = 7,
-                    SectionKey = "terminal-setup",
+                    SectionId = "terminal-setup",
                     Type = ContentType.Code,
                 },
                 new Detail
                 {
                     Id = 8,
-                    SectionKey = "terminal-setup",
+                    SectionId = "terminal-setup",
                     Type = ContentType.Code,
                 },
                 new Detail
                 {
                     Id = 9,
-                    SectionKey = "terminal-setup",
+                    SectionId = "terminal-setup",
                     Type = ContentType.Warning,
                 },
                 new Detail
                 {
                     Id = 10,
-                    SectionKey = "terminal-setup",
+                    SectionId = "terminal-setup",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 11,
-                    SectionKey = "terminal-setup",
+                    SectionId = "terminal-setup",
                     Type = ContentType.Picture,
                 },
                 new Detail
                 {
                     Id = 12,
-                    SectionKey = "terminal-usage",
+                    SectionId = "terminal-usage",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 13,
-                    SectionKey = "terminal-usage",
+                    SectionId = "terminal-usage",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 14,
-                    SectionKey = "terminal-usage",
+                    SectionId = "terminal-usage",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                   {
                       Id = 15,
-                      SectionKey = "terminal-usage",
+                      SectionId = "terminal-usage",
                       Type = ContentType.Picture,
                 },
                 new Detail
                  {
                      Id = 16,
-                     SectionKey = "terminal-usage",
+                     SectionId = "terminal-usage",
                      Type = ContentType.Paragraph,
                 },
                 new Detail
                  {
                      Id = 17,
-                     SectionKey = "terminal-usage",
+                     SectionId = "terminal-usage",
                      Type = ContentType.Picture,
 
                 },
                 new Detail
                  {
                      Id = 18,
-                     SectionKey = "terminal-usage",
+                     SectionId = "terminal-usage",
                      Type = ContentType.Paragraph,
                 },
                 new Detail
                  {
                      Id = 19,
-                     SectionKey = "terminal-usage",
+                     SectionId = "terminal-usage",
                      Type = ContentType.Picture,
                 },
                 new Detail
                  {
                      Id = 20,
-                     SectionKey = "terminal-usage",
+                     SectionId = "terminal-usage",
                      Type = ContentType.Warning,
                 },
                 new Detail
                  {
                      Id = 21,
-                     SectionKey = "terminal-usage",
+                     SectionId = "terminal-usage",
                      Type = ContentType.Paragraph,
                 },
                 new Detail
                  {
                      Id = 22,
-                     SectionKey = "terminal-usage",
+                     SectionId = "terminal-usage",
                      Type = ContentType.Picture,
                 },
                 new Detail
                  {
                      Id = 23,
-                     SectionKey = "terminal-usage",
+                     SectionId = "terminal-usage",
                      Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 24,
-                    SectionKey = "scripts-introduction",
+                    SectionId = "scripts-introduction",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 25,
-                    SectionKey = "scripts-introduction",
+                    SectionId = "scripts-introduction",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 26,
-                    SectionKey = "scripts-introduction",
+                    SectionId = "scripts-introduction",
                     Type = ContentType.Warning,
                 },
                 new Detail
                 {
                     Id = 27,
-                    SectionKey = "scripts-terminal",
+                    SectionId = "scripts-terminal",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 28,
-                    SectionKey = "scripts-ohmyposh",
+                    SectionId = "scripts-ohmyposh",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 29,
-                    SectionKey = "scripts-ohmyposh",
+                    SectionId = "scripts-ohmyposh",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 30,
-                    SectionKey = "scripts-ohmyposh",
+                    SectionId = "scripts-ohmyposh",
                     Type = ContentType.Code,
                 },
                 new Detail
                 {
                     Id = 31,
-                    SectionKey = "scripts-ohmyposh",
+                    SectionId = "scripts-ohmyposh",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 32,
-                    SectionKey = "scripts-ohmyposh",
+                    SectionId = "scripts-ohmyposh",
                     Type = ContentType.Code,
                 },
                 new Detail
                 {
                     Id = 33,
-                    SectionKey = "scripts-ohmyposh",
+                    SectionId = "scripts-ohmyposh",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 34,
-                    SectionKey = "scripts-ohmyposh",
+                    SectionId = "scripts-ohmyposh",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 35,
-                    SectionKey = "scripts-winterm",
+                    SectionId = "scripts-winterm",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 36,
-                    SectionKey = "scripts-winterm",
+                    SectionId = "scripts-winterm",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 37,
-                    SectionKey = "scripts-winterm",
+                    SectionId = "scripts-winterm",
                     Type = ContentType.Code,
                 },
                 new Detail
                 {
                     Id = 38,
-                    SectionKey = "scripts-winterm",
+                    SectionId = "scripts-winterm",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 39,
-                    SectionKey = "scripts-winterm",
+                    SectionId = "scripts-winterm",
                     Type = ContentType.Picture,
                 },
                 new Detail
                 {
                     Id = 40,
-                    SectionKey = "scripts-poshgit",
+                    SectionId = "scripts-poshgit",
                     Type = ContentType.Paragraph,
 
                 },
                 new Detail
                 {
                     Id = 41,
-                    SectionKey = "scripts-poshgit",
+                    SectionId = "scripts-poshgit",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 42,
-                    SectionKey = "scripts-shell",
+                    SectionId = "scripts-shell",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                {
                    Id = 43,
-                   SectionKey = "scripts-wsl",
+                   SectionId = "scripts-wsl",
                    Type = ContentType.Paragraph,
                 },
                 new Detail
               {
                   Id = 44,
-                  SectionKey = "scripts-wsl",
+                  SectionId = "scripts-wsl",
                   Type = ContentType.Warning,
                 },
                 new Detail
                {
                    Id = 45,
-                   SectionKey = "scripts-wsl",
+                   SectionId = "scripts-wsl",
                    Type = ContentType.Paragraph,
                 },
                 new Detail
                {
                    Id = 46,
-                   SectionKey = "scripts-wsl",
+                   SectionId = "scripts-wsl",
                    Type = ContentType.Paragraph,
                 },
                 new Detail
                {
                    Id = 47,
-                   SectionKey = "scripts-wsl",
+                   SectionId = "scripts-wsl",
                    Type = ContentType.Picture,
                 },
                 new Detail
                {
                    Id = 48,
-                   SectionKey = "scripts-wsl",
+                   SectionId = "scripts-wsl",
                    Type = ContentType.Paragraph,
                 },
                 new Detail
                {
                    Id = 49,
-                   SectionKey = "scripts-wsl",
+                   SectionId = "scripts-wsl",
                    Type = ContentType.Paragraph,
                 },
                 new Detail
                {
                    Id = 50,
-                   SectionKey = "scripts-wsl",
+                   SectionId = "scripts-wsl",
                    Type = ContentType.Picture,
 
                 },
                 new Detail
                {
                    Id = 51,
-                   SectionKey = "scripts-wsl",
+                   SectionId = "scripts-wsl",
                    Type = ContentType.Paragraph,
 
                 },
                 new Detail
                {
                    Id = 52,
-                   SectionKey = "scripts-wsl",
+                   SectionId = "scripts-wsl",
                    Type = ContentType.Picture,
                 },
                 new Detail
                {
                    Id = 53,
-                   SectionKey = "scripts-wsl",
+                   SectionId = "scripts-wsl",
                    Type = ContentType.Paragraph,
                 },
                 new Detail
                {
                    Id = 54,
-                   SectionKey = "scripts-wsl",
+                   SectionId = "scripts-wsl",
                    Type = ContentType.Picture,
                 },
                 new Detail
                {
                    Id = 55,
-                   SectionKey = "scripts-wsl",
+                   SectionId = "scripts-wsl",
                    Type = ContentType.Paragraph,
                 },
                 new Detail
                {
                    Id = 56,
-                   SectionKey = "scripts-wsl",
+                   SectionId = "scripts-wsl",
                    Type = ContentType.Picture,
 
                 },
                 new Detail
                {
                    Id = 57,
-                   SectionKey = "scripts-wsl",
+                   SectionId = "scripts-wsl",
                    Type = ContentType.Paragraph,
                 },
                 new Detail
                {
                    Id = 58,
-                   SectionKey = "scripts-wsl",
+                   SectionId = "scripts-wsl",
                    Type = ContentType.Picture,
                 },
                 new Detail
                {
                    Id = 59,
-                   SectionKey = "scripts-wsl",
+                   SectionId = "scripts-wsl",
                    Type = ContentType.Paragraph,
                 },
                 new Detail
                {
                    Id = 60,
-                   SectionKey = "scripts-wsl",
+                   SectionId = "scripts-wsl",
                    Type = ContentType.Picture,
                 },
                 new Detail
                 {
                     Id = 61,
-                    SectionKey = "scripts-virtual",
+                    SectionId = "scripts-virtual",
                     Type = ContentType.Paragraph,
 
                 },
                 new Detail
                 {
                     Id = 62,
-                    SectionKey = "scripts-docker",
+                    SectionId = "scripts-docker",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 63,
-                    SectionKey = "scripts-podman",
+                    SectionId = "scripts-podman",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 64,
-                    SectionKey = "scripts-sdk",
+                    SectionId = "scripts-sdk",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 65,
-                    SectionKey = "scripts-sindamodule",
+                    SectionId = "scripts-sindamodule",
                     Type = ContentType.Paragraph,
 
                 },
                 new Detail
                 {
                     Id = 66,
-                    SectionKey = "scripts-sindamodule",
+                    SectionId = "scripts-sindamodule",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 67,
-                    SectionKey = "scripts-sindamodule",
+                    SectionId = "scripts-sindamodule",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 68,
-                    SectionKey = "scripts-sindamodule",
+                    SectionId = "scripts-sindamodule",
                     Type = ContentType.Code,
                 },
                 new Detail
                 {
                     Id = 69,
-                    SectionKey = "scripts-sindamodule",
+                    SectionId = "scripts-sindamodule",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 70,
-                    SectionKey = "scripts-sindamodule",
+                    SectionId = "scripts-sindamodule",
                     Type = ContentType.Code,
                 },
                 new Detail
                 {
                     Id = 71,
-                    SectionKey = "scripts-sindamodule",
+                    SectionId = "scripts-sindamodule",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 72,
-                    SectionKey = "scripts-sindamodule",
+                    SectionId = "scripts-sindamodule",
                     Type = ContentType.Code,
                 },
                 new Detail
                 {
                     Id = 73,
-                    SectionKey = "scripts-sindamodule",
+                    SectionId = "scripts-sindamodule",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 74,
-                    SectionKey = "scripts-sindamodule",
+                    SectionId = "scripts-sindamodule",
                     Type = ContentType.Code,
                 },
                 new Detail
                 {
                     Id = 75,
-                    SectionKey = "scripts-sindamodule",
+                    SectionId = "scripts-sindamodule",
                     Type = ContentType.Paragraph,
 
                 },
                 new Detail
                 {
                     Id = 76,
-                    SectionKey = "scripts-sindamodule",
+                    SectionId = "scripts-sindamodule",
                     Type = ContentType.Code,
 
                 },
                 new Detail
                 {
                     Id = 77,
-                    SectionKey = "scripts-sindamodule",
+                    SectionId = "scripts-sindamodule",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 78,
-                    SectionKey = "scripts-sindamodule",
+                    SectionId = "scripts-sindamodule",
                     Type = ContentType.Code,
                 },
                 new Detail
                 {
                     Id = 79,
-                    SectionKey = "scripts-sindamodule",
+                    SectionId = "scripts-sindamodule",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 80,
-                    SectionKey = "scripts-boilerplate",
+                    SectionId = "scripts-boilerplate",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 81,
-                    SectionKey = "scripts-portfolio",
+                    SectionId = "scripts-portfolio",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 82,
-                    SectionKey = "scripts-portfolio",
+                    SectionId = "scripts-portfolio",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 83,
-                    SectionKey = "boilerplate-introduction",
+                    SectionId = "boilerplate-introduction",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 84,
-                    SectionKey = "boilerplate-portfolio",
+                    SectionId = "boilerplate-portfolio",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 85,
-                    SectionKey = "boilerplate-portfolio-setup",
+                    SectionId = "boilerplate-portfolio-setup",
                     Type = ContentType.Paragraph,
 
                 },
                 new Detail
                 {
                     Id = 86,
-                    SectionKey = "boilerplate-portfolio-setup",
+                    SectionId = "boilerplate-portfolio-setup",
                     Type = ContentType.Code,
                 },
                 new Detail
                 {
                     Id = 87,
-                    SectionKey = "boilerplate-portfolio-setup",
+                    SectionId = "boilerplate-portfolio-setup",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 88,
-                    SectionKey = "boilerplate-portfolio-setup",
+                    SectionId = "boilerplate-portfolio-setup",
                     Type = ContentType.Code,
 
                 },
                 new Detail
                 {
                     Id = 89,
-                    SectionKey = "boilerplate-portfolio-setup",
+                    SectionId = "boilerplate-portfolio-setup",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 90,
-                    SectionKey = "boilerplate-portfolio-setup",
+                    SectionId = "boilerplate-portfolio-setup",
                     Type = ContentType.Code,
                 },
                 new Detail
                 {
                     Id = 91,
-                    SectionKey = "boilerplate-portfolio-setup",
+                    SectionId = "boilerplate-portfolio-setup",
                     Type = ContentType.Code,
                 },
                 new Detail
                 {
                     Id = 92,
-                    SectionKey = "boilerplate-portfolio-setup",
+                    SectionId = "boilerplate-portfolio-setup",
                     Type = ContentType.Code,
                 },
                 new Detail
                 {
                     Id = 93,
-                    SectionKey = "boilerplate-portfolio-setup",
+                    SectionId = "boilerplate-portfolio-setup",
                     Type = ContentType.Paragraph,
 
                 },
                 new Detail
                 {
                     Id = 94,
-                    SectionKey = "boilerplate-portfolio-setup",
+                    SectionId = "boilerplate-portfolio-setup",
                     Type = ContentType.Picture,
                 },
                 new Detail
                 {
                     Id = 95,
-                    SectionKey = "boilerplate-portfolio-hero",
+                    SectionId = "boilerplate-portfolio-hero",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 96,
-                    SectionKey = "boilerplate-portfolio-hero",
+                    SectionId = "boilerplate-portfolio-hero",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 97,
-                    SectionKey = "boilerplate-portfolio-hero",
+                    SectionId = "boilerplate-portfolio-hero",
                     Type = ContentType.Code,
                 },
                 new Detail
                 {
                     Id = 98,
-                    SectionKey = "boilerplate-portfolio-hero",
+                    SectionId = "boilerplate-portfolio-hero",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 99,
-                    SectionKey = "boilerplate-portfolio-hero",
+                    SectionId = "boilerplate-portfolio-hero",
                     Type = ContentType.Picture,
                 },
                 new Detail
                 {
                     Id = 100,
-                    SectionKey = "boilerplate-portfolio-hero",
+                    SectionId = "boilerplate-portfolio-hero",
                     Type = ContentType.Paragraph,
 
                 },
                 new Detail
                 {
                     Id = 101,
-                    SectionKey = "boilerplate-portfolio-hero",
+                    SectionId = "boilerplate-portfolio-hero",
                     Type = ContentType.Picture,
 
                 },
                 new Detail
                 {
                     Id = 102,
-                    SectionKey = "boilerplate-portfolio-hero",
+                    SectionId = "boilerplate-portfolio-hero",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 103,
-                    SectionKey = "boilerplate-portfolio-hero",
+                    SectionId = "boilerplate-portfolio-hero",
                     Type = ContentType.Picture,
                 },
                 new Detail
                 {
                     Id = 104,
-                    SectionKey = "boilerplate-portfolio-hero",
+                    SectionId = "boilerplate-portfolio-hero",
                     Type = ContentType.Paragraph,
 
                 },
                 new Detail
                 {
                     Id = 105,
-                    SectionKey = "boilerplate-portfolio-hero",
+                    SectionId = "boilerplate-portfolio-hero",
                     Type = ContentType.Picture,
                 },
                 new Detail
                 {
                     Id = 106,
-                    SectionKey = "boilerplate-portfolio-body",
+                    SectionId = "boilerplate-portfolio-body",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 107,
-                    SectionKey = "boilerplate-portfolio-body",
+                    SectionId = "boilerplate-portfolio-body",
                     Type = ContentType.Picture,
                 },
                 new Detail
                 {
                     Id = 108,
-                    SectionKey = "boilerplate-portfolio-body",
+                    SectionId = "boilerplate-portfolio-body",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 109,
-                    SectionKey = "boilerplate-portfolio-body",
+                    SectionId = "boilerplate-portfolio-body",
                     Type = ContentType.Paragraph,
 
                 },
                 new Detail
                 {
                     Id = 110,
-                    SectionKey = "boilerplate-portfolio-body",
+                    SectionId = "boilerplate-portfolio-body",
                     Type = ContentType.Paragraph,
 
                 },
                 new Detail
                 {
                     Id = 111,
-                    SectionKey = "boilerplate-portfolio-body",
+                    SectionId = "boilerplate-portfolio-body",
                     Type = ContentType.Picture,
                 },
                 new Detail
                 {
                     Id = 112,
-                    SectionKey = "boilerplate-portfolio-body",
+                    SectionId = "boilerplate-portfolio-body",
                     Type = ContentType.Paragraph,
                 },
                 new Detail
                 {
                     Id = 113,
-                    SectionKey = "boilerplate-portfolio-body",
+                    SectionId = "boilerplate-portfolio-body",
                     Type = ContentType.Paragraph,
                 }
             );

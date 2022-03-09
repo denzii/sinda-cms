@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using SindaCMS.Data;
 using SindaCMS.Models;
 
 namespace SindaCMS.Controllers;
@@ -7,29 +8,31 @@ namespace SindaCMS.Controllers;
 public class BlogController : Controller
 {
     private readonly ILogger<BlogController> _logger;
-    public BlogController(ILogger<BlogController> logger)
+    private readonly IRepository _repo;
+    public BlogController(ILogger<BlogController> logger, IRepository repo)
     {
         _logger = logger;
+        _repo = repo;
     }
 
-    public IActionResult Index()
-    { 
+    public async Task<IActionResult> Index()
+    {
+        string pageName = "Blog";
+
         return View("../PageTabs", new ViewProps {
-            Site = new Site {
-                BrandName = "Sinda",
-                PageNames = new List<PageDetail> {
-                    new PageDetail{ Name="Docs" },
-                    new PageDetail{ Name="Blog" },
-                    new PageDetail{Name= "Roadmap"} 
-                },
-                BrandDescription = "Sindagal MIT",
-            },
-            PageName = "Blog",
-            Tabs = new List<Tab> {
-                new Tab{Name="Articles", Status=SectionStatus.Hidden },
-                new Tab{Name="News", Status=SectionStatus.Hidden },
-            }
+            Site =  await _repo.GetSiteAsync(),
+            PageName = pageName,
+            Tabs = await _repo.GetPageTabsAsync(pageName)
         });
+
+        //return View("../PageTabs", new ViewProps {
+        //    Site =  await _repo.GetSite(),
+        //    PageName = "Blog",
+        //    Tabs = new List<Tab> {
+        //        new Tab{ Name="Articles", Status=SectionStatus.Hidden },
+        //        new Tab{ Name="News", Status=SectionStatus.Hidden },
+        //    }
+        //});
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

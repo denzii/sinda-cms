@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using SindaCMS.Data;
 using SindaCMS.Models;
 
 namespace SindaCMS.Controllers;
@@ -7,29 +8,39 @@ namespace SindaCMS.Controllers;
 public class RoadmapController : Controller
 {
     private readonly ILogger<RoadmapController> _logger;
-    public RoadmapController(ILogger<RoadmapController> logger)
+    private readonly IRepository _repo;
+    public RoadmapController(ILogger<RoadmapController> logger, IRepository repo)
     {
         _logger = logger;
+        _repo = repo;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
+        string pageName = "Roadmap";
+
         return View("../PageTabs", new ViewProps {
-            Site = new Site {
-                BrandName = "Sinda",
-                PageNames = new List<PageDetail> {
-                    new PageDetail{ Name="Docs" },
-                    new PageDetail{ Name="Blog" },
-                    new PageDetail{Name= "Roadmap"}
-                },
-                BrandDescription = "Sindagal MIT",
-            },
+            Site = await _repo.GetSiteAsync(),
             PageName = "Roadmap",
-            Tabs = new List<Tab> {
-                new Tab{Name = "Philosophy", Status = SectionStatus.Hidden},
-                new Tab{Name = "Vision", Status = SectionStatus.Hidden}
-            }
+            Tabs = await _repo.GetPageTabsAsync(pageName)
         });
+
+        //return View("../PageTabs", new ViewProps {
+        //    Site = new Site {
+        //        BrandName = "Sinda",
+        //        PageNames = new List<PageDetail> {
+        //            new PageDetail{ Name="Docs" },
+        //            new PageDetail{ Name="Blog" },
+        //            new PageDetail{Name= "Roadmap"}
+        //        },
+        //        BrandDescription = "Sindagal MIT",
+        //    },
+        //    PageName = "Roadmap",
+        //    Tabs = new List<Tab> {
+        //        new Tab{Name = "Philosophy", Status = SectionStatus.Hidden},
+        //        new Tab{Name = "Vision", Status = SectionStatus.Hidden}
+        //    }
+        //});
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

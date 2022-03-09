@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using SindaCMS.Data;
 using SindaCMS.Models;
 
 namespace SindaCMS.Controllers;
@@ -7,25 +8,31 @@ namespace SindaCMS.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    public HomeController(ILogger<HomeController> logger)
+    private readonly IRepository _repo;
+    public HomeController(ILogger<HomeController> logger, IRepository repo)
     {
         _logger = logger;
+        _repo = repo;
     }
 
-    public IActionResult Index() {
- 
-        return View("../Index", new ViewProps {
-            Site = new Site
-            {
-                BrandName = "Sinda",
-                PageNames = new List<PageDetail> {
-                    new PageDetail{ Name="Docs" },
-                    new PageDetail{ Name="Blog" },
-                    new PageDetail{Name= "Roadmap"}
-                },
-                BrandDescription = "Sindagal MIT",
-            }
+    public async Task<IActionResult> Index() {
+
+        return View("../Index", new ViewProps  {
+            Site = await _repo.GetSiteAsync()
         });
+
+        //return View("../Index", new ViewProps {
+        //    Site = new Site
+        //    {
+        //        BrandName = "Sinda",
+        //        PageNames = new List<PageDetail> {
+        //            new PageDetail{ Name="Docs" },
+        //            new PageDetail{ Name="Blog" },
+        //            new PageDetail{Name= "Roadmap"}
+        //        },
+        //        BrandDescription = "Sindagal MIT",
+        //    }
+        //});
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
