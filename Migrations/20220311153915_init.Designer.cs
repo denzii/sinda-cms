@@ -11,8 +11,8 @@ using SindaCMS.Data;
 namespace SindaCMS.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220309235109_Init")]
-    partial class Init
+    [Migration("20220311153915_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
