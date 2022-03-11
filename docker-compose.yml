@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  sindacms:
+    image: ${DOCKER_REGISTRY-}sindacms
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    environment:
+      -   "ConnectionString=server=host.docker.internal,1433;database=sindacmsdb;Uid=sa;Password=P@ssword123;Integrated Security=False"
