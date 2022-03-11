@@ -16,6 +16,7 @@ services:
 
   db:
     image: mcr.microsoft.com/mssql/server
+    hostname: db
     environment:
       ACCEPT_EULA: "Y"
       SA_PASSWORD: "P@ssword123"
@@ -24,6 +25,12 @@ services:
       - "1433:1433"
     networks:
       - gateway
+    volumes:
+      - type: volume
+        source: data
+        target: /var/opt/mssql
 networks:
   gateway: 
     driver: bridge
+volumes:
+  data:
