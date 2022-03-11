@@ -6,6 +6,24 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-
+    depends_on:
+      - db
+    networks:
+      - gateway
     environment:
-      -   "ConnectionString=server=host.docker.internal,1433;database=sindacmsdb;Uid=sa;Password=P@ssword123;Integrated Security=False"
+      - "ConnectionString=server=db,1433;database=sindacmsdb;Uid=sa;Password=P@ssword123;Integrated Security=False"
+      - "MigrateDbOnStartup=true"
+
+  db:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "P@ssword123"
+      MSSQL_PID: Express
+    ports:
+      - "1433:1433"
+    networks:
+      - gateway
+networks:
+  gateway: 
+    driver: bridge

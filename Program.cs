@@ -1,5 +1,7 @@
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 using SindaCMS.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,7 +12,18 @@ builder.Services.AddDbContext<DataContext>((options) => {
     options.UseSqlServer(builder.Configuration["ConnectionString"]);
     options.EnableSensitiveDataLogging();
 });
+
 builder.Services.AddScoped<IRepository, Repository>();
+
+if (bool.Parse(builder.Configuration["MigrateDbOnStartup"]))
+{
+    var dbContext = builder.Services.BuildServiceProvider().GetService<DataContext>();
+    if (!dbContext.Database.GetService<IRelationalDatabaseCreator>().Exists())
+    {
+        dbContext.Database.Migrate();
+    }
+}
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
