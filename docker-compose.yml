@@ -9,7 +9,11 @@ services:
     depends_on:
       - db
     networks:
-      - gateway
+      - net
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
     environment:
       - "ConnectionString=server=db,1433;database=sindacmsdb;Uid=sa;Password=P@ssword123;Integrated Security=False"
       - "MigrateDbOnStartup=true"
@@ -24,13 +28,14 @@ services:
     ports:
       - "1433:1433"
     networks:
-      - gateway
+      - net
+    restart: always
     volumes:
       - type: volume
         source: data
         target: /var/opt/mssql
 networks:
-  gateway: 
+  net: 
     driver: bridge
 volumes:
   data:
