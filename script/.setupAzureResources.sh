@@ -24,7 +24,7 @@
 # 13) Enable CD on the containers by setting a webhook
 # 14) Clear local resources which are left as a side effect of the procedure
 # 15) Re attempt some of the known problematic commands if they had failed
-# ...
+# ... ...
 
 RED=$(tput setaf 1);
 GREEN=$(tput setaf 2);
@@ -172,29 +172,29 @@ if [ $? -eq 0 ] ; then
 
 
 
-    # # Enable CI/CD 
-    # printf "\n\n";
-    # printf "%40s\n" "${PURPLE}Attempting to enable webhook for continuous deployment ...${NEUTRAL}";
-    # CI_CD_URL=$(az webapp deployment container config --enable-cd true --name $APP_NAME --resource-group $GROUP_NAME --query CI_CD_URL --output tsv);
-    # az acr webhook create --name appserviceCD --registry $REGISTRY_NAME --uri $CI_CD_URL --actions push --scope $TARGET_TAG
+    # Enable CI/CD 
+    printf "\n\n";
+    printf "%40s\n" "${PURPLE}Attempting to enable webhook for continuous deployment ...${NEUTRAL}";
+    CI_CD_URL=$(az webapp deployment container config --enable-cd true --name $APP_NAME --resource-group $GROUP_NAME --query CI_CD_URL --output tsv);
+    az acr webhook create --name appserviceCD --registry $REGISTRY_NAME --uri $CI_CD_URL --actions push --scope $TARGET_TAG
     
-    # EVENT_ID=$(az acr webhook ping --name appserviceCD --registry $REGISTRY_NAME --query id --output tsv);
+    EVENT_ID=$(az acr webhook ping --name appserviceCD --registry $REGISTRY_NAME --query id --output tsv);
     
-    # # first sed removes the [] characters
-    # # second removes the " char at the end
-    # # third removes the " char at the beginning
-    # # xargs trims all white space
-    # WH_PING_STATUS_CODE=$(az acr webhook list-events --name appserviceCD --registry $REGISTRY_NAME --query "[?id=='$EVENT_ID'].eventResponseMessage.statusCode" \
-    # | sed 's/^.//' \
-    # | sed 's/^.//;s/.$//' \
-    # | sed 's/^.//' \
-    # | xargs);
+    # first sed removes the [] characters
+    # second removes the " char at the end
+    # third removes the " char at the beginning
+    # xargs trims all white space
+    WH_PING_STATUS_CODE=$(az acr webhook list-events --name appserviceCD --registry $REGISTRY_NAME --query "[?id=='$EVENT_ID'].eventResponseMessage.statusCode" \
+    | sed 's/^.//' \
+    | sed 's/^.//;s/.$//' \
+    | sed 's/^.//' \
+    | xargs);
     
-    # if [ "$WH_PING_STATUS_CODE" -eq "200" ] ; then
-    #         printf "%40s\n" "${GREEN}Continuous Deployment had been registered successfully. Whenever the image on the registry gets updated, App service will know about it...${NEUTRAL}";
-    # else
-    #         printf "%40s\n" "${RED}Continuous Deployment could not be set at this time for some reason...${NEUTRAL}";
-    # fi
+    if [ "$WH_PING_STATUS_CODE" -eq "200" ] ; then
+            printf "%40s\n" "${GREEN}Continuous Deployment had been registered successfully. Whenever the image on the registry gets updated, App service will know about it...${NEUTRAL}";
+    else
+            printf "%40s\n" "${RED}Continuous Deployment could not be set at this time for some reason...${NEUTRAL}";
+    fi
 
     # Say goodbye
     printf "\n\n"
