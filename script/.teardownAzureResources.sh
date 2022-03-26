@@ -1,3 +1,3 @@
 #!/bin/bash
 
-az group delete --name sinda-cms-grouptest
+az group delete --name sinda-cms-grouptesttwo

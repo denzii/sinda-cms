@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   sindacms:
-    image: sindatesttwo.azurecr.io/sindacmstesttwoapp:latest
+    image: sinda.azurecr.io/sindacmsapp:latest
     build:
       context: .
       dockerfile: Dockerfile
