@@ -24,7 +24,7 @@
 # 13) Enable CD on the containers by setting a webhook
 # 14) Clear local resources which are left as a side effect of the procedure
 # 15) Re attempt some of the known problematic commands if they had failed
-# ... ...
+# ... ... ...
 
 RED=$(tput setaf 1);
 GREEN=$(tput setaf 2);
