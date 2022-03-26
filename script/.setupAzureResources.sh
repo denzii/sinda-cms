@@ -24,7 +24,7 @@
 # 13) Enable CD on the containers by setting a webhook
 # 14) Clear local resources which are left as a side effect of the procedure
 # 15) Re attempt some of the known problematic commands if they had failed
-# ... ... ... ...
+# ... ... ... ... ...
 
 RED=$(tput setaf 1);
 GREEN=$(tput setaf 2);
@@ -32,11 +32,12 @@ YELLOW=$(tput setaf 3);
 NEUTRAL=$(tput sgr0);
 PURPLE=$(tput setaf 5);
 
-GROUP_NAME="sinda-cms-grouptesttwo";
-GROUP_EXISTS=$(az group exists -n $GROUP_NAME);
-SERVICE_PLAN_NAME="sinda-cms-plantesttwo";
+
 # IMPORTANT if you end up changing these, do not forget to also change the image for the sindacms inside docker-compose.yml file.
 # How to keep them in sync without manual effort?
+GROUP_NAME="sinda-cms-group";
+GROUP_EXISTS=$(az group exists -n $GROUP_NAME);
+SERVICE_PLAN_NAME="sinda-cms-plan";
 APP_NAME="sindacms";
 REGISTRY_NAME="sinda";
 REGISTRY_URL="$REGISTRY_NAME.azurecr.io";
