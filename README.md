@@ -1,4 +1,5 @@
 # sinda-cms
+[![Build Status](https://dev.azure.com/sindagal/cms/_apis/build/status/denzii.sinda-cms?branchName=main)](https://dev.azure.com/sindagal/cms/_build/latest?definitionId=1&branchName=main)
 
 To run the app locally:
 
