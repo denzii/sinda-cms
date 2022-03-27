@@ -9,14 +9,16 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly IRepository _repo;
-    public HomeController(ILogger<HomeController> logger, IRepository repo)
+    private readonly IConfiguration _configuration;
+    public HomeController(ILogger<HomeController> logger, IRepository repo, IConfiguration conf)
     {
         _logger = logger;
         _repo = repo;
+        _configuration = conf;
     }
 
     public async Task<IActionResult> Index() {
-        _logger.LogWarning(Environment.GetEnvironmentVariable("ConnectionString").ToString());
+        _logger.LogWarning(_configuration.GetValue<string>("ConnectionString"));
         return View("../Index", new ViewProps  {
             Site = await _repo.GetSiteAsync()
         });
