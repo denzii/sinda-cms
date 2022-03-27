@@ -49,4 +49,4 @@ stages:
         action: Push services
         includeLatestTag: true
         tags: |
-          $(tag)
+          sindacmsapp:latest
