@@ -28,12 +28,16 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    - task: Docker@2
+    - task: DockerCompose@0
       displayName: Build and push an image to container registry
       inputs:
         command: buildAndPush
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
+        dockerComposeFile: 'docker-compose.yml'
         containerRegistry: $(dockerRegistryServiceConnection)
+        includeSourceTags: true
+        includeLatestTag: true
         tags: |
           $(tag)
+      
