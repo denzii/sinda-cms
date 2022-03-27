@@ -45,8 +45,8 @@ stages:
       displayName: Push an image
       inputs:
         containerregistrytype: 'Azure Container Registry'
-        dockerComposeFile: $(Build.SourcesDirectory)/docker-compose.yml
-        action: Push services
+        azureSubscription: 'Azure subscription 1 (d21330e2-f2ba-412a-b249-cafa9798a914)'
+        azureContainerRegistry: '{"loginServer":"sinda.azurecr.io", "id" : "/subscriptions/d21330e2-f2ba-412a-b249-cafa9798a914/resourceGroups/sinda-cms-group/providers/Microsoft.ContainerRegistry/registries/sinda"}'
+        dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
+        action: 'Push services'
         includeLatestTag: true
-        tags: |
-          sindacmsapp:latest
