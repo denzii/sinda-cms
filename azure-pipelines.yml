@@ -36,7 +36,6 @@ stages:
         containerregistrytype: 'Azure Container Registry'
         containerRegistry: $(dockerRegistryServiceConnection)
         action: Build and push services
-        command: buildAndPush
         includeLatestTag: true
         tags: |
           $(tag)
