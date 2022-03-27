@@ -128,9 +128,9 @@ if [ $? -eq 0 ] ; then
 
     PRINCIPAL_ID=$(az webapp identity assign --resource-group $GROUP_NAME --name $APP_NAME --query principalId --output tsv);
 
-    printf "%40s\n" "${PURPLE}Attempting to assign the AcrPull role to the webapp...${NEUTRAL}";
+    printf "%40s\n" "${PURPLE}Attempting to assign the Owner role to the webapp...${NEUTRAL}";
 
-    az role assignment create --assignee $PRINCIPAL_ID --scope /subscriptions/$SUBSCRIPTION_ID/resourceGroups/$GROUP_NAME/providers/Microsoft.ContainerRegistry/registries/$REGISTRY_NAME --role "AcrPull"
+    az role assignment create --assignee $PRINCIPAL_ID --scope /subscriptions/$SUBSCRIPTION_ID/resourceGroups/$GROUP_NAME/providers/Microsoft.ContainerRegistry/registries/$REGISTRY_NAME --role "Owner"
     if [ $? -ne 0 ] ; then
         printf "%40s\n" "${YELLOW}Pull Role assignment yielded an error, this will be re-attempted at the end of the procedure!${NEUTRAL}";
         ROLE_ASSIGNMENT_SUCCESS=false
