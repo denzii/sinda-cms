@@ -1,4 +1,4 @@
-# Docker.
+# Docker
 # Build and push an image to Azure Container Registry
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
@@ -15,7 +15,7 @@ variables:
   containerRegistry: 'sinda.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
-  azureSubscriptionEndpoint: 'azure-devops-sindacms-service-connection'
+
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
@@ -28,23 +28,12 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    - task: DockerCompose@0
-      displayName: Build
+    - task: Docker@2
+      displayName: Build and push an image to container registry
       inputs:
+        command: buildAndPush
         repository: $(imageRepository)
-        dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
-        containerregistrytype: 'Azure Container Registry'
+        dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
-        action: Build services
         tags: |
           $(tag)
-    - task: DockerCompose@0
-      displayName: Push
-      inputs:
-        action: Push services
-        azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
-        azureContainerRegistry: $(azureContainerRegistry)
-        dockerComposeFile: $(Build.SourcesDirectory)/docker-compose.yml
-        projectName: $(Build.Repository.Name)
-        qualifyImageNames: true
-        additionalImageTags: $(Build.BuildId)
