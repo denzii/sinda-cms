@@ -16,6 +16,7 @@ public class HomeController : Controller
     }
 
     public async Task<IActionResult> Index() {
+        // hmm
         return View("../Index", new ViewProps  {
             Site = await _repo.GetSiteAsync()
         });
