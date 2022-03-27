@@ -35,15 +35,8 @@ stages:
         dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
         containerregistrytype: 'Azure Container Registry'
         containerRegistry: $(dockerRegistryServiceConnection)
-        action: Build services
-    - task: DockerCompose@0
-      inputs:
-        containerregistrytype: 'Azure Container Registry'
-        repository: $(imageRepository)
-        containerRegistry: $(dockerRegistryServiceConnection)
-        dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
-        action: Push services
+        action: Build and push services
+        command: buildAndPush
         includeLatestTag: true
         tags: |
           $(tag)
-      
