@@ -15,14 +15,13 @@ services:
       - "80:80"
       - "443:443"
     environment:
-      - "ConnectionString=server=mssql1,1433;database=sindacmsdb;Uid=sa;Password=P@ssword123;Integrated Security=False"
+      - "ConnectionString=server=db,1433;database=sindacmsdb;Uid=sa;Password=P@ssword123;Integrated Security=False"
       - "MigrateDbOnStartup=true"
       - "ASPNETCORE_ENVIRONMENT=Production"
 
   db:
     image: mcr.microsoft.com/mssql/server
     hostname: db
-
     environment:
       ACCEPT_EULA: "Y"
       SA_PASSWORD: "P@ssword123"
@@ -30,9 +29,7 @@ services:
     ports:
       - "1433:1433"
     networks:
-      net:
-        aliases:
-          - mssql1
+      - net
     restart: always
     volumes:
       - type: volume
