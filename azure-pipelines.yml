@@ -42,7 +42,7 @@ stages:
       displayName: Push an image
       inputs:
         containerregistrytype: 'Azure Container Registry'
-        dockerComposeFile: $(dockerRegistryServiceConnection)
+        dockerComposeFile: $(Build.SourcesDirectory)/docker-compose.yml
         action: Push services
         includeLatestTag: true
         tags: |
