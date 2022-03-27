@@ -40,7 +40,6 @@ stages:
       inputs:
         containerregistrytype: 'Azure Container Registry'
         repository: $(imageRepository)
-        containerregistrytype: 'Azure Container Registry'
         containerRegistry: $(dockerRegistryServiceConnection)
         dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
         action: Push services
