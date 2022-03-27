@@ -42,7 +42,7 @@ stages:
       displayName: Push an image
       inputs:
         action: Push services
-        azureSubscriptionEndpoint: $(dockerRegistryServiceConnection)
+        azureSubscriptionEndpoint: sinda-push
         azureContainerRegistry: $(azureContainerRegistry)
         dockerComposeFile: docker-compose.yml
         projectName: $(Build.Repository.Name)
