@@ -35,18 +35,13 @@ stages:
         dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
         action: Build services
         repository: $(imageRepository)
-        dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
 
     - task: DockerCompose@0
       displayName: Push an image
       inputs:
+        containerregistrytype: 'Azure Container Registry'
+        dockerComposeFile: $(Build.SourcesDirectory)/docker-compose.yml
         action: Push services
-        azureSubscriptionEndpoint: sinda-push
-        azureContainerRegistry: $(azureContainerRegistry)
-        dockerComposeFile: docker-compose.yml
-        projectName: $(Build.Repository.Name)
-        qualifyImageNames: true
-        additionalImageTags: $(Build.BuildId)
-        tags: |
-          $(tag)
+        azureSubscriptionEndpoint: sinda
+        includeLatestTag: true
