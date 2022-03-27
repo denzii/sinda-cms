@@ -65,7 +65,7 @@ else
 fi
 
 printf "\n";
-printf "%40s\n" "${PURPLE}Attempting to create logical grouping for the azure resources to be created...${NEUTRAL}";
+printf "%40s\n" "${PURPLE}Attempting to create logical grouping for the azure resources which will be created...${NEUTRAL}";
 az group create --name $GROUP_NAME --location westeurope;
 
 # Push to container registry
@@ -175,8 +175,11 @@ if [ $? -eq 0 ] ; then
 
     # Enable CI/CD 
     printf "\n\n";
-    printf "%40s\n" "${PURPLE}Attempting to enable webhook for continuous deployment ...${NEUTRAL}";
+    printf "%40s\n" "${PURPLE}Attempting to enable continuous deployment ...${NEUTRAL}";
     CI_CD_URL=$(az webapp deployment container config --enable-cd true --name $APP_NAME --resource-group $GROUP_NAME --query CI_CD_URL --output tsv);
+    
+    printf "%40s\n" "${PURPLE}Attempting to enable  Webhook for continuous deployment ...${NEUTRAL}";
+
     # az acr webhook create --name appserviceCD --registry $REGISTRY_NAME --uri $CI_CD_URL --actions push --scope $TARGET_TAG
     
     # EVENT_ID=$(az acr webhook ping --name appserviceCD --registry $REGISTRY_NAME --query id --output tsv);
@@ -198,13 +201,13 @@ if [ $? -eq 0 ] ; then
     # fi
 
     # Say goodbye
-    printf "\n\n"
+    printf "\n\n";
     printf "%40s\n" "${GREEN}Setup of Azure Resources procedure has finished execution, if everything went okay, the initial deploy should be available live in a few moments...${NEUTRAL}";
     printf "If you wish to tail the logs to watch the containers while they start up, run the following command:\n"
     printf "az webapp log tail --name $APP_NAME --resource-group $GROUP_NAME";
-    printf "\n\n"
+    printf "\n\n";
 else
     printf "%40s\n" "${RED}Login to the docker / acr registry failed, won't be executing the rest of the script... $LOGIN_OUTPUT ${NEUTRAL}";
 fi
 
-printf "\n\n"
+printf "\n\n";
