@@ -16,7 +16,7 @@ public class HomeController : Controller
     }
 
     public async Task<IActionResult> Index() {
-
+        _logger.LogWarning(Environment.GetEnvironmentVariable("ConnectionString").ToString());
         return View("../Index", new ViewProps  {
             Site = await _repo.GetSiteAsync()
         });

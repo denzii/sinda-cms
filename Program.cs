@@ -12,7 +12,6 @@ builder.Services.AddDbContext<DataContext>((options) => {
     options.UseSqlServer(builder.Configuration["ConnectionString"]);
     options.EnableSensitiveDataLogging();
 });
-throw new System.Exception(builder.Configuration["ConnectionString"].ToString());
 
 builder.Services.AddScoped<IRepository, Repository>();
 
