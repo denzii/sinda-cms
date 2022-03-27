@@ -36,5 +36,5 @@ stages:
         containerregistrytype: 'Azure Container Registry'
         containerRegistry: $(dockerRegistryServiceConnection)
         action: Build services
-
+        command: buildAndPush
       
