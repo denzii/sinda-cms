@@ -14,7 +14,7 @@ services:
       - "443:443"
     environment:
       ConnectionString: server=db,1433;database=sindacmsdb;Uid=sa;Password=P@ssword123;Integrated Security=False
-      MigrateDbOnStartup: true
+      MigrateDbOnStartup: "true"
       ASPNETCORE_ENVIRONMENT: Production
 
   db:
