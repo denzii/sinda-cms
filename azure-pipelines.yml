@@ -45,5 +45,3 @@ stages:
         dockerComposeFile: $(Build.SourcesDirectory)/docker-compose.yml
         action: Push services
         includeLatestTag: true
-        tags: |
-          $(tag)
