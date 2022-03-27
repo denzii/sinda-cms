@@ -15,7 +15,7 @@ variables:
   containerRegistry: 'sinda.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
-
+  azureSubscriptionEndpoint: 'sinda'
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
