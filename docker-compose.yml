@@ -22,8 +22,7 @@ services:
   db:
     image: mcr.microsoft.com/mssql/server
     hostname: db
-    aliases:
-      - mssql1
+
     environment:
       ACCEPT_EULA: "Y"
       SA_PASSWORD: "P@ssword123"
@@ -31,7 +30,9 @@ services:
     ports:
       - "1433:1433"
     networks:
-      - net
+      net:
+        aliases:
+          - mssql1
     restart: always
     volumes:
       - type: volume
