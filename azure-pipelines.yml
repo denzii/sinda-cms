@@ -40,6 +40,7 @@ stages:
           $(tag)
     - task: DockerCompose@0
       inputs:
+        command: login
         dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
         includeLatestTag: true
         containerregistrytype: 'Azure Container Registry'
