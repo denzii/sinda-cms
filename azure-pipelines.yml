@@ -29,7 +29,7 @@ stages:
       vmImage: $(vmImageName)
     steps:
     - task: DockerCompose@0
-      displayName: Container registry login
+      displayName: Build & Push
       inputs:
         repository: $(imageRepository)
         dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
