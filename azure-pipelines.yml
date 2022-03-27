@@ -29,14 +29,21 @@ stages:
       vmImage: $(vmImageName)
     steps:
     - task: DockerCompose@0
-      displayName: Build and push an image to container registry
+      displayName: Container registry login
       inputs:
-        command: buildAndPush
         repository: $(imageRepository)
-        dockerfile: $(dockerfilePath)
-        dockerComposeFile: 'docker-compose.yml'
+        dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
+        containerregistrytype: 'Azure Container Registry'
         containerRegistry: $(dockerRegistryServiceConnection)
-        includeSourceTags: true
+        action: Build services
+    - task: DockerCompose@0
+      inputs:
+        containerregistrytype: 'Azure Container Registry'
+        repository: $(imageRepository)
+        containerregistrytype: 'Azure Container Registry'
+        containerRegistry: $(dockerRegistryServiceConnection)
+        dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
+        action: Push services
         includeLatestTag: true
         tags: |
           $(tag)
