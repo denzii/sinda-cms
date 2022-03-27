@@ -29,7 +29,7 @@ stages:
       vmImage: $(vmImageName)
     steps:
     - task: DockerCompose@0
-      displayName: Build & Push
+      displayName: Build
       inputs:
         repository: $(imageRepository)
         dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
@@ -39,3 +39,8 @@ stages:
         action: Build services
         tags: |
           $(tag)
+    - task: DockerCompose@0
+      inputs:
+        dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
+        action: Push Services
+        includeLatestTag: true
