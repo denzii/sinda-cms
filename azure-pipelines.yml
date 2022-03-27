@@ -39,10 +39,12 @@ stages:
         tags: |
           $(tag)
     - task: DockerCompose@0
+      displayName: Push
       inputs:
-        command: login
-        dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
-        includeLatestTag: true
-        containerregistrytype: 'Azure Container Registry'
-        containerRegistry: $(dockerRegistryServiceConnection)
-        action: Push Services
+        action: Push services
+        azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+        azureContainerRegistry: $(azureContainerRegistry)
+        dockerComposeFile: $(Build.SourcesDirectory)/docker-compose.yml
+        projectName: $(Build.Repository.Name)
+        qualifyImageNames: true
+        additionalImageTags: $(Build.BuildId)
