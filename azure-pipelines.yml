@@ -40,9 +40,10 @@ stages:
 
     - task: DockerCompose@0
       displayName: Push an image
-      containerregustrytype: 'Azure Container Registry'
-      dockerComposeFile: $(dockerRegistryServiceConnection)
-      action: Push services
-      includeLatestTag: true
-      tags: |
-        $(tag)
+      inputs:
+        containerregistrytype: 'Azure Container Registry'
+        dockerComposeFile: $(dockerRegistryServiceConnection)
+        action: Push services
+        includeLatestTag: true
+        tags: |
+          $(tag)
