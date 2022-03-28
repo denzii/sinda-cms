@@ -1,16 +1,52 @@
-# sinda-cms
+# Sinda Knowledge Base
 [![Build Status](https://dev.azure.com/sindagal/cms/_apis/build/status/denzii.sinda-cms?branchName=main)](https://dev.azure.com/sindagal/cms/_build/latest?definitionId=1&branchName=main)
-
-To run the app locally:
-
-1. cd into SindaCMS/client 
-2. run npm start (will watch your files & push bundle in wwwroot folder. Works with .net6 hot reload)
-3. double click on SindaCMS.sln in the root folder
-4. run the application through Visual Studio
-
-The app supports running through docker compose as well, just run it through docker in Visual Studio or Visual Studio Code (Through the docker plugin)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Language Count](https://img.shields.io/github/languages/count/denzii/sinda-cms)
 
 
-#TODOs
-1. configure webpack to output css images with the same name or remove the bundle each time before creating new one with webpack --watch
-2. configure webpack to detect entry points dynamically without specifying each file
+This repository contains the code for a Web App used for demonstrating, documenting & standardizing **Sindagal Open Source**. 
+## About Sindagal Open Source
+Sindagal (sinda) is a toolset aiming to make developer life more convenient by:
+
+* Organizing manual tasks into scripts so ideally, no steps are followed from any documentation more than once
+* Organizing boilerplate code so ideally nothing is written twice
+* Providing reusability & sharability across everything done by an individual or organisation
+
+## Demo & Documentation
+
+A live version could be found at https://sindagal.org
+
+## Features
+
+- Dynamic page content created using data fetched from DB (Except landing page)
+- SQL Abstraction with Code first Migrations
+- Containerized localhost development environment through Docker Compose 
+- Automated production environment setup through Bash & Azure CLI
+- Ability to debug through containers in both Visual Studio on Windows & Visual Studio Code on other operating systems
+- CI/CD through Azure Devops
+- Automations for Azure CLI setup through Bash
+## Authors
+
+- Development, Devops & Automations by [@denzii](https://github.com/denzii)
+
+## Contributing
+
+Contributions as well as feedback are always welcome! Feel free to fork this repository, submit pull requests, open issues or contact me directly at my 
+[Linkedin](https://www.linkedin.com/in/denizarca/) if there are any problems with the code or the documentation.
+## Roadmap
+
+- Full refactor the codebase
+- Security fixes such as factoring DB Credentials out of Docker Compose
+- Provide automation for Azure Devops CLI Setup
+- Automate all Devops Resource creation & configure them with Azure App Service through Azure CLI & Bash
+- Provide a Restful API & Repository for editing site content while the app is deployed & running 
+- Provide a Client Side Rendered Content Editor UI Using ReactJS (Webpack already configured to support JSX/TSX)
+## Tech Stack
+
+**Client:** Webpack, TypesScript, HTML5, SASS (CSS3)
+
+**Server:** C#, Razor Pages, Entity Framework Core (MSSQL)
+
+**Platform:** Docker, Docker Compose, Bash, Azure CLI
+
+**Infra:** Azure Devops, Azure App Service, Azure Container Registry
