@@ -1,4 +1,4 @@
-# Sinda Knowledge Base
+# Sinda Knowledge Base (MVP)
 [![Build Status](https://dev.azure.com/sindagal/cms/_apis/build/status/denzii.sinda-cms?branchName=main)](https://dev.azure.com/sindagal/cms/_build/latest?definitionId=1&branchName=main)
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Language Count](https://img.shields.io/github/languages/count/denzii/sinda-cms)
@@ -17,7 +17,7 @@ Sindagal (sinda) is a toolset aiming to make developer life more convenient by:
 A live version could be found at https://sindagal.org
 
 ## Features
-
+- Responsive Design
 - Dynamic page content created using data fetched from DB (Except landing page)
 - SQL Abstraction with Code first Migrations
 - Containerized localhost development environment through Docker Compose 
@@ -34,7 +34,7 @@ A live version could be found at https://sindagal.org
 Contributions as well as feedback are always welcome! Feel free to fork this repository, submit pull requests, open issues or contact me directly at my 
 [Linkedin](https://www.linkedin.com/in/denizarca/) if there are any problems with the code or the documentation.
 ## Roadmap
-
+- UI tweaks for usability on mobile, Colour Contrast Adjustments & Typography improvements
 - Full refactor the codebase
 - Security fixes such as factoring DB Credentials out of Docker Compose
 - Provide automation for Azure Devops CLI Setup
