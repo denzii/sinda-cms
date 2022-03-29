@@ -16,21 +16,21 @@
         height-height: a.$headerHeight;
         min-height: 10vh;
         background-size: cover;
-        background-image: url("../img/hero.jpg");
+        background-image: url("../img/hero.jpeg");
         background-attachment: fixed;
-        background-blend-mode: unset;
-
+/*        background-blend-mode: unset;
+*/
         &--index-page {
             background-size: cover;
             min-height: 80vh;
             background-blend-mode: color-dodge;
 
             @include a.desktopWidthMediaQuery {
-                background-image: url("../img/hero-mid.jpg");
+                background-image: url("../img/hero-mid.jpeg");
             }
 
             @include a.mobileWidthMediaQuery {
-                background-image: url("../img/hero-low.jpg");
+                background-image: url("../img/hero-low.jpeg");
                 min-height: 60vh;
             }
         }
