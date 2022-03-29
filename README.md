@@ -17,7 +17,6 @@ Sindagal (sinda) is a toolset aiming to make developer life more convenient by:
 A live version could be found at https://sindagal.org
 
 ## Features
-- Responsive Design
 - Dynamic page content created using data fetched from DB (Except landing page)
 - SQL Abstraction with Code first Migrations
 - Containerized localhost development environment through Docker Compose 
@@ -25,6 +24,7 @@ A live version could be found at https://sindagal.org
 - Ability to debug through containers in both Visual Studio on Windows & Visual Studio Code on other operating systems
 - CI/CD through Azure Devops
 - Automations for Azure CLI setup through Bash
+- Responsive Design (Best experience on desktop & mobile as a fallback)
 ## Authors
 
 - Development, Devops & Automations by [@denzii](https://github.com/denzii)
