@@ -173,12 +173,12 @@ if [ $? -eq 0 ] ; then
 
 
 
-    # Enable CI/CD 
-    printf "\n\n";
-    printf "%40s\n" "${PURPLE}Attempting to enable continuous deployment ...${NEUTRAL}";
-    CI_CD_URL=$(az webapp deployment container config --enable-cd true --name $APP_NAME --resource-group $GROUP_NAME --query CI_CD_URL --output tsv);
+    # # Enable CI/CD 
+    # printf "\n\n";
+    # printf "%40s\n" "${PURPLE}Attempting to enable continuous deployment ...${NEUTRAL}";
+    # CI_CD_URL=$(az webapp deployment container config --enable-cd true --name $APP_NAME --resource-group $GROUP_NAME --query CI_CD_URL --output tsv);
     
-    printf "%40s\n" "${PURPLE}Attempting to enable  Webhook for continuous deployment ...${NEUTRAL}";
+    # printf "%40s\n" "${PURPLE}Attempting to enable  Webhook for continuous deployment ...${NEUTRAL}";
 
     # az acr webhook create --name appserviceCD --registry $REGISTRY_NAME --uri $CI_CD_URL --actions push --scope $TARGET_TAG
     
