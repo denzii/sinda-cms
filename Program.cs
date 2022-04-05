@@ -6,6 +6,12 @@ using SindaCMS.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var logger = LoggerFactory.Create(config =>
+    {
+        config.AddConsole();
+        config.AddConfiguration(builder.Configuration.GetSection("Logging"));
+    }).CreateLogger("Program");
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DataContext>((options) => {
@@ -18,10 +24,12 @@ builder.Services.AddScoped<IRepository, Repository>();
 if (bool.Parse(builder.Configuration["MigrateDbOnStartup"]))
 {
     var dbContext = builder.Services.BuildServiceProvider().GetService<DataContext>();
-    if (!dbContext.Database.GetService<IRelationalDatabaseCreator>().Exists())
-    {
-        dbContext.Database.Migrate();
-    }
+    dbContext.Database.Migrate();
+
+    // if (!dbContext.Database.GetService<IRelationalDatabaseCreator>().Exists())
+    // {
+    //     dbContext.Database.Migrate();
+    // }
 }
 
 var app = builder.Build();

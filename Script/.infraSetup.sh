@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # What does this script do?
-# Creates all the required resources on azure to allow deploying the repository on a multicontainer app service instance.
+# Creates all the required resources on azure to allow deploying the repository on a single container app service instance.
 
 # How to run this script?
 # 1) cd into this repository's root directory
@@ -16,14 +16,15 @@
 # 5)  Get Admin pass and login to the registry using docker
 # 6)  Push tagged local image to repository
 # 7)  Create a service plan 
-# 8)  Create an Azure App Service Webapp with initial configuration (Multicontainer)
-# 9)  Set environment variables on the created webapp so it can communicate with the container registry
-# 10) Turn system managed identity on for the webapp & assign the ACR Pull role to it so it can pull from the container registry
-# 11) Attempt an initial deploy
-# 12) Enable logging on the deployed containers
-# 13) Enable CD on the containers by setting a webhook
-# 14) Clear local resources which are left as a side effect of the procedure
-# 15) Re attempt some of the known problematic commands if they had failed
+# 8)  Create a Database resource 
+# 9)  Create an Azure App Service Webapp with initial configuration (single container)
+# 10)  Set environment variables on the created webapp so it can communicate with the container registry
+# 11) Turn system managed identity on for the webapp & assign the ACR Pull role to it so it can pull from the container registry
+# 12) Attempt an initial deploy
+# 13) Enable logging on the deployed containers
+# 14) Enable CD on the containers by setting a webhook
+# 15) Clear local resources which are left as a side effect of the procedure
+# 16) Re attempt some of the known problematic commands if they had failed
 # ... ... ... ... ...
 
 RED=$(tput setaf 1);
@@ -35,16 +36,25 @@ PURPLE=$(tput setaf 5);
 
 # IMPORTANT if you end up changing these, do not forget to also change the image for the sindacms inside docker-compose.yml file.
 # How to keep them in sync without manual effort?
-GROUP_NAME="sinda-cms-group";
+GROUP_NAME="sinda-cms-grouptestfour";
 GROUP_EXISTS=$(az group exists -n $GROUP_NAME);
-SERVICE_PLAN_NAME="sinda-cms-plan";
-APP_NAME="sindacms";
-REGISTRY_NAME="sinda";
+SERVICE_PLAN_NAME="sinda-cms-plantesfour";
+APP_NAME="sindacmstestfour";
+REGISTRY_NAME="sindatestfour";
 REGISTRY_URL="$REGISTRY_NAME.azurecr.io";
 REGISTRY_URL_FULL="https://$REGISTRY_NAME.azurecr.io"
 SOURCE_TAG="$APP_NAME"'app';
 TARGET_TAG="$REGISTRY_URL/$SOURCE_TAG"':latest';
 ACR_PASSWORD_PATH="./Secret/acrPassword.txt"
+
+    DB_TAG="sinda-db-create"
+    DB_SERVER="sinda-cms-db-servertest"
+    DB_NAME="sinda-cms-dbtest"
+    DB_LOGIN="dbadmin"
+    DB_PW="P@ssword123"
+    START_IP=0.0.0.0
+    END_IP=0.0.0.0
+
 
 printf "\n";
 
@@ -99,20 +109,48 @@ if [ $? -eq 0 ] ; then
     docker push $TARGET_TAG
 
     printf "\n\n"
+    
+    # Configure a single Azure SQL Database 
+
+    printf "\n";
+    printf "%40s\n" "${PURPLE}Attempting to create a single Database and its related resources...${NEUTRAL}";
+
+    printf "%40s\n" "${PURPLE}Using resource group $GROUP_NAME with login: $DB_LOGIN, password: $DB_PW...${NEUTRAL}";
+    az group create --name $GROUP_NAME --location westeurope --tags $DB_TAG
+    printf "\n\n";
+
+    printf "%40s\n" "${PURPLE}Creating $DB_SERVER in westeurope...${NEUTRAL}";
+    az sql server create --name $DB_SERVER --resource-group $GROUP_NAME --location westeurope --admin-user $DB_LOGIN --admin-password $DB_PW
+    printf "\n\n";
+
+    printf "%40s\n" "${PURPLE}Configuring firewall...${NEUTRAL}";
+    az sql server firewall-rule create --resource-group $GROUP_NAME --server $DB_SERVER -n AllowYourIp --start-ip-address $START_IP --end-ip-address $END_IP
+    printf "\n\n";
+
+    printf "%40s\n" "${PURPLE}Creating $DB_NAME on $DB_SERVER...${NEUTRAL}";
+    az sql db create --resource-group $GROUP_NAME --server $DB_SERVER --name $DB_NAME --edition Basic --capacity 5
+    printf "\n\n";
+    printf "%40s\n" "${GREEN}Azure Single SQL DB had been created and will be live in a few moments, please find the connection string from azure ui...${NEUTRAL}";
+    printf "%40s\n" "${GREEN}Please find the connection string using the following command (Do not forget to swap in the username and password): ${NEUTRAL}";
+    printf "az sql db show-connection-string -s $DB_SERVER -n $DB_NAME -c ado.net";
+    printf "\n\n";
 
     # Configure App service
     printf "%40s\n" "${PURPLE}Attempting to create a service plan for the repository...${NEUTRAL}";
     az appservice plan create --name $SERVICE_PLAN_NAME --resource-group $GROUP_NAME --is-linux;
     printf "\n\n"
 
-    printf "%40s\n" "${PURPLE}Attempting to create multicontainer webapp for this repository...${NEUTRAL}";
-    az webapp create --resource-group $GROUP_NAME --plan $SERVICE_PLAN_NAME --name $APP_NAME --multicontainer-config-type compose --multicontainer-config-file docker-compose.yml;
+    printf "%40s\n" "${PURPLE}Attempting to create single container webapp for this repository...${NEUTRAL}";
+    az webapp create --resource-group $GROUP_NAME --plan $SERVICE_PLAN_NAME --name $APP_NAME --deployment-container-image-name $TARGET_TAG;
     printf "\n\n"
 
     printf "%40s\n" "${PURPLE}Attempting to set the required env vars on webapp appsettings...${NEUTRAL}";
     printf "%40s\n" "${PURPLE}Setting ACR Password fetched from Azure...${NEUTRAL}";
     az webapp config appsettings set --name $APP_NAME --resource-group $GROUP_NAME --settings DOCKER_REGISTRY_SERVER_PASSWORD=$ACR_PASSWORD > /dev/null 2>&1;
-
+    
+    printf "%40s\n" "${PURPLE}Setting exposed Application HTTP port (Find it in the dockerfile)...${NEUTRAL}";
+    az webapp config appsettings set --resource-group $GROUP_NAME --name $APP_NAME --settings WEBSITES_PORT=80 > /dev/null 2>&1;
+    
     printf "%40s\n" "${PURPLE}Setting Registry server username to: $REGISTRY_NAME ...${NEUTRAL}";
     az webapp config appsettings set --name $APP_NAME --resource-group $GROUP_NAME --settings DOCKER_REGISTRY_SERVER_USERNAME=$REGISTRY_NAME > /dev/null 2>&1;
 
@@ -140,16 +178,12 @@ if [ $? -eq 0 ] ; then
     printf "\n\n"
 
     # Initial Deploy
-    printf "%40s\n" "${PURPLE}Attempting to do an initial multicontainer deploy for the repository...${NEUTRAL}";
+    printf "%40s\n" "${PURPLE}Attempting to do an initial single container deploy for the repository...${NEUTRAL}";
     az webapp config container set \
     --name $APP_NAME \
     --resource-group $GROUP_NAME \
     --docker-custom-image-name $TARGET_TAG \
-    --docker-registry-server-url $REGISTRY_URL_FULL \
-    --docker-registry-server-password $ACR_PASSWORD \
-    --docker-registry-server-user $REGISTRY_NAME \
-    --multicontainer-config-file docker-compose.yml \
-    --multicontainer-config-type compose
+    --docker-registry-server-url $REGISTRY_URL_FULL 
     printf "\n\n"
 
     # Enable Logging on containers
