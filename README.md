@@ -37,6 +37,7 @@ Contributions as well as feedback are always welcome! Feel free to fork this rep
 - UI tweaks for usability on mobile, Colour Contrast Adjustments & Typography improvements
 - Full refactor the codebase
 - Security fixes such as factoring DB Credentials out of Docker Compose
+- Upload/Download/Consume images from CDN
 - Provide automation for Azure Devops CLI Setup
 - Automate all Devops Resource creation & configure them with Azure App Service through Azure CLI & Bash
 - Provide a Restful API & Repository for editing site content while the app is deployed & running 
