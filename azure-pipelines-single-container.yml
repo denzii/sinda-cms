@@ -10,7 +10,7 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'b289c77c-8702-4f09-a6d6-3ccac43b0634'
+  dockerRegistryServiceConnection: 'sinda'
   imageRepository: 'sindacmstestfourapp'
   containerRegistry: 'sindatestfour.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
