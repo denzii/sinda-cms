@@ -36,6 +36,6 @@
   },
   "scripts": {
     "start": "concurrently \"tsc --project ./tsconfig.json --watch\" \"webpack --watch\"",
-    "build": "webpack"
+    "ci": "npm i && webpack"
   }
 }
