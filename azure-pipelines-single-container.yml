@@ -1,12 +1,9 @@
 # Docker
 - task: Npm@1
   inputs:
-    command: 'custom'
-    workingDir: '/client/'
-    customCommand: 'npm run build'
-# Build and push an image to Azure Container Registry
-# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
-
+    command: 'ci'
+    workingDir: '/client'
+    verbose: true
 trigger:
 - main
 
