@@ -8,7 +8,7 @@ EXPOSE 443
 FROM node:lts AS node
 WORKDIR /src/client
 COPY . .
-RUN npm ci
+RUN npm run build
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
