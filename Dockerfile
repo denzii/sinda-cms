@@ -24,5 +24,5 @@ RUN dotnet publish "SindaCMS.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-COPY --from=node /wwwroot .
+COPY --from=node /wwwroot ./wwwroot
 ENTRYPOINT ["dotnet", "SindaCMS.dll"]
