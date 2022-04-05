@@ -1,9 +1,4 @@
 # Docker
-- task: Npm@1
-  inputs:
-    command: 'ci'
-    workingDir: '/client'
-    verbose: true
 trigger:
 - main
 
