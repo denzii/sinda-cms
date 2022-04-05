@@ -35,7 +35,7 @@
     "webpack-cli": "^4.6.0"
   },
   "scripts": {
-    "start": "concurrently \"tsc --project ./tsconfig.json --watch\" \"webpack --watch\"",
-    "ci": "webpack"
+    "start": "concurrently \"tsc --project ./tsconfig.json --watch\" \"webpack --config ../webpack.config.js --watch\"",
+    "ci": "webpack --config ../webpack.config.js"
   }
 }
