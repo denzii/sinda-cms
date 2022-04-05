@@ -6,7 +6,7 @@ EXPOSE 80
 EXPOSE 443
 
 FROM node:lts AS node
-WORKDIR /src/client
+WORKDIR /client
 COPY . .
 RUN npm run build
 
