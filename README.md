@@ -16,6 +16,8 @@ Sindagal (sinda) is a toolset aiming to make developer life more convenient by:
 
 A live version could be found at https://sindagal.org
 
+Kubernetes URL at https://sinda.vektio.com/ ( Meant to be only for playing around and not for production)
+
 ## Features
 - Dynamic page content created using data fetched from DB (Except landing page)
 - SQL Abstraction with Code first Migrations
@@ -28,6 +30,7 @@ A live version could be found at https://sindagal.org
 ## Authors
 
 - Development, Devops & Automations by [@denzii](https://github.com/denzii)
+- Bare metal Infrastructure for playing around with Kubernetes by [@hushoca](https://github.com/hushoca)
 
 ## Contributing
 
@@ -39,7 +42,8 @@ Contributions as well as feedback are always welcome! Feel free to fork this rep
 - Security fixes such as factoring DB Credentials out of Docker Compose
 - Upload/Download/Consume images from CDN
 - Provide automation for Azure Devops CLI Setup
-- Automate all Devops Resource creation & configure them with Azure App Service through Azure CLI & Bash
+- Automate all Devops infrastructure resource creation & configure them with Azure App Service through Azure CLI & Bash
+- CI Pipeline for Helm
 - Provide a Restful API & Repository for editing site content while the app is deployed & running 
 - Provide a Client Side Rendered Content Editor UI Using ReactJS (Webpack already configured to support JSX/TSX)
 ## Tech Stack
