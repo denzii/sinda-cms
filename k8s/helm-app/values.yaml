@@ -1,0 +1,34 @@
+namespace: sinda
+
+deployment:
+  name: sindacms-deploy  
+  appLabel: sindacms
+  replicas: 1
+
+container:
+  name: sindacms
+  port:  80
+
+image:
+  name: sindatestfour.azurecr.io/sindacmstestfourapp
+  pullPolicy: Always
+  pullSecretName: azcrcred
+  secretData: eyJhdXRocyI6eyJzaW5kYXRlc3Rmb3VyLmF6dXJlY3IuaW8iOnsidXNlcm5hbWUiOiJzaW5kYXRlc3Rmb3VyIiwicGFzc3dvcmQiOiJrZDE0b01sMDdzWFl2K2Jkc1Btc2w0QWJEbENldFliTyIsImF1dGgiOiJjMmx1WkdGMFpYTjBabTkxY2pwclpERTBiMDFzTURkeldGbDJLMkprYzFCdGMydzBRV0pFYkVObGRGbGlUdz09In19fQ==
+
+service:
+  clusterIp:
+    name: sindacmsservice
+    protocol: TCP
+  loadBalancer:
+    name: sindacmsloadbalancer
+    protocol: TCP
+
+ingress:
+  name: sindacmsingress
+  host: sinda.vektio.com
+  path:
+    type: Prefix
+    root: /
+
+node:
+  port: 30000

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: "{{ .Values.namespace }}"
+  name: "{{ .Values.service.loadBalancer.name }}"
+spec:
+  type: LoadBalancer
+  selector:
+    app: "{{ .Values.deployment.appLabel }}"
+  ports:
+    - protocol: "{{ .Values.service.loadBalancer.protocol }}"
+      port: {{ .Values.container.port }}
+      targetPort: {{ .Values.container.port }}
+      nodePort: {{ .Values.node.port }}

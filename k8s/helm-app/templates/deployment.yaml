@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: "{{ .Values.deployment.name }}"
+  namespace: "{{ .Values.namespace }}"
+  labels:
+    app: "{{ .Values.deployment.appLabel }}"
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: "{{ .Values.deployment.appLabel }}"
+  template:
+    metadata:
+      annotations:
+        checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
+      labels:
+        app: "{{ .Values.deployment.appLabel }}"
+    spec:
+      containers:
+        - name: "{{ .Values.container.name }}"
+          image: "{{ .Values.image.name }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          ports:
+          - containerPort: {{ .Values.container.port }}
+      imagePullSecrets:
+      - name : "{{ .Values.image.pullSecretName }}"
