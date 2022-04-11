@@ -30,7 +30,7 @@ Kubernetes URL at https://sinda.vektio.com/ ( Meant to be only for playing aroun
 ## Authors
 
 - Development, Devops & Automations by [@denzii](https://github.com/denzii)
-- Bare metal Kubernetes Infrastructure for playing around by [@hushoca](https://github.com/hushoca)
+- Bare metal Infrastructure for playing around with Kubernetes by [@hushoca](https://github.com/hushoca)
 
 ## Contributing
 
