@@ -15,7 +15,8 @@ Sindagal (sinda) is a toolset aiming to make developer life more convenient by:
 ## Demo & Documentation
 
 A live version could be found at https://sindagal.org
-Kubernetes URL at https://sinda.vektio.com/ (only for playing around & not meant to be for production)
+
+Kubernetes URL at https://sinda.vektio.com/ (Kudos to [@hushoca](https://github.com/hushoca) for letting me deploy this on his K8S infrastructure)
 
 ## Features
 - Dynamic page content created using data fetched from DB (Except landing page)
