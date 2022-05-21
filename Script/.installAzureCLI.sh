@@ -26,3 +26,9 @@ sudo apt-get install azure-cli
 # install jmespath terminal for better querying with the --query parameter
 sudo wget https://github.com/jmespath/jp/releases/latest/download/jp-linux-amd64 \
   -O /usr/local/bin/jp  && sudo chmod +x /usr/local/bin/jp  
+
+# add the azure devops extension
+az extension add --name azure-devops
+
+# add graph api for better querying
+az extension add --name resource-graph

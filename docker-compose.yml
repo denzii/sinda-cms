@@ -3,7 +3,7 @@ version: '3.4'
 
 services:
   sindacms:
-    image: sinda.azurecr.io/sindacmsapp:latest
+    image: sindaregistry.azurecr.io/sindacmswebapp:latest
     build:
       context: .
       dockerfile: Dockerfile
@@ -16,7 +16,7 @@ services:
       - "80:80"
       - "443:443"
     environment:
-      - "ConnectionString=server=db,1433;database=sindacmsdb;Uid=sa;Password=P@ssword123;Integrated Security=False"
+      - "Server=tcp:sinda-cms-db-server.database.windows.net,1433;Database=sinda-cms-db;Uid=sa;Password=P@ssword123;Encrypt=true;Connection Timeout=30;"
       - "MigrateDbOnStartup=true"
       - "ASPNETCORE_ENVIRONMENT=Production"
 

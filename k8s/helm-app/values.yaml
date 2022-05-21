@@ -10,7 +10,7 @@ container:
   port:  80
 
 image:
-  name: sindatestfour.azurecr.io/sindacmstestfourapp
+  name: sindaregistry.azurecr.io/sindacmswebapp
   pullPolicy: Always
   pullSecretName: azcrcred
   secretData: eyJhdXRocyI6eyJzaW5kYXRlc3Rmb3VyLmF6dXJlY3IuaW8iOnsidXNlcm5hbWUiOiJzaW5kYXRlc3Rmb3VyIiwicGFzc3dvcmQiOiJrZDE0b01sMDdzWFl2K2Jkc1Btc2w0QWJEbENldFliTyIsImF1dGgiOiJjMmx1WkdGMFpYTjBabTkxY2pwclpERTBiMDFzTURkeldGbDJLMkprYzFCdGMydzBRV0pFYkVObGRGbGlUdz09In19fQ==
