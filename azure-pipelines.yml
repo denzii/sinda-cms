@@ -28,21 +28,24 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    - task: DockerCompose@0
-      displayName: Build an image
+    - task: DockerInstaller@0
       inputs:
-        containerregistrytype: 'Azure Container Registry'
-        dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
-        action: Build services
-        repository: $(imageRepository)
-        containerRegistry: $(dockerRegistryServiceConnection)
-    - task: DockerCompose@0
-      displayName: Push an image
+        dockerVersion: '17.09.0-ce'
+    - task: Docker@2
       inputs:
-        containerregistrytype: 'Azure Container Registry'
-        azureSubscription: 'Azure subscription 1 (d21330e2-f2ba-412a-b249-cafa9798a914)'
-        azureContainerRegistry: '{"loginServer":"sinda.azurecr.io", "id" : "/subscriptions/d21330e2-f2ba-412a-b249-cafa9798a914/resourceGroups/sinda-cms-group/providers/Microsoft.ContainerRegistry/registries/sinda"}'
-        dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
-        action: 'Push services'
-        tags: |
-          $(tag)
+        containerRegistry: 'sindaregistry'
+        command: 'login'
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'sindaregistry'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
+    - task: Bash@3
+      inputs:
+        targetType: 'inline'
+        script: |
+         echo $(Build.BuildId) > 
+- task: Docker@2
+  inputs:
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
